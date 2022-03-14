@@ -1,13 +1,14 @@
 # สารบัญเนื้อหาสรุป
 
-## 1. Introduction :blue_book: ##
+## 1. Introduction :bookmark_tabs: ##
 ## 2. Types , Operators and Expression :closed_book: ##
 ## 3. Control - Flow :green_book: ##
 ## 4. Function :orange_book: ##
 ## 5. Array :notebook: ## 
-## 6. Structures :notebook_with_decorative_cover: ##
-## 7. Pointers :ledger: ##
-## 8. Example of Function in C :label: ##
+## 6. Structures & Unions :notebook_with_decorative_cover: ##
+## 7. Pointers & Dynamic Memory Allocation :ledger: ##
+## 8. characters & string :blue_book: ##
+## 9. Example of Function in C :label: ##
 
 
 
@@ -1366,7 +1367,7 @@ int main()
 9, 7, 92,
 ```
 
-> # Structures :books:
+> # Structures & Unions :books:
 
 โครงสร้างข้อมูล (structure) คือกลุ่มของตัวแปรที่สามารถสร้างและเก็บไว้ในตัวแปรเดียวที่เรียกว่า data structure ในภาษา C เราสามารถสร้างและออกแบบโครงสร้างข้อมูลของเราได้ตามที่ต้องการ โดยโครงสร้างข้อมูลจะมีสมาชิกที่เป็นตัวแปร (members) และฟังก์ชันได้ในเวลาเดียวกัน
 
@@ -1470,6 +1471,213 @@ Step 0: walk to point 1, 2
 Step 1: walk to point -3, -5
 Step 2: walk to point 4, 8
 Step 3: walk to point 0, -1
+```
+
+## Union :page_with_curl:
+
+ยูเนียน คือ ข้อมูลแบบหนึ่งที่สามารถกำหนดให้ตัวแปรต่างชนิดกัน ใช้เนื้อที่ในหน่วยความจำของเครื่องร่วมกันได้ ทำให้การใช้เนื้อที่ภายในหน่วยความจำลดลง
+
+```
+union   {
+      int  a;
+      float  b;
+      char c;
+}  ShareArea;
+```
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <string.h>`
+
+``` 
+union Data {
+   int i;
+   float f;
+   char str[20];
+};
+ 
+int main( ) {
+
+   union Data data;        
+
+   printf( "Memory size occupied by data : %d\n", sizeof(data));
+
+   return 0;
+}
+```
+
+:printer: Output
+
+```
+Memory size occupied by data : 20
+```
+### การเข้าถึงข้อมูลในยูเนียน :page_with_curl:
+
+`member access operator (.)`
+
+การเข้าถึงของสมาชิกจะถูกเข้ารหัสเป็นช่วงเวลาระหว่างชื่อตัวแปรของ ยูเนี่ยน และสมาชิก ยูเนี่ยน ที่เราต้องการเข้าถึง คุณจะใช้คีย์เวิร์ด union เพื่อกำหนดตัวแปรของประเภทยูเนี่ยน
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <string.h>`
+
+```
+union Data {
+   int i;
+   float f;
+   char str[20];
+};
+ 
+int main( ) {
+
+   union Data data;        
+
+   data.i = 10;
+   data.f = 220.5;
+   strcpy( data.str, "C Programming");
+
+   printf( "data.i : %d\n", data.i);
+   printf( "data.f : %f\n", data.f);
+   printf( "data.str : %s\n", data.str);
+
+   return 0;
+}
+```
+
+:printer: Output
+
+```
+data.i : 1917853763
+data.f : 4122360580327794860452759994368.000000
+data.str : C Programming
+```
+
+### Enumeratiom :page_with_curl:
+
+เพื่อกําหนดประเภทของข้อมูลที่ตนเองสร้างขึ้นได้ โดยข้อมูลประเภทนี้จะมีสมาชิกจํานวนจํากัดซึ่งเป็นค่าคงที่
+
+```
+enum <name> {constant 1 , constant 2 , … , constant n};
+enum months {MON, TUE, WED, THU, FRI, SAT, SUN};
+enum months {JAN = 1, FEB, MAR, APR, MAY ,JUN ,JUL, AUG, SEP, OCT, NOV, DEC};
+```
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+
+```
+enum suit {
+    club = 0,
+    diamonds = 10,
+    hearts = 20,
+    spades = 3
+} card;
+
+int main() 
+{
+    card = club;
+	printf("Size of enum variable = %d bytes", sizeof(card));	
+	return 0;
+}
+```
+
+:printer: Output
+
+```
+Size of enum variable = 4 bytes
+```
+
+### bit field :page_with_curl:
+
+การเก็บค่าเป็น bit ใน structure นั้นสมาชิกตัวนั้นจะมีชื่อว่า bit field มีประโยชน์ตรงที่จะประหยัดพื้นที่ในการเก็บค่า มักนิยมมากใช้กับค่า Boolean ซึ่งมีค่าเพียงแค่ True (1) , False (0) เท่านั้น ทำงานกับตัวดำเนินการบิตไวส์ (bitwise Operator)
+
+```
+struct {
+   unsigned int widthValidated : 1;
+   unsigned int heightValidated : 1;
+} status;
+```
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <string.h>`
+
+```
+/* define simple structure */
+struct {
+   unsigned int widthValidated;
+   unsigned int heightValidated;
+} status1;
+
+/* define a structure with bit fields */
+struct {
+   unsigned int widthValidated : 1;
+   unsigned int heightValidated : 1;
+} status2;
+ 
+int main( ) {
+   printf( "Memory size occupied by status1 : %d\n", sizeof(status1));
+   printf( "Memory size occupied by status2 : %d\n", sizeof(status2));
+   return 0;
+}
+```
+
+:printer: Output
+
+```
+Memory size occupied by status1 : 8
+Memory size occupied by status2 : 4
+```
+
+#### การประกาศbit field
+
+```
+struct {
+   type [member_name] : width ;
+};
+```
+
+1. type ชนิดข้อมูลจำนวนเต็มที่กำหนดวิธีตีความค่าของบิตฟิลด์ ชนิดข้อมูลอาจเป็น int, signed int, หรือ unsigned int.
+2. member_name ชื่อของบิตฟิลด์
+3. width จำนวนบิตในฟิลด์บิต ความกว้างต้องน้อยกว่าหรือเท่ากับความกว้างบิตของประเภทที่ระบุ
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <string.h>`
+
+```
+struct {
+   unsigned int age : 3;
+} Age;
+
+int main( ) {
+
+   Age.age = 4;
+   printf( "Sizeof( Age ) : %d\n", sizeof(Age) );
+   printf( "Age.age : %d\n", Age.age );
+
+   Age.age = 7;
+   printf( "Age.age : %d\n", Age.age );
+
+   Age.age = 8;
+   printf( "Age.age : %d\n", Age.age );
+
+   return 0;
+}
+```
+
+:printer: Output
+
+```
+Sizeof( Age ) : 4
+Age.age : 4
+Age.age : 7
+Age.age : 0
 ```
 
 > # Pointers & Dynamic Memory Allocation :books:
@@ -1687,6 +1895,77 @@ Enter elements: 100
 36
 Sum = 156
 ```
+
+# Characters & String & Memory Functions :books:
+
+## Characters :page_with_curl:
+
+### Character Handling Library <ctype.h>
+
+`int isalnum(int c)`
+This function checks whether the passed character is alphanumeric.
+เป็นฟังก์ชันที่ใช้ตรวจสอบว่าข้อมูลที่เก็บไว้ในตัวแปรint cเป็นตัวอักษรหรือตัวเลข(letter or digit)
+ถ้าข้อมูลที่เก็บไว้เป็นตัวอักษรหรือตัวเลขก็จะส่งค่ากลับที่เป็นจำนวนเต็มที่มีค่าไม่เท่ากับศูนย์มายังฟังก์ชัน
+ถ้าข้อมูลที่เก็บไว้ในตัวแปรchไม่ได้เก็บตัวอักษรหรือตัวเลขก็จะส่งค่ากลับมามีค่าเป็นศูนย์มายังฟังก์ชัน
+
+=> {{ a b c d e f g h i j k l m n o p q r s t u v w x y z } , {A B C D E F G H I J K L M N O P Q R S T U V W X Y Z } , { 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f }}
+
+`int isalpha(int c)`
+This function checks whether the passed character is alphabetic.
+เป็นฟังก์ชันที่ใช้ตรวจสอบว่าข้อมูลที่เก็บไว้ในตัวแปรint cเป็นตัวอักษร(letter)หรือไม่  
+ถ้าใช่ฟังก์ชันนี้จะให้ค่าส่งกลับเป็นเลขจำนวนเต็มที่ไม่เท่ากับศูนย์ 
+ถ้าไม่ใช่ฟังก์ชันนี้จะให้ค่าส่งกลับมาเป็นเลขศูนย์(0)
+=> {{ a b c d e f g h i j k l m n o p q r s t u v w x y z } , {A B C D E F G H I J K L M N O P Q R S T U V W X Y Z }}
+
+`int iscntrl(int c)`
+This function checks whether the passed character is control character.
+
+=>In ASCII, these characters have octal codes 000 through 037, and 177 (DEL).
+
+`int isdigit(int c)`
+This function checks whether the passed character is decimal digit.
+=> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }.
+
+`int isgraph(int c)`
+This function checks whether the passed character has graphical representation using locale.
+=>
+
+`int islower(int c)`
+This function checks whether the passed character is lowercase letter.
+=>
+
+`int isprint(int c)`
+This function checks whether the passed character is printable.
+=>
+
+`int ispunct(int c)`
+This function checks whether the passed character is a punctuation character.
+=>
+
+`int isspace(int c)`
+This function checks whether the passed character is white-space.
+=>
+
+`int isupper(int c)`
+This function checks whether the passed character is an uppercase letter.
+=>
+
+`int isxdigit(int c)`
+This function checks whether the passed character is a hexadecimal digit.
+=>
+
+`int tolower(int c)`
+This function converts uppercase letters to lowercase.
+=>
+
+`int toupper(int c)`
+This function converts lowercase letters to uppercase.
+=>
+
+## string :page_with_curl:
+
+## memory functions :page_with_curl:
+
 
 > # Example of Function in C :books:
 
