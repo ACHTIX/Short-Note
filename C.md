@@ -1096,7 +1096,7 @@ sum = 6
 
 ## Scope Rules :page_with_curl:
 
-### Local Variable :page_with_curl:
+## Local Variable :page_with_curl:
 
 ตัวแปรชนิดโลคอล (Local Variable) ถูกสร้างขึ้นภายในฟังก์ชัน การเปลี่ยนแปลงจะมีผลภายในฟังก์ชันเท่านั้น หากมีชื่อซ้ ากับ Global variable จะถือว่าเป็นคนละตัวแปรกัน ตัวแปรประเภทนี้ เมื่อโปรแกรมออกจากฟังก์ชันจะถูกทำลาย
 
@@ -1130,7 +1130,7 @@ x = 59
 x = 59
 ```
 
-### Global Variable :page_with_curl:
+## Global Variable :page_with_curl:
 
 ตัวแปรชนิดโกลบอล (Global Variable) เป็นตัวแปรที่ประกาศไว้นอกฟังก์ชัน อยู่ส่วนหัวโปรแกรม สามารถใช้ได้ทุกที่ ทุกฟังก์ชันในโปรแกรม
 
@@ -1512,7 +1512,7 @@ int main( ) {
 ```
 Memory size occupied by data : 20
 ```
-### การเข้าถึงข้อมูลในยูเนียน :page_with_curl:
+### การเข้าถึงข้อมูลในยูเนียน :pencil2:
 
 `member access operator (.)`
 
@@ -1554,7 +1554,7 @@ data.f : 4122360580327794860452759994368.000000
 data.str : C Programming
 ```
 
-### Enumeratiom :page_with_curl:
+### Enumeratiom :pencil2:
 
 เพื่อกําหนดประเภทของข้อมูลที่ตนเองสร้างขึ้นได้ โดยข้อมูลประเภทนี้จะมีสมาชิกจํานวนจํากัดซึ่งเป็นค่าคงที่
 
@@ -1590,7 +1590,7 @@ int main()
 Size of enum variable = 4 bytes
 ```
 
-### bit field :page_with_curl:
+### bit field :pencil2:
 
 การเก็บค่าเป็น bit ใน structure นั้นสมาชิกตัวนั้นจะมีชื่อว่า bit field มีประโยชน์ตรงที่จะประหยัดพื้นที่ในการเก็บค่า มักนิยมมากใช้กับค่า Boolean ซึ่งมีค่าเพียงแค่ True (1) , False (0) เท่านั้น ทำงานกับตัวดำเนินการบิตไวส์ (bitwise Operator)
 
