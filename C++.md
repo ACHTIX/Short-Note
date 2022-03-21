@@ -563,10 +563,78 @@ class Rectangle
 
 # Constructors, Access modifiers :books:
 
+## Constructors :page_with_curl:
+
+### Overload :pencil2:
+
+### Default Constructor :pencil2:
+
+### Constructor รับพารามิเตอร์เพียงหนึ่งค่า :pencil2:
+
+### Member Initilizer :pencil2:
+
+## Access Control :page_with_curl:
+
+## getter :page_with_curl:
+
+## setter :page_with_curl:
+
+## ToString() :page_with_curl:
+
+## Handle :page_with_curl:
+
+## Copy :page_with_curl:
+
+## การสร้างobject ด้วย new :page_with_curl:
+
+### new :pencil2:
+
+### delete :pencil2:
+
+## Pointer this :page_with_curl:
+
+## Destructor :page_with_curl:
 
 
 # Composition :books:
 
+### Class without composition :pencil2:
 
+### Class with composition :pencil2:
+
+### Class with composition and pointer :pencil2:
+
+## แผนภาพ UML (Unified Modeling Language) :page_with_curl:
+
+## HAS - A Relationship :page_with_curl:
+
+## Header files :page_with_curl:
+
+## Include Guard :page_with_curl:
 
 # Inheritance :books:
+
+## Base class & Derived class :page_with_curl:      
+
+### Inheritance with data member & member function :pencil2:
+
+## benefits of inheritance :page_with_curl:
+
+### example code without inheritance:pencil2:
+
+### example code with inheritance :pencil2:
+
+## customization member function :page_with_curl:
+
+### redefine :pencil2:
+
+### override :pencil2:
+
+## bind varable :page_with_curl:
+
+### Static binding :pencil2:
+
+### Dynamic binding :pencil2:
+
+## Ploymorphism (ภาวะพหุสัณฐาน) :page_with_curl:
+
