@@ -431,21 +431,89 @@ TMB: 1950
 
 ## Type of parameter :page_with_curl:
 
+วัตถุที่เรียกmember functionนั้นถือเป็นพารามิเตอร์ประเภทของฟังก์ชัน 
+พารามิเตอร์ที่ส่งผ่านไปให้เมมเบอร์ฟังก์ชันแบ่งได้ 2 ประเภท
+
+1. Explicit Parameter : ระบุได้ชัดเจนอยู่ภายในรายการพารามิเตอร์ของเมมเบอร์ฟังก์ชัน
+2. Implicit Parameter : หมายถึงพารามิเตอร์แฝง หรือโดยนัย ไม่ได้ระบุอย่างชัดเจน แฝงมากับการเรียกใช้เมมเบอร์ฟังก์ชัน 
+ในการโปรแกรมเชิงวัตถุ คือ วัตถุที่เรียกเมมเบอร์ฟังก์ชัน
+
+:desktop_computer: Example Code :
+
+```
+scb_account.Deposit(100);
+//implicit         //explicit
+```
+
+**คำสั่งมีลักษณะเหมือนประโยคบอกเล่า**
+- ชื่อวัตถุ = ประธาน
+- ชื่อเมมเบอร์ = กริยา
+- explicit = กรรม
+*ประกาศคลาสกับวัตถุ ให้เป็นคำนาน
+*ประกาศชื่อคลาสกับชื่อฟังก์ชัน ให้เป็นกริยา
+
 ## Type of member function :page_with_curl:
 
+1. Accessor : เข้าถึงข้อมูลเพื่อไปอ่าน คำนวน คืนค่า 
+*โดยที่จะไม่มีการเปลี่ยนแปลงค่าในดาต้าเมมเบอร์เลย* 
+
+:desktop_computer: Example Code :
+
+```
+double Area()
+{
+    return width * length;
+}
+```
+
+`const` ระบุด้วยคีย์เวิร์ดนี้หลังจากการประกาศหัวของฟังก์ชันแล้ว จะไม่สามารถเปลี่ยนแปลงค่าดาต้าเมมเบอร์ได้ 
+*หากมีการเปลี่ยนแปลงจะทำให้คอมไพล์ไม่ผ่าน*
+
+2. Mutator : กำหนดหรือเปลี่ยนแปลงค่าในดาต้าเมมเบอร์ 
+*ถือว่าเป็นฟังก์ชันที่ไม่ค่อยปลอดภัย*
+
+:desktop_computer: Example Code :
+
+```
+void Deposit(double amount)
+{
+    balance = balance - amount;
+}
+
+void Withdraw(double amount)
+{
+    balance = balance - amount;
+}
+```
+
 ## Overload :page_with_curl:
+
+
 
 ## การตั้งชื่อคลาส ตัวแปร ฟันก์ชัน :page_with_curl:
 
 ### Class :pencil2:
 
+ตั้งชื่อในลักษณะของ หลังอูฐ(CamelCase)
+*นิยมใช้คำนามเป็นเอกพจน์*
+ขึ้นตัวชื่อด้วยอักษรตัวใหญ่ใช้อักษรตัวใหญ่ในการขั้นระหว่างคำ 
+เช่น Book BankAccount ChessBoard
+
 ### Variable :pencil2:
+
+ตั้งชื่อในลักษณะของ งูเลื้อย(snake_case) 
+*นิยมใช้คำนามเป็นเอกพจน์หรือพหุพจน์ก็ได้*
+ขึ้นตัวชื่อด้วยอักษรตัวเล็ก ใช้ (_) ในการขั้นระหว่างคำ 
+เช่น book bank_account chess_board
+
+**บางองค์กรใหญ่ๆ เช่น google bitcoin มักจะใส่ (_) ต่อท้ายชื่อด้วย**
 
 ### Member function :pencil2:
 
-## Example Code :page_with_curl:
-
-
+ตั้งชื่อในลักษณะของ หลังอูฐ(CamelCase)
+*นิยมใช้คำกริยา*
+ขึ้นตัวชื่อด้วยอักษรตัวใหญ่ใช้อักษรตัวใหญ่ในการขั้นระหว่างคำ 
+เช่น Book() BankAccount() ChessBoard()
 
 # Constructors, Access modifiers :books:
 
