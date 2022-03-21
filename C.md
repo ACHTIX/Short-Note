@@ -8,7 +8,9 @@
 ## 6. Structures & Unions :notebook_with_decorative_cover: ##
 ## 7. Pointers & Dynamic Memory Allocation :ledger: ##
 ## 8. characters & string :blue_book: ##
-## 9. Example of Function in C :label: ##
+## 9. linked list :orange_book: ##
+## 10. File handling in C :notebook: ## 
+## 11. Example of Function in C :label: ##
 
 
 
@@ -1928,44 +1930,407 @@ This function checks whether the passed character is decimal digit.
 
 `int isgraph(int c)`
 This function checks whether the passed character has graphical representation using locale.
-=>
+=> This is a set of Alphanumeric characters and Punctuation characters.
 
 `int islower(int c)`
 This function checks whether the passed character is lowercase letter.
-=>
+=> { a b c d e f g h i j k l m n o p q r s t u v w x y z }
 
 `int isprint(int c)`
 This function checks whether the passed character is printable.
-=>
+=> This is a set of Alphanumeric characters, Punctuation characters and Space characters.
 
 `int ispunct(int c)`
 This function checks whether the passed character is a punctuation character.
-=>
+=> This is a set of ! " # $ % & ' ( ) * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~
 
 `int isspace(int c)`
 This function checks whether the passed character is white-space.
-=>
+=> This is a set of tab, newline, vertical tab, form feed, carriage return, and space.
 
 `int isupper(int c)`
 This function checks whether the passed character is an uppercase letter.
-=>
+=> {A B C D E F G H I J K L M N O P Q R S T U V W X Y Z } 
 
 `int isxdigit(int c)`
 This function checks whether the passed character is a hexadecimal digit.
-=>
+=> { 0 1 2 3 4 5 6 7 8 9 A B C D E F a b c d e f }
 
 `int tolower(int c)`
 This function converts uppercase letters to lowercase.
-=>
 
 `int toupper(int c)`
 This function converts lowercase letters to uppercase.
-=>
 
 ## string :page_with_curl:
 
+### scaning string  :pencil2:
+
+```
+//เก็บข้อมูลได้19ตัว อีก1มีค่าเป็นNULL
+char string[20];
+//รับค่าเข้ามามีขนาดไม่เกิน19 และเก็บค่านั้นในstring
+scanf("%19", strinf);
+```
+
+### printing strinf :pencil2:
+
+```
+//เเสดงค่าของstringและขึ้นบรรทัดใหม่
+printf("%s\n", string);
+```
+
+### String conversion from <stdlib.h> :pencil2:
+
+- `double strtod(const char *nPtr, char **endPtr);`
+        สตริงจะถูกแปลงเป็นความแม่นยำสองจำนวนจุดลอยตัว
+        ฟังก์ชั่นนี้จะส่งกลับแม่นยำสองจำนวนจุดลอยตัวแปลงหากมีการดำเนินการที่มีประสิทธิภาพในการแปลงไม่มีก็จะส่งกลับศูนย์ (0.0)
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   char str[30] = "2030300 This is test";
+   char *ptr;
+   long ret;
+
+   ret = strtol(str, &ptr, 10);
+   printf("The number(unsigned long integer) is %ld\n", ret);
+   printf("String part is |%s|", ptr);
+
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+The number(unsigned long integer) is 2030300
+String part is | This is test|
+```
+
+-  `long int strtol(const char *str, char **endptr, int base);`
+        สตริงจะถูกแปลงเป็นจำนวนเต็มยาว การอ้างอิงไปยังวัตถุชนิด char *และค่าถูกกำหนดโดยค่าฟังก์ชั่นใน STR หลังจากตัวอักษรถัดไป endptr ฟังก์ชั่นนี้จะส่งกลับจำนวนเต็มยาวแปลงหากมีการดำเนินการที่มีประสิทธิภาพในการแปลงใดก็จะส่งกลับค่าเป็นศูนย์
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   char str[30] = "2030300 This is test";
+   char *ptr;
+   long ret;
+
+   ret = strtol(str, &ptr, 10);
+   printf("The number(unsigned long integer) is %ld\n", ret);
+   printf("String part is |%s|", ptr);
+
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+The number(unsigned long integer) is 2030300
+String part is | This is test|
+```
+
+- `unsigned long int strtoul(const char *str, char **endptr, int base);`
+        สตริงจะถูกแปลงเป็นจำนวนเต็มยาวที่ไม่ได้รับการรับรองการอ้างอิงไปยังวัตถุชนิด char * และค่าถูกกำหนดโดยค่าฟังก์ชั่นใน STR หลังจากตัวอักษรถัดไป endptr ฟังก์ชั่นนี้จะส่งกลับจำนวนเต็มยาวแปลงหากมีการดำเนินการที่มีประสิทธิภาพในการแปลงใดก็จะส่งกลับค่าเป็นศูนย์
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   char str[30] = "2030300 This is test";
+   char *ptr;
+   long ret;
+
+   ret = strtoul(str, &ptr, 10);
+   printf("The number(unsigned long integer) is %lu\n", ret);
+   printf("String part is |%s|", ptr);
+
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+The number(unsigned long integer) is 2030300
+String part is | This is test|
+```
+
+### string Manipulation in <string.h> :pencil2:
+
+- `char *strcp(char *s1, cont char *s2);`
+        เป็นฟังก์ชันในการคัดลอกสตริง แต่ในฟังก์ชันที่ 2 สามารถกำหนดความยาวของสตริงที่ต้องการจะคัดลอกได้strcpy ฟังก์ชัน  strcpy เป็นฟังก์ชันในการคัดลอกสตริงพื้นฐาน การทำงาน คือ จะทำการคัดลอกสตริงต้นทั้งหมด ซึ่งจะรวมไปถึง Null Character ด้วย ไปใส่ในสตริงปลายทาง โดยการประกาศฟังก์ชัน strcpy
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main()
+{
+    char name[] = "Mateo";
+    char another_name[10];
+
+    strcpy(another_name, name);
+
+    printf("name: %s\n", name);
+    printf("another_name: %s\n", another_name);
+    return 0;
+}
+```
+
+:printer: Output
+
+```
+name: Mateo
+another_name: Mateo
+```
+
+- `char *strcat(char *s1, cont char *s2);`
+        การเชื่อมต่อ String คือการนำสอง String มาเชื่อมต่อกันเพื่อให้ได้ String ใหม่ ในภาษา C เราสามารถใช้ฟังก์ชัน strcat เพื่อเชื่อมต่อสอง String เข้าด้วยกันได้ นี่เป็นตัวอย่างการใช้งาน
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <string.h>`
+
+```
+int main()
+{
+    char sitename[] = "marcuscode";
+    char tld[] = ".com";
+
+    strcat(sitename, tld);
+    printf("%s", sitename);
+    return 0;
+}
+```
+
+:printer: Output
+
+```
+marcuscode.com
+```
+
+- `int strcmp (const char * str1, const char * str2);`
+        ฟังก์ชันรับค่าเป็น String สองตัวที่ต้องการเปรียบเทีียบกัน และมันส่งค่ากลับเป็นจำนวนเต็ม สามารถใช้งานฟังก์ชัน strcmp เพื่อตรวจสอบว่า String มีค่าเท่ากัน น้อยกว่า หรือมากกว่าได้
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <string.h>`
+
+```
+int main()
+{
+    char username[] = "Mateo";
+    if (strcmp(username, "Mateo") == 0) {
+        printf("Equal");
+    } else {
+        printf("Not equal");
+    }
+    return 0;
+}
+```
+
+:printer: Output
+
+```
+Equal
+```
+
+**strncp() , strncat() , strcmp() กำหนดเป็นNขนาด**
+
 ## memory functions :page_with_curl:
 
+- `void *memcpy(void *dest, const void * src, size_t n);`
+
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   const char src[50] = "http://www.tutorialspoint.com";
+   char dest[50];
+   strcpy(dest,"Heloooo!!");
+   printf("Before memcpy dest = %s\n", dest);
+   memcpy(dest, src, strlen(src)+1);
+   printf("After memcpy dest = %s\n", dest);
+   
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+Before memcpy dest = Heloooo!!
+After memcpy dest = http://www.tutorialspoint.com
+```
+
+- `void *memmove(void *str1, const void *str2, size_t n);`
+
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   char dest[] = "oldstring";
+   const char src[]  = "newstring";
+
+   printf("Before memmove dest = %s, src = %s\n", dest, src);
+   memmove(dest, src, 9);
+   printf("After memmove dest = %s, src = %s\n", dest, src);
+
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+Before memmove dest = oldstring, src = newstring
+After memmove dest = newstring, src = newstring
+```
+
+- `int memcmp(const void *str1, const void *str2, size_t n);`
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   char str1[15];
+   char str2[15];
+   int ret;
+
+   memcpy(str1, "abcdef", 6);
+   memcpy(str2, "ABCDEF", 6);
+
+   ret = memcmp(str1, str2, 5);
+
+   if(ret > 0) {
+      printf("str2 is less than str1");
+   } else if(ret < 0) {
+      printf("str1 is less than str2");
+   } else {
+      printf("str1 is equal to str2");
+   }
+   
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+str2 is less than str1
+```
+
+- `void *memchr(const void *str, int c, size_t n);`
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   const char str[] = "http://www.tutorialspoint.com";
+   const char ch = '.';
+   char *ret;
+
+   ret = memchr(str, ch, strlen(str));
+
+   printf("String after |%c| is - |%s|\n", ch, ret);
+
+   return(0);
+}
+```
+
+:printer: Output
+```
+String after |.| is - |.tutorialspoint.com|
+```
+
+- `void *memset(void *str, int c, size_t n);`
+
+:desktop_computer: Example Code :
+
+`#include <stdio.h>`
+`#include <stdlib.h>`
+
+```
+int main () {
+   char str[50];
+
+   strcpy(str,"This is string.h library function");
+   puts(str);
+
+   memset(str,'$',7);
+   puts(str);
+   
+   return(0);
+}
+```
+
+:printer: Output
+
+```
+This is string.h library function
+$$$$$$$ string.h library function
+```
+
+# linked list :book: 
+
+## with structure :page_with_curl:
+
+## การสร้าง :page_with_curl:
+
+## การเข้าถึงข้อมูล :page_with_curl:
+
+## การลบข้อมูล :page_with_curl:
+
+## การเพิ่มข้อมูล :page_with_curl:
+
+## Doubly Linked List :page_with_curl:
+
+## Circular Linked List :page_with_curl:
+
+# File handling in C :book: 
+
+## Open File :page_with_curl:
+
+## Plain Text Portable PixMap File Format(PPM) :page_with_curl:
+
+## Binary Portable PixMap File Format (PPM) :page_with_curl:
+
+## ImageMagic :page_with_curl:
+
+## Floyd - Steinberg Algorithm :page_with_curl:
 
 > # Example of Function in C :books:
 
