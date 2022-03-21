@@ -488,7 +488,53 @@ void Withdraw(double amount)
 
 ## Overload :page_with_curl:
 
+`Overload`ในภาษาCPPอนุญาติให้คลาสนึงมีฟังก์ชันชื่อเดียวกันได้หลายฟังก์ชัน แต่ต้องรับพารามิเตอร์ต่างกัน แบ่งออกเป็น 2 กรณี
 
+1. จำนวนพารามิเตอร์ต่างกัน
+2. มีอย่างน้อยหนึ่งพารามิเตอร์ที่มีประเภทข้อมูลต่างกัน
+
+:desktop_computer: Example Code :
+
+`#include <iostream>`
+`using namespace std;`
+
+```
+class Rectangle
+{
+    public:
+        double width;
+        double length;
+        
+        double Area() const
+        {
+            return width * length;
+        }
+
+        double Perimeter() const
+        {
+            return 2 * (width + length);
+        }
+
+        //Overload
+        void ChangeSize(int a)
+        {
+            width += a;
+            length += a;
+        }
+
+        void ChangeSize(int dw, int dl)
+        {
+            width += dw;
+            length += dl;
+        }
+
+        void ChangeSize(int a1, double a2)
+        {
+            width += a1;
+            length += a2;
+        }
+}
+```
 
 ## การตั้งชื่อคลาส ตัวแปร ฟันก์ชัน :page_with_curl:
 
