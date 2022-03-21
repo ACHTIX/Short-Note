@@ -426,6 +426,7 @@ TMB: 1950
 
 ### ทำความเข้าใจ :pencil2:
 
+![275532029_1003337930534587_3710101625310200153_n](https://user-images.githubusercontent.com/86911299/159249706-1af5e039-3106-4239-90e6-b293375e9215.jpg)
 
 
 ## Type of parameter :page_with_curl:
