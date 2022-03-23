@@ -2306,7 +2306,11 @@ $$$$$$$ string.h library function
 
 # linked list :book: 
 
+โครงสร้างข้อมูลที่ถูกออกแบบมาให้เก็บข้อมูล แบบเชื่อมกันเป็นสาย เพื่อให้สามารถเข้าถึงข้อมูลแต่ละตัวได้
+
 ## with structure :page_with_curl:
+
+
 
 ## การสร้าง :page_with_curl:
 

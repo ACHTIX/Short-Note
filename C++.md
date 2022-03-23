@@ -565,19 +565,344 @@ class Rectangle
 
 ## Constructors :page_with_curl:
 
+`Constructor or ตัวสร้างวัตถุ` มีลักษณะคล้ายกับเมมเบอร์ฟันก์ชัน โดยคอนสตรักเตอร์จะมีหน้าที่คือการสร้างวัตถุ เตรียมวัตถุให้พร้อมใช้งาน และช่วยกำหนดค่าเริ่มต้นให้ดาต้าเมมเบอร์ หรือประมวลผลคำสั่งที่จำเป็นตอนสร้างวัตถุ
+เช่น การตรวจสอบช่วงของค่าเริ่มต้น เชื่อมต่อคลาส
+
+**สิ่งที่ต้องรู้**
+
+- การตั้งชื่อคอนสตรักเตอร์จะต้องตั้งชื่อเดียวกับชื่อคลาส
+- คอนสตรักเตอร์จะไม่มีการประกาศtypeของตัวผลลัพท์
+- รับค่าผ่านทางพารามิเตอร์หรือไม่รับก็ได้
+- จะถูกเรียกตอนสร้างวัตถุแค่1ครั้งต่อ1วัตถุเท่านั้น
+
+#### การนิยามคอนสตรักเตอร์ :pencil2:
+
+:desktop_computer: Example :
+
+```
+class ชื่อคลาส
+{
+    ชื่อคลาส(พารามิเตอร์)
+    {
+        //คำสั่งที่กำหนดค่าเริ่มต้นให้ดาต้าเมมเบอร์ หรือ สร้าง+เตรียมวัตถุให้พร้อมใช้งาน
+    }
+}
+```
+
+#### ข้อดีของการใช้คอนสตรักเตอร์ในการกำหนดค่าเริ่มต้นให้ดาต้าเมมเบอร์ 
+
+1. ทำให้คำสั่งสั้นและกระชับกว่า
+2. ช่วยตรวจสอบช่วงของค่าเริ่มต้นหรือการเรียกใช้เมมเบอร์ฟันก์ชันที่จำเป็น ตอนสร้าง+เตรียมวัตถุให้พร้อมใช้งาน *ตรวจสอบว่าค่าเริ่มต้นไม่ใช่ค่าลบ แต่ถ้าเป็นค่าลบจะต้องเปลี่ยนให้เป็นค่า0แทน* **ทำให้โปรแกรมถูกต้องและปลอดภัย**
+
+เช่น การเขียนโปรแกรมสำหรับบัญชีธนาคาร
+
+:desktop_computer: Example Code :
+
+```
+class BankAccount
+{
+    public:
+
+        //----data member----
+        int number;
+        double balance;
+
+        //----constructor----
+        BankAccount(int n, double b) 
+        {
+            number = n;
+            balance = b;
+            //----เปลี่ยนค่าลบเป็นศูนย์----
+            if (b < 0)
+                balance = 0;
+        }
+
+        //----member fuctions----
+        void Deposit(double amount)
+        {
+            balance += amount;
+        }
+
+        void Withdraw(double amount)
+        {
+            balance -= amount;
+        }
+}
+```
+
+3. ช่วยบังคับการกำหนดค่าดาต้าเมมเบอร์ที่จำเป็นต้องผ่านพารามิเตอร์ของคอนสตรักเตอร์
+*เพราะถ้าหากเราไม่ได้กำหนดค่าเริ่มต้นไว้ ตัวคอมไพล์เลอร์จะไม่เตือน จึงอาจทำให้ลืมกำหนดค่าที่จำเป็นได้ แต่ถ้ากำหนดค่าคอนสตรักเตอร์คอมไพล์เลอร์จะเตือนให้เรากกำหนดค่าเริ่มต้น
+
 ### Overload :pencil2:
+
+`constructor overload` ในนึงคลาสจะมีคอนสตรักเตอร์หลายตัว ในแต่ละตัวจะต้องรับพารามิเตอร์เข้ามาต่างกัน และต้องมีอย่างน้อยหนึ่งพารามิเตอร์ที่มีประเภอข้อมูลต่างกัน
+คล้ายกับการOver load function
+สามารถใช้คอนสตรักเตอร์หลายตัว ถ้าไม่กำหนดค่าให้กับดาต้าเมมเบอร์ ตัวคอนสตรักเตอร์จะกำหนดค่าปริยายให้กับตัวแปรนั้นๆ *ทำให้โปรแกรมมีความยืดหยุ่นมากขึ้น*
+
+:desktop_computer: Example Code :
+
+```
+class BankAccount
+{
+    public:
+
+        //----data member----
+        int number;
+        double balance;
+
+        //----constructor----
+        BankAccount(int n, double b) 
+        {
+            number = n;
+            balance = b;
+        }
+
+        //----overload----
+        BankAccount(int n)
+        {
+            number = n;
+            balance = 0;
+        }
+
+        BankAccount(int n, string l)
+        {
+            number = n;
+            name = l;
+        }
+
+        //----member fuctions----
+        void Deposit(double amount)
+        {
+            balance += amount;
+        }
+
+        void Withdraw(double amount)
+        {
+            balance -= amount;
+        }
+}
+```
+
+
 
 ### Default Constructor :pencil2:
 
+`Default Constructor` คือคอนสตรักเตอร์ที่ไม่รับพารามิเตอร์ คอมไพล์เลอร์จะสร้างคอนสตรักเตอร์แบบปริยายให้โดยอัตโนมัติ 
+*หากเราประกาศคอนสตรักเตอร์ที่มีพารามิเตอร์แล้วจะสร้างวัตถุแบบไม่ใส่พารามิเตอร์ไม่ได้*
+
+class Rational
+{
+    public:
+        int numerator;
+        int denomtnator;
+
+        //----default constructor----
+        rational()
+        {
+            numerator = 0;
+            denominator = 1;
+        } 
+}
+
 ### Constructor รับพารามิเตอร์เพียงหนึ่งค่า :pencil2:
+
+ในภาษาCPPสามารถใช้คอนสตรักเตอร์ที่รับพารามิเตอร์แค่หนึ่งค่าเท่านั้น 
+ถ้าหากค่าในพารามิเตอร์ไม่ตรงกับประเภทของพารามิเตอร์ที่กำหนดไว้ 
+เช่น `int x = 4.5; => [4.5 => 4]`
+
+ถ้าหากไม่ต้องการให้มีการเปลี่ยนแปลงค่าจะต้องใช้คำสั่ง `explicit`
+
+:desktop_computer: Example Code :
+
+```
+class BankAccount
+{
+    public:
+
+        //----data member----
+        int number;
+        double balance;
+
+        //----constructor----
+        explicit BankAccount(int n, double b) 
+        {
+            number = n;
+            balance = 0;
+        }
+
+        BankAccount(int n, double b)
+        {
+            number = n;
+            balance = b;
+        }
+
+        //----member fuctions----
+        void Deposit(double amount)
+        {
+            balance += amount;
+        }
+
+        void Withdraw(double amount)
+        {
+            balance -= amount;
+        }
+}
+```
+
+**ถ้าหากเรารันผลเมื่อป้องกันการแปลงของมูลด้วย `explicit`**
+
+:abacus: Compiler
+
+![275377247_344318621081259_5742022368687562599_n](https://user-images.githubusercontent.com/86911299/159618315-7da781e7-10f1-47b3-ab75-2817de293c40.jpg)
+
 
 ### Member Initilizer :pencil2:
 
-## Access Control :page_with_curl:
+การใช้Member Initilizerมาช่วยในการกำหนดค่าเริ่มต้นให้กับดาต้าเมมเบอร์แบบกระชับขึ้น
+**โดยใช้ : หลังพารามิเตอร์ ตามด้วยชื่อตัวแปรดาต้าเมมเบอร์(ส่งค่ากลับ)**
 
-## getter :page_with_curl:
+:desktop_computer: Example :
 
-## setter :page_with_curl:
+`BankAccount(int n, double b) : number(n) , balance(b) {}`
+
+- หากมีตัวแปรดาต้าเมมเบอร์ที่ไม่จำเป็นต้องรับพารามิเตอร์และต้องการกำหนดค่าปริยายให้ และสามารถส่งค่าปริยายใน()ของดาต้าเมมเบอร์ได้ด้วย
+
+:desktop_computer: Example :
+
+`explicit BankAccount(int n, double b) : number(n) , balance(b) {}`
+
+- Member Initilizer ยังช่วยให้การoverload constructionกระชับขึ้น โดยระบุค่าพารามิเตอร์ต่อท้าย (รับค่าหรือไม่รับค่าก็ได้)
+
+:desktop_computer: Example :
+
+`explicit BankAccount(int n, double b = 0) : number(n) , balance(b) {}`
+
+- Member Initilizer สามาระประมวลผลคำสั่งอื่นที่จำเป็นเพื่อเตรียมวัตถุให้พร้อมใช้งานด้วย
+
+:desktop_computer: Example :
+
+```
+explicit BankAccount(int n, double b = 0) : number(n) , balance(b) 
+{
+    if (b < 0)
+        balance = 0;
+}
+```
+
+## Access Modifier / Access Spercifier :page_with_curl:
+
+`Access Modifier / Access Spercifier` คือการควบคุมการเข้าถึงข้อมูลที่ไม่ต้องการจะเปิดเผย หรือเป็นข้อมูลที่อยู๋ในรูปแบบเฉพาะเจาะจง ทำให้ข้อมูลเหล่านี้มีความปลอดภัยมากขึ้น ต้องได้รับการอนุญาติก่อนที่จะเข้าถึง การอ่านและแก้ไขข้อมูล
+
+ในการควบคุมการเข้าถึงดาต้าเมมเบอร์ คอนสตรักเตอร์ เมมเบอร์ฟังก์ชัน มีการควบคุมทั้งหมด 3 ระดับ
+
+1. private (ส่วนตัว) ไม่สามารถเข้าถึงได้โดยตรง ต้องเป็นวัตถุของคลาสที่ประกาศ ดาต้าเมมเบอร์ คอนสตรักเตอร์ เมมเบอร์ฟังก์ชันเดียวกันเท่านั้นถึงจะเข้าถึงได้
+2. public (สาธารณะ) สามารถเข้าถึงดาต้าเมมเบอร์ คอนสตรักเตอร์ เมมเบอร์ฟังก์ชันของคลาสและฟังก์ชันอื่นๆได้โดยตรง
+3. protected (ถูกป้องกัน) สามารถเข้าถึงได้แค่คลาสหรือสมาชิกได้ภายในคลาสย่อยและคลาสเดียวกันเท่านั้น 
+
+|  Modifiers  |	 Class  | 	Package  | 	Sub class   |  World  |
+|-------------|---------|------------|--------------|---------|
+|   public	  |   Yes   |     Yes    | 	    Yes     |  	Yes   |
+|  protected  |   Yes   |     Yes	 |      Yes	    |   No    |
+| no modifier |   Yes   |	  Yes    |    	No      |  	No    |
+|   private   |   Yes   |     No     |    	No      |  	No    |
+
+### การเลือกใช้Access Modifier / Access Spercifier :pencil2:
+
+- Data member ควรระบุด้วย Private
+- Constructor & Member function ควรระบุด้วย Public
+
+:desktop_computer: Example Code :
+
+```
+class BankAccount
+{
+    private:
+
+        //----data member----
+        int number;
+        double balance;
+    
+    public:
+
+        //----constructor----
+        BankAccount(int n, double b) 
+        {
+            number = n;
+            balance = b;
+            //----เปลี่ยนค่าลบเป็นศูนย์----
+            if (b < 0)
+                balance = 0;
+        }
+
+        //----member fuctions----
+        void Deposit(double amount)
+        {
+            balance += amount;
+        }
+
+        void Withdraw(double amount)
+        {
+            balance -= amount;
+        }
+}
+```
+
+:keyboard: Input
+
+```
+BankAccount scb_account(1,1000);
+scb_account.balance = -500;
+```
+
+:abacus: Compiler 
+
+![275656047_5320609314637725_167369951244698904_n](https://user-images.githubusercontent.com/86911299/159625347-b44967b5-945a-4e7a-abec-7e738c0815f7.jpg)
+
+
+**เนืองจากดาต้าเมมเบอร์เป็นPrivateจึงไม่สามารถอ่านค่าได้ผ่านคำสั่งโดยตรง ดังนั้นเราต้องสร้างฟังก์ชันเพิ่มเพื่อช่วยในการเข้าถึง นั้นคือ`getter` `setter`**
+
+### getter & setter :pencil2:
+
+`getter & setter` ใช้ในการอ่านและกำหนดค่าให้กับดาต้าเมมเบอร์ที่เป็นprivate
+- getter : มีหน้าที่คืนค่าให้กับดาต้าเมมเบอร์ 
+- setter : มีหน้าที่กำหนดค่าตรงๆจากค่าที่รับเข้ามาผ่านพารามิเตอร์ หรือตรวจสอบเงื่อนไข
+
+**การเรียกใช้**
+
+ใช้คำว่า `get` , `set` และตามด้วยชื่อดาต้าเมมเบอร์ 
+
+:desktop_computer: Example :
+
+```
+Getชื่อดาต้าเมมเบอร์()
+
+setชื่อดาต้าเมมเบอร์()
+```
+
+:desktop_computer: Example Code :
+
+`#include <iostream>`
+`using namespace std;`
+
+```
+class Student
+{
+    private:
+        //----data member----
+        string name;
+        int midterm_score, final_score;
+    
+    public:
+        //----constructor----
+        
+}
+```
+
+:printer: Output
+
+```
+code
+```
 
 ## ToString() :page_with_curl:
 
