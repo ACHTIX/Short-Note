@@ -961,7 +961,9 @@ int main()
 kwan 's total score = 16
 ```
 
-## Handle :page_with_curl:
+## Handle & Copy :page_with_curl:
+
+### Handle :pencil2:
 
 ่`Handle` วิธีที่เราจะเข้าถึงและใช้งานวัตถุ ในภาษาCPPมี3อย่าง
 
@@ -1064,18 +1066,192 @@ BankAccount No. 3 has balance 3000
 ![275543361_512245186943721_2358706942344427796_n](https://user-images.githubusercontent.com/86911299/159634850-21e6a9a6-663e-4092-a599-5c49e89aab36.jpg)
 
 
-## Copy :page_with_curl:
+### Copy :pencil2:
+
+`copy` การสร้างวัตถุใหม่ขึ้นที่มีค่าดาต้าเมมเบอร์เท่าเดิม ใช้เครื่องหมาย (=) ในการคัดลอกค่า 
+*ระวังการใช้เครื่องหมาย*
+
+:desktop_computer: Example :
+
+```
+BankAcccount account_copy = tmb_account;
+```
+
+:framed_picture: diagram
+
+
+![275608346_388138013064788_4953026859186243364_n](https://user-images.githubusercontent.com/86911299/159648257-770825bb-d62b-4109-b1d3-35943d566b56.jpg)
 
 ## การสร้างobject ด้วย new :page_with_curl:
 
-### new :pencil2:
+การควบคุมการจัดสรรหน่วยความจำ เหมือนกับ`malloc` , `free` คือการจองพื้นที่ในหน่วยความจำ และการคืนพื้นที่ในหน่วยความจำ
 
-### delete :pencil2:
+`new` ใช้ในการจองพื้นที่ในหน่วยความจำ เมื่อสร้างวัตถุของคลาส โดยพอยน์เตอร์ในการเก็บที่อยู่ของหน่วยความจำของวัตถุ
+
+:desktop_computer: Example :
+
+```
+BankAccount *bkk_account = new BankAccount(4, 800);
+```
+
+:framed_picture: diagram
+
+![275242470_543074867406903_8036412089218108519_n](https://user-images.githubusercontent.com/86911299/159649739-d0dcc556-4a47-448f-ab8f-b7a989eac613.jpg)
+
+`delete` ใช้ในการคืนพื้นที่ในหน่วยความจำ และเราสามารถคืนหน่วยความจำจากพอยน์เตอร์ใดพอยน์เตอร์หนึ่งก็พอ
+
+:desktop_computer: Example :
+
+```
+delete bkk_account;
+```
 
 ## Pointer this :page_with_curl:
 
+`this` เป็นพอยน์เตอร์พิเศษที่ใช้อ้างถึงวัตถุที่กำลังทำงานอยู่
+
+**ประโยชน์**
+
+1. เพื่อแยกแยะตัวแปรของดาต้าเมมเบอร์ออกจากพารามิเตอร์ได้ง่ายขึ้น เมื่อตัวแปรมีชื่อเดียวกัน การใช้งานthisจจใช้เงินคล้ายกับhandle 
+สามารถใช้thisเรียกดาต้าเมมเบอร์ ทำให้รู้ว่าตัวแปรนี้เป็นดาต้าเมมเบอร์ ไม่ใช่พารามิเตอร์
+
+`this -> ชื่อตัวแปรของดาต้าเมมเบอร์ = ชื่อตัวแปรพารามิเตอร์`
+
+:desktop_computer: Example :
+
+```
+BankAccount(int number, double balance)
+{
+    this -> number = number;
+    this -> balance = balance;
+}
+
+void SetName(string name)
+{
+    this -> name = name;
+}
+```
+
+2. ใช้ส่งวัตถุไปเป็นพารามิเตอร์ของฟังก์ชันในคลาสอื่น
+3. คืนค่าเป็นวัตถุของคลาสนี้
+
+**ข้อ2-3 จะได้ใช้ตอนโปรแกรมมีขนาดใหญ่ขึ้น**
+
 ## Destructor :page_with_curl:
 
+`Destructor or ตัวทำลายวัตถุ` โดยอัตโนมัตเดสตรักเตอร์จะถูกเรียกเพียงครั้งเดียวต่อหนึ่งวัตถุ เมื่อออกจากเขตการทำงาน หรือการคืนพื้นที่ในหน่วยความจำ โดยใช้คำสั่ง `delete` หรือการปิดการใช้ทรัพยากรต่างๆ
+เช่น การปิดไฟล์
+
+*ไม่จำเป็นต้องประกาศ หากเราไม่ต้องการคือค่าหรือปิดการใช้งาน*
+
+### การนิยามเดสตรักเตอร์ :pencil2:
+
+**ใช้เครื่องหมาย (~)หน้าชื่อคลาส**
+
+:desktop_computer: Example :
+
+```
+class ชื่อคลาส
+{
+    ~ชื่อคลาส()
+    {
+        //คำสั่งที่ใช้ในการคืนพื้นที่หน่วยความจำ หรือปิดการใช้งานต่างๆ
+    }
+}
+```
+
+### การประกาศ :pencil2:
+
+```
+class BankAccount
+{
+    private:
+
+        //----data member----
+        int number;
+        double balance;
+    
+    public:
+
+        //----destructor----
+        BankAccount(int number) 
+        {
+            this -> number = number;
+            this -> balance = 0;
+
+            cout << "Constructor " << number << endl;
+        }
+
+        ~BankAccount()
+        {
+            cout << "Destructor " << number << endl;
+        }
+
+        //----member fuctions----
+        void Deposit(double amount)
+        {
+            balance += amount;
+        }
+
+        void Withdraw(double amount)
+        {
+            balance -= amount;
+        }
+};
+
+int main()
+{
+    BankAccount a(1);
+    BankAccount b(2);
+
+    cout << "----------" << endl;
+}
+```
+
+:printer: Output
+
+```
+Constructor 1
+Constructor 2
+----------
+Destructor 1
+Destructor 2
+```
+
+### การทำงาน :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+void func()
+{
+    BankAccount c(3);
+}
+
+int main()
+{
+    BankAccount a(1);
+    cout << "********" << endl;
+    func();
+    
+    cout << "********" << endl;
+    BankAccount b(2);
+}
+```
+
+
+:printer: Output
+
+```
+Constructor 1
+********
+Constructor 3
+Destructor 3
+********
+Constructor 2
+Destructor 2
+Destructor 1
+```
 
 # Composition :books:
 

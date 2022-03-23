@@ -19,6 +19,9 @@
 `#include <  >`
 
 ```
+//----อธิบาย----
+code
+//----อธิบาย----
 code
 ```
 
@@ -35,6 +38,14 @@ code
 ```
 
 ###  :pencil2:
+
+:abacus: Compiler
+
+
+
+:framed_picture: diagram
+
+
 
 **เน้นหัวข้อ / ประโยคที่ใช้เน้นย้ำ**
 -
