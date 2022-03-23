@@ -861,7 +861,7 @@ scb_account.balance = -500;
 
 **เนืองจากดาต้าเมมเบอร์เป็นPrivateจึงไม่สามารถอ่านค่าได้ผ่านคำสั่งโดยตรง ดังนั้นเราต้องสร้างฟังก์ชันเพิ่มเพื่อช่วยในการเข้าถึง นั้นคือ`getter` `setter`**
 
-### getter & setter :pencil2:
+### getter & setter + Tostring() :pencil2:
 
 `getter & setter` ใช้ในการอ่านและกำหนดค่าให้กับดาต้าเมมเบอร์ที่เป็นprivate
 - getter : มีหน้าที่คืนค่าให้กับดาต้าเมมเบอร์ 
@@ -870,6 +870,9 @@ scb_account.balance = -500;
 **การเรียกใช้**
 
 ใช้คำว่า `get` , `set` และตามด้วยชื่อดาต้าเมมเบอร์ 
+
+`Tostring()` ใช้ในการคืนค่าสตริงในรูปแบบที่กำหนด ทำให้การพิมพ์ค่าวัตถุสั้นและกระชับขึ้น ด้วยการสร้างตัวแปรสตริง s มาเก็บข้อความ โดยใช้ `+` เป็นตัวนำมาต่อกับสตริงตัวอื่นได้
+เช่น number , balance ไม่ใช่ข้อมูลประเภทสตริง จึงต้องแปลงให้เป็นสตริงก่อนโดยใช้ฟังก์ชัน `to_string()`
 
 :desktop_computer: Example :
 
@@ -885,6 +888,7 @@ setชื่อดาต้าเมมเบอร์()
 `using namespace std;`
 
 ```
+//--ไม่ควรใช้cin coutใช้ในclass--
 class Student
 {
     private:
@@ -894,19 +898,171 @@ class Student
     
     public:
         //----constructor----
-        
+        explicit Student(string n) : name(n), midterm_score(0), final_score(0)
+        {
+            //----member function----
+            int TotalScore()
+            {
+                return midterm_score + final_score;
+            }
+            
+            //----getter & setter----
+            string GetName() const
+            {
+                return name;
+            }
+
+            void SetName(string n)
+            {
+                name = n;
+            }
+
+            int GetMidtermScore() const
+            {
+                return midterm_score;
+            }
+
+            void SetMidtermScore(int score)
+            {
+                if (score > 0) midterm_score = score;
+            }
+
+            int GetFinalScore() const
+            {
+                return final_score;
+            }
+
+            void SetFinalScore(int score)
+            {
+                if (score > 0) final_score = score;
+            }
+
+            //----ToString----
+            string ToString() const
+            {
+                string s = "BankAccount No. " + ToString(number) + " has balance " + to_string(balance);
+                return s;
+            }
+        };
+
+int main()
+{
+    Student kwan("Kwan");
+    kwan.SetMidtermScore(9);
+    kwan.SetFinalScore(7);
+
+    cout << kwan.GetName() << " 's total score = " << kwan.TotalScore() << endl;
 }
 ```
 
 :printer: Output
 
 ```
-code
+kwan 's total score = 16
 ```
 
-## ToString() :page_with_curl:
-
 ## Handle :page_with_curl:
+
+่`Handle` วิธีที่เราจะเข้าถึงและใช้งานวัตถุ ในภาษาCPPมี3อย่าง
+
+1. Object Name : ชื่อหลังการประกาศประเภทข้อมูลคลาส สามารถใช้เรียกใช้ดาต้าเมมเบอร์และเมมเบอร์ฟังก์ชันด้วย (.) dot operator
+
+:desktop_computer: Example :
+
+```
+BankAccount scb_account(1, 500);
+scb_account.Deposit(100);
+```
+
+:framed_picture: diagram
+
+![275327689_1293641438128534_8028501839545828854_n](https://user-images.githubusercontent.com/86911299/159632201-cb22d9a8-9971-4729-8c1d-05f402f9f0e7.jpg)
+
+2. Object Reference : ชื่อเล่นของวัตถุ สามารถใช้เหมือนกับชื่อวัตถุ ใช้ (&) ampersand
+
+:desktop_computer: Example :
+
+```
+BankAccount &saving = scb_account;
+```
+
+:framed_picture: diagram
+
+![275800624_735113260811741_466129116407426650_n](https://user-images.githubusercontent.com/86911299/159632565-cfaeb39d-b395-4bc3-b1b0-212109434a0b.jpg)
+
+:desktop_computer: Example Code :
+
+```
+int main()
+{
+    BankAccount scb_account(1, 500);
+    scb_account.Deposit(100);
+
+    BankAccount &saving = scb_account;
+    saving.Deposit(100);
+
+    cout << "name: " << scb_account.ToString() << endl;
+    cout << "name: " << saving.ToString() << endl;
+}
+```
+
+:printer: Output
+
+```
+name: BankAccount No. 1 has balance 700
+ref: BankAccount No. 1 has balance 700
+```
+
+:framed_picture: diagram
+
+![275320939_973358816640466_7994180185766671885_n](https://user-images.githubusercontent.com/86911299/159633025-8497c3fb-d837-42c4-8ca6-716531d89c4f.jpg)
+
+
+3. Object Pointer : เก็บที่อยู่ของหน่วยความจำของวัตถุ *เหมือนกับpointerในภาษาC* (*) 
+
+
+:desktop_computer: Example :
+
+```
+BankAccount *current_account = &scb_account;
+```
+
+:framed_picture: diagram
+
+![275459655_1185007978704422_8683598015873174732_n](https://user-images.githubusercontent.com/86911299/159634145-edbc894c-45ff-4754-b802-021eec2a78cc.jpg)
+
+**การย้ายพอยน์เตอร์**
+
+:desktop_computer: Example Code :
+
+```
+int main()
+{
+    BankAccount tmb_account(2, 2000);
+    BankAccount *my_account = &tmb_account;
+
+    cout << my_account -> ToString() << endl;
+    
+    BankAccount ktb_account(3, 3000);
+    my_account = & ktb_account;
+
+    cout << my_account -> ToString() << endl;
+}
+```
+
+:printer: Output
+
+```
+BankAccount No. 2 has balance 2000
+BankAccount No. 3 has balance 3000
+```
+
+:framed_picture: diagram
+
+![277017399_390070265901065_7784751333035033661_n](https://user-images.githubusercontent.com/86911299/159634813-ea7e0247-7c45-4446-9d2f-e7ab95f0310d.jpg)
+
+![275543361_512245186943721_2358706942344427796_n](https://user-images.githubusercontent.com/86911299/159634850-21e6a9a6-663e-4092-a599-5c49e89aab36.jpg)
+
 
 ## Copy :page_with_curl:
 
