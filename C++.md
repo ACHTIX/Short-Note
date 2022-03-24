@@ -1263,7 +1263,7 @@ Destructor 1
 ### Class without & with composition :pencil2:
 
 #### without
-                                                                                                                                                                                                                                                                                                              
+                                                             
 :desktop_computer: Example Code :
 
 ```
@@ -1388,15 +1388,33 @@ class point
 
 ![275477426_1424421758015409_5239379440372181978_n](https://user-images.githubusercontent.com/86911299/159840266-21a9543a-80b8-4e9c-8c86-99f15c8bd7ae.jpg)
 
-## Header files :page_with_curl:
+## Header files & Include Guard :page_with_curl:
 
-แบบ Class Definition ใน Header Flie
+`Header files`แบบ Class Definition ใน Header Flie
 *ไม่ควรใช้ "using namespace"ในไฟล์ .h*
 
 **ความแตกต่างของไฟล์ .h &d .cpp**
 
 ไฟล์นามสกุล .h ไว้เก็บโครงสร้างของคลาสที่ต้องการสร้างขึ้นมา เป็นการกำหนดโดยภาพรวมว่าภายในคลาสเรานั้นจะประกอบด้วยฟังก์ชัน ตัวแปรอะไรบ้าง มีแต่โครงสร้างอย่างเดียว ทำงานไม่ได้ 
 ไฟล์นามสกุล .cpp ไว้เขียนโค้ดทำงานเพื่อให้คลาสที่ได้มาสามารถใช้งานได้จริง โดยเราต้องยึดตามโครงสร้างที่กำหนดไว้ใน .h
+
+`Include guard` เป็นคำสั่งที่ใช้เพื่อช่วยป้องกันการเรียกใช้ #include ไฟล์.h ซ้ำซ้อน
+
+:desktop_computer: Example Code :ฃ
+
+```
+#include <iostream>
+#include "point.h"
+//----ในvector.hมีการเรียกใช้#include "point.h"แล้ว ดังนั้นคอมไพล์เลอร์จะเป็น error----
+#include "vector.h"
+```
+
+:framed_picture: diagram
+
+
+![275786387_533974528371671_9159988784841220232_n](https://user-images.githubusercontent.com/86911299/159844416-fe005cee-3cee-43d4-9e10-e69a45ffa400.jpg)
+
+### Example Code :pencil2:
 
 :desktop_computer: Example Code .h :
 
@@ -1434,22 +1452,45 @@ public:
 
 :desktop_computer: Example Code .h:
 
-`#include <  >`
+// include guard
+`#ifndef VECTOR_H`
+`#define VECTOR_H`
 
 ```
-//----อธิบาย----
-code
-//----อธิบาย----
-code
+class Vector {
+private:
+    // (x1,y1) ----> (x2,y2)
+    Point *start;   // double start_x, start_y;
+    Point *end;     // double end_x, end_y;
+public:
+    Vector(Point *start, Point *end) {
+        this->start = start;
+        this->end = end;
+    }
+     // v3 = this + v2
+    // this: (1,1) ---> (3,3)
+    // v2:   (10,10) ---> (20,20)
+    // v3:   (11,11) ---> (23,23)
+    Vector *Add(Vector *v2) {
+        Point *new_start = start->Add(v2->start);
+        Point *new_end = end->Add(v2->end);
+        Vector *v3 = new Vector(new_start, new_end);
+        return v3;
+    }
+    std::string ToString() {
+        return start->ToString() + "-->" + end->ToString();
+    }
+};
+#endif
 ```
 
 :desktop_computer: Example Code main.cpp:
 
-#include <iostrea`m>
-#include <cmath>`
-#include "point.h"`
-#include "vector.h"`
-using namespace std;`
+`#include <iostream>`
+`#include <cmath>`
+`#include "point.h"`
+`#include "vector.h"`
+`using namespace std;`
 
 ```
 // ---------------------------------
@@ -1482,14 +1523,33 @@ int main() {
 }
 ```
 
-## Include Guard :page_with_curl:
-
- include guard
-//
-//   prevent multiple inclusions of header
-//   ป้องกันการ include .h ซ้ำซ้อน
-
 ## Conditional inclusions :page_with_curl:
+
+- Header File or Standard files: จะเรียกไลบรารี่หรือ header file มักจะเป็นเก็บอยู่ในไฟล์ไลบรารี่ของเครื่องเรา โดยไฟล์เหล่านี้จะที่เก็บฟังก์ชันหรือค่าตัวแปรมาใช้ร่วมกับโปรแกรมที่เขียนโดยที่พบเห็นได้ปกติคือ
+
+`#include <stdio.h>`
+
+- user defined files: ส่วนนี้มักจะเป็น header file ที่นักพัฒนาเขียนมาในการใช้งาน เพื่อลดความซับซ้อนในโปรแกรม และเพื่อให้ง่ายต่อการเรียกใช้ฟังก์ชันหรือตัวแปรซ้ำ ๆ โดยการเรียกใช้ผู้เรียนอาจเคยพบเจอมาบ้างในรูป
+
+`#include "filename"`
+
+`Conditional inclusions`
+
+#Ifdef <-- ถ้า เปิดเงื่อนไขถ้าเป็น 1 จะทำงานในเงื่อนไขนี้
+#ifndef <-- ถ้า-ไม่ ถ้าเงื่อนไขไม่เป็น 1 เป็น 0 จะทำงานในเงื่อนไขนี้ 
+#elif <-- เงื่อนไขอื่นอันนี้ก็ทำงานในกรณีเป็น 1
+#else <-- ถ้าไม่มีเงื่อนไขอื่นๆแล้วจะทำในส่วนนี้
+#endif <-- ใช้ปิดเงื่อนไข
+
+```
+#ifdef (KL25_PLATFORM) && !(MSP_PLOATFORM)
+    kl25_initial();
+#elif (MSP_PLOATFORM) && !(KL25_PLATFORM)
+    msp_initial();
+#else
+    #error "Please specific one platform target"
+#endif
+```
 
 # Inheritance :books:
 
