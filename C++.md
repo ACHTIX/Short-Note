@@ -1255,19 +1255,241 @@ Destructor 1
 
 # Composition :books:
 
-### Class without composition :pencil2:
+`composition การประกอบบกัน` คือการนำวัตถุของคลาสอื่นมาใช้ในดาต้าเมมเบอร์ของคลาสเรา ในความสัมพันะืที่เราประกาศดาต้าเมมเบอร์ให้เป้นคลาส
+จะทำให้เกิดการประกอบกัน ความสัมพันธ์นี้จะเรียกว่า "การมี หรือ Has-A"
+**วัตถุหนึ่งวัตถุอื่นเป้นดาต้าเมมเบอร์**
+ในการเขียนโปรแกรมเชิงวัตถุสิ่งที่สำคัญที่สุดคือความสัมพันธ์ระหว่างคลาสกับวัตถุ ดังนั้นการประกอบกันจึงจำเป็นต้องใช้บ่อยในภาษาCPP
 
-### Class with composition :pencil2:
+### Class without & with composition :pencil2:
+
+#### without
+                                                                                                                                                                                                                                                                                                              
+:desktop_computer: Example Code :
+
+```
+class Vector
+{
+    private:
+        double start_x, start_y
+        double end_x, end_y
+    
+    public:
+        Vector()
+        {
+            start_x = 0;
+            start_y = 0;
+            end_x = 0;
+            end_y = 0;
+        }
+
+        Vector(double sx, double sy, double ex, double ey);
+        {
+            start_x = sx;
+            start_y = sy;
+            end_x = ex;
+            end_y = ey;
+        }
+
+        //----Accessor----
+        Vector Add (Vector v2) const
+        {
+            Vector v3;
+            v3.start_x = start_x + v2.start_x;
+            v3.start_y = start_y + v2.start_y;
+            v3.end_x = end_x + v2.end_x;
+            v3.end_y = end_y +v2.end_y;
+            return v3.;
+        }
+
+
+        //----Tostring----
+        string ToString() const
+        {
+            string s = "(" + to_string(start_x) + "," + to_string(start_y) + ")" + "--->" + "(" + to_string(end_x) + "," + to_string(end_y)")";
+            return s;
+        }
+}
+```
+
+#### with
+
+:desktop_computer: Example Code :
+
+```
+
+class point 
+{
+    private:
+        double x;
+        double y;
+    
+    public:
+        Point()
+        {
+            x = 0;
+            y = 0;
+        }
+
+        Point(double x, double y)
+        {
+            this -> x = x;
+            this -> y = y;
+        }
+
+        Point Add(Point other)
+        {
+            double new_x = x + other.x;
+            double new_y = y + other.y;
+            Point p(new_x, new_y);
+            return p;
+        }
+
+        string ToString() const 
+        {
+            return "(" + to_string(x) + "," + to_string(y) + ")";
+        }
+}
+```
 
 ### Class with composition and pointer :pencil2:
 
-## แผนภาพ UML (Unified Modeling Language) :page_with_curl:
+## แผนภาพ UML (Unified Modeling Language) :page_with_curl:ฃ
 
-## HAS - A Relationship :page_with_curl:
+คลาสของpoint
+
+:framed_picture: diagram
+
+ ![275514746_752257325948377_2922808605939526561_n](https://user-images.githubusercontent.com/86911299/159839951-c54d3be7-17bc-4d0b-8ea2-54042ee931a2.jpg)
+
+ความสัมพันธ์ระหว่างคลาสของvectorและคลาสของpoint
+
+:framed_picture: diagram
+
+![276052703_444582830777473_5076697073790255598_n](https://user-images.githubusercontent.com/86911299/159840050-9a1806d4-cc64-4b5e-a93d-5510c59fa0fe.jpg)
+
+ึคุณลักษณะในpoint
+
+:framed_picture: diagram
+
+![275861031_4713674575408916_5271255705286304291_n](https://user-images.githubusercontent.com/86911299/159840099-f7a5639b-ae0f-4afe-bb17-32a44831c820.jpg)
+
+รายละเอียดของทั้งสองคลาส
+
+:framed_picture: diagram
+
+
+![275616955_3133522090262888_6760653193978452198_n](https://user-images.githubusercontent.com/86911299/159840444-b5645848-b691-4ee0-88a4-1dc3398858c1.jpg)
+
+![275786387_1327993967700204_8455664130512317095_n](https://user-images.githubusercontent.com/86911299/159840452-cba0a838-9662-41de-90b3-9ff2a0117a15.jpg)
+
+ตัวอย่าง
+
+:framed_picture: diagram
+
+![275477426_1424421758015409_5239379440372181978_n](https://user-images.githubusercontent.com/86911299/159840266-21a9543a-80b8-4e9c-8c86-99f15c8bd7ae.jpg)
 
 ## Header files :page_with_curl:
 
+แบบ Class Definition ใน Header Flie
+*ไม่ควรใช้ "using namespace"ในไฟล์ .h*
+
+**ความแตกต่างของไฟล์ .h &d .cpp**
+
+ไฟล์นามสกุล .h ไว้เก็บโครงสร้างของคลาสที่ต้องการสร้างขึ้นมา เป็นการกำหนดโดยภาพรวมว่าภายในคลาสเรานั้นจะประกอบด้วยฟังก์ชัน ตัวแปรอะไรบ้าง มีแต่โครงสร้างอย่างเดียว ทำงานไม่ได้ 
+ไฟล์นามสกุล .cpp ไว้เขียนโค้ดทำงานเพื่อให้คลาสที่ได้มาสามารถใช้งานได้จริง โดยเราต้องยึดตามโครงสร้างที่กำหนดไว้ใน .h
+
+:desktop_computer: Example Code .h :
+
+`#include <string>`
+`#ifndef POINT_H`
+`#define POINT_H`
+
+```
+class Point {
+private:
+    int x, y;
+public:
+    Point(int x, int y) {
+        this->x = x;
+        this->y = y;
+    }
+    // p3 = this + p2
+    // this: (1,1) 
+    // p2:   (10,10)
+    // p3:   (11,11)
+    Point *Add(Point *other) {
+        int new_x = this->x + other->x;
+        int new_y = this->y + other->y;
+        Point *p3 = new Point(new_x, new_y);
+        return p3;
+    }
+    std::string ToString() const {
+        return "(" + std::to_string(x) + ","
+                   + std::to_string(y) + ")";
+    }
+};
+
+#endif
+```
+
+:desktop_computer: Example Code .h:
+
+`#include <  >`
+
+```
+//----อธิบาย----
+code
+//----อธิบาย----
+code
+```
+
+:desktop_computer: Example Code main.cpp:
+
+#include <iostrea`m>
+#include <cmath>`
+#include "point.h"`
+#include "vector.h"`
+using namespace std;`
+
+```
+// ---------------------------------
+//  we must compile all .cpp file
+// ---------------------------------
+
+int main() {
+    Point *p1 = new Point(1,1);
+    Point *p2 = new Point(3,3);
+    Point *pAdd = p1->Add(p2);
+
+    Vector *v1 = new Vector(p1,p2);
+
+    cout << "p1: " << p1->ToString() << endl;
+    cout << "p2: " << p2->ToString() << endl;
+    cout << "pAdd: " << pAdd->ToString() << endl;
+
+    cout << "v1: " << v1->ToString() << endl;
+
+    Point *p3 = new Point(10,10);
+    Point *p4 = new Point(20,20);
+
+    Vector *v2 = new Vector(p3,p4);
+
+    Vector *v3 = v1->Add(v2);
+
+    cout << "v2: " << v2->ToString() << endl;
+    cout << "v3: " << v3->ToString() << endl;
+
+}
+```
+
 ## Include Guard :page_with_curl:
+
+ include guard
+//
+//   prevent multiple inclusions of header
+//   ป้องกันการ include .h ซ้ำซ้อน
+
+## Conditional inclusions :page_with_curl:
 
 # Inheritance :books:
 
