@@ -32,11 +32,11 @@ Java  ถูกคิดค้นและสร้างโดย บริษ�
 
 ## Timeline :page_with_curl:
 
-:hourglass:
+ปี 1991 :hourglass:
 
-:hourglass:
+ปี 1993 :hourglass:
 
-:hourglass:
+ปี 1995 :hourglass:
 
 # Conversions & Controls :books:
 
