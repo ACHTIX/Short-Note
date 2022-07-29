@@ -38,5 +38,53 @@
 
 ## Basic Data Structure :page_with_curl:
 
+### Primtive Data Type :pencil2:
 
+![f8b1b4707cd00bf208706eb38997f7c2](https://user-images.githubusercontent.com/86911299/181749121-3a0aae06-ae9e-41b6-90b4-81fbf8fc2c6a.jpg)
 
+***การแปลงเลขฐาน และการบวกลบเลขฐาน***
+
+[ระบบเลขฐาน.pdf](https://github.com/ACHTIX/Project/files/9219516/default.pdf)
+
+#### Binary number representation
+
+1. Unsigned representation
+
+ชุดข้อมูลของเลขฐานสองที่ไม่ได้กำหนดเครื่องหมาย มีทั้งหมด 0 - 256 หรือ 2^8
+
+2. signed magnitude representation
+
+ชุดข้อมูลที่มีเครื่องหมายสในการระบุว่าชุดข้อมูลนั้นๆเป็นบวกหรือลบ โดย`sign bit`นั้นคือตัวหน้าสุด 
+ถ้าเป็น 0 = บวก  , 1 = ลบ และ`magnitude`ขนาดของบิตตัวเลขจะอยู่หลังบิตระบุเครื่องหมาย
+
+```
+0 0 0 0 0 1 1 
+```
+
+3. 1's complement system
+
+4. 2' complement system
+
+#### Overflow
+
+#### Underflow
+
+#### Real Number
+
+#### Mantissa
+
+#### Exponent
+
+#### Boolean
+
+#### Relational Operator
+
+# Array & String :books:
+
+## Array :page_with_curl:
+
+### :pencil2:
+
+## String :page_with_curl:
+
+### :pencil2:
