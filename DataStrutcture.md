@@ -1,14 +1,14 @@
 # สารบัญเนื้อหาสรุป
 
 ## 1. Introduction Data Structure :bookmark_tabs: ##
-## 2.  :closed_book: ##
-## 3.  :green_book: ##
-## 4.  :orange_book: ##
-## 5.  :notebook: ## 
-## 6.  :notebook_with_decorative_cover: ##
-## 7.  :ledger: ##
-## 8.  :blue_book: ##
-## 9. Example of Function in  :label: ##
+## 2. Structure & Pointer :closed_book: ##
+## 3. Function & Recursion :green_book: ##
+## 4. Linked List :orange_book: ##
+## 5. Stack :notebook: ## 
+## 6. Queue :notebook_with_decorative_cover: ##
+## 7. Linear & Hashing :ledger: ##
+## 8. Graphs :blue_book: ##
+## 9. Trees :label: ##
 
 # Introduction Data Structure :books:
 
@@ -58,33 +58,99 @@
 ถ้าเป็น 0 = บวก  , 1 = ลบ และ`magnitude`ขนาดของบิตตัวเลขจะอยู่หลังบิตระบุเครื่องหมาย
 
 ```
-0 0 0 0 0 1 1 
+0 0 0 0 0 1 1 0 = 6
+
+1 0 0 0 0 1 1 0 = -6
 ```
 
 3. 1's complement system
 
+- จำนวเต็มบวก : 
+
+- จำนวนเต็มลบ : 
+
+
 4. 2' complement system
+
+
 
 #### Overflow
 
+Overflow : ข้อมูลล้นหรือข้อมูลเกิน เกิดในกรณีที่ตัวเลขที่มีขนาดใหญ่กว่าความจุของหน่วยความจำ 
+
 #### Underflow
+
+Underflow : ข้อมูลน้อยเกินกว่าที่จะเก็บในหน่วยความจำจนไม่สามารถนำไปเก็บในหน่วยความจำ
 
 #### Real Number
 
-#### Mantissa
+Real Number : จำนวนจริงเป็นเลขทศนิยมfloating point จัดเก็บในรูปแบบเลขฐานสองแบบเดียวกับInteger 
+`Normalized` การเขียนเลขฐานต่างๆ ได้ทั้งฐานสอง ฐานสิบ และอื่นๆ ให้อยู่ในรูปแบบของเลขยกกำลัง 
+เช่น 1.52 x 10^15 = 152,000,000 1.1011 x 2^5 = 110110
 
-#### Exponent
+**ในการใช้หน่วยความจำเก็บจำนวนจริง**
+- Float : จะเก็บในรูปแบบ`Single precision` โดยจะใช้พื้นที่ในหน่วยความจำขนาด32บิต
+- Double : จะเก็บในรูปแบบ`double precision` โดยจะใช้พื้นที่ในหน่วยความจำขนาด64บิต
+
+* 
+
+* Mantissa
+
+* Exponent
 
 #### Boolean
 
 #### Relational Operator
 
-# Array & String :books:
-
 ## Array :page_with_curl:
 
-### :pencil2:
+### One dimensional arry :pencil2:
+
+### Two dimensional arry :pencil2:
+
+### Multidimensional arry :pencil2:
 
 ## String :page_with_curl:
 
+### Input & Output :pencil2:
+
+### Declare String :pencil2:
+
+### String manipulation :pencil2:
+
+### Function `#include <string.h>` :pencil2:
+
+#### strcmp()
+
+#### strcpy()
+
+#### strlen()
+
+#### strcat()
+
+#### strncpy()
+
+# Structure & Pointer :books:
+
+## Structure :page_with_curl:
+
 ### :pencil2:
+
+## Pointer :page_with_curl:
+
+### :pencil2:
+
+
+# Function & Recursion :books:
+
+# Linked List :books:
+
+# Stack :books:
+
+# Queue :books:
+
+# Linear & Hashing :books:
+
+# Graphs :books:
+
+# Trees :books:
