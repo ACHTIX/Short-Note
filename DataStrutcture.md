@@ -287,7 +287,30 @@ struct struct_name{
 
 ### Array + Structure :pencil2:
 
+![296228690_457215412939774_8479325969192878050_n](https://user-images.githubusercontent.com/86911299/182020162-b96a0a95-5fa0-4ef7-916f-479fcd76ec62.jpg)
 
+ในการนำโครงสร้างข้อมูลแบบStructureมาใช้กับarrayจะทำให้ข้อมูลในรูปบบสตริงหรือข้อความรายบุคคลใช้งานได้สะดวกและง่ายดายมากขึั้น
+ในชุดข้อมูลนั้นๆจำเป็นต้องมีความเกี่ยวข้องและเชื่อมโยงกันด้วย
+
+```
+struct struct_name{
+   type field1;
+   type field2;
+   .
+   .
+   .
+   type fieldn;
+}field_name;
+
+struct struct_name[];
+```
+![295931890_1159458858260109_3350104657265853866_n](https://user-images.githubusercontent.com/86911299/182020267-d40b5001-e848-420c-9a86-2edb1c698442.jpg)
+
+### Nest Structure :pencil2:
+
+โครงสร้างซ้อนโครงสร้าง เหมือนการจัดเก็บโครงสร้างข้อมูลย่อยไว้ในโครงสร้างข้อมูลกล่องใหญ่ๆ
+
+![296088847_600511421432714_1120103785893153271_n](https://user-images.githubusercontent.com/86911299/182020362-5796b5b9-ff60-4e25-a4ea-4e9988e86f81.jpg)
 
 ## Pointer :page_with_curl:
 
@@ -341,8 +364,27 @@ vPtr += 2; => vPtr = vPtr + (2 * 4)
 2 = จะขึ้นอยู่กับการเขียนโปรแกรม 
 4 = ขนาดของตัวแปร 
 
+## Pointer Vs. Structure :page_with_curl:
+
+เราสามารถใช้งานสมาชิกของตัวแปรได้สองวิธี
+1. ใช้เครื่องหมาย[.]ในการเข้าถึงข้อมูล`struct_name.field_name`
+2. ใช้เครื่องหมาย[->]ในการเข้าถึงข้อมูล ในกรณีที่ตัวแปรเป็นพอยเตอร์ไปปยังตัวแปรของโครงสร้าง`pointer_name->field_name`
+
+## การกำหนดประเภทข้อมูลที่ผู้ใช้กำหนดเอง :page_with_curl:
+
+`typedef` การนิยามประเภทของข้อมูล เราสามารถประกาศตัวแปรในรูปแบบของประเภทข้อมูลด้วยคำใหม่ได้
+โดยคำที่นิยามใหม่จะใช้แทนชนิดข้อมูลต่างๆเช่น int float double
+
+```
+typedef type new_type;
+```
 
 # Function & Recursion :books:
+
+## Function :page_with_curl:
+
+## Recursion :page_with_curl:
+
 
 # Linked List :books:
 
