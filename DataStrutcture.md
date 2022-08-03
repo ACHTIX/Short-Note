@@ -425,6 +425,18 @@ type function_name(type1, type2, ... ,typen);
 
 ## Recursion :page_with_curl:
 
+Recursion : การเวียนเกิด วนกลับไปเรียกตัวแปรเดิมซ้ำๆ แตกต่างจากลูปตรงที่ถ้าราเป็นลูปจะใช้forในการวนข้อมูลแต่ถ้าเป็นrecursionจะใช้if-elseแล้วreturnค่าตัวแปรเดิมแทน
+
+### Linear Recursion :pencil2:
+
+
+
+### Binary Recursion :pencil2:
+
+### Multiple Recursion :pencil2:
+
+### Tail Recursion :pencil2:
+
 
 # Linked List :books:
 
