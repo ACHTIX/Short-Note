@@ -429,8 +429,6 @@ Recursion : การเวียนเกิด วนกลับไปเร�
 
 ### Linear Recursion :pencil2:
 
-
-
 ### Binary Recursion :pencil2:
 
 ### Multiple Recursion :pencil2:
@@ -440,11 +438,100 @@ Recursion : การเวียนเกิด วนกลับไปเร�
 
 # Linked List :books:
 
-# Stack :books:
+## Insert Item :page_with_curl:
 
-# Queue :books:
+### Insert front :pencil2:
+
+### Insert end :pencil2:
+
+## Deleted Item :page_with_curl:
+
+## การสร้างและการจัดการ :page_with_curl:
+
+### Node Structure :pencil2:
+
+### Head of Linked List :pencil2:
+
+## Heap :page_with_curl:
+
+### malloc() :pencil2:
+
+### free() :pencil2:
+
+## Output :page_with_curl:
+
+## Singly Linked List : SLL :page_with_curl:
+
+### Ordinary Singly Linked List : OLL :pencil2:
+
+### Circular Singly Linked List : CLL :pencil2:
+
+## Doubly Linked List : DLL :page_with_curl:
+
+### Ordinary Doubly Linked List : ODLL :pencil2:
+
+### Circular Doubly Linked List : CDLL :pencil2:
+
+# Stack [LIFO : Last In First Out]:books:
+
+## Implementation Stack :page_with_curl:
+
+### Array Implementation :pencil2:
+
+### Linked List Implementation :pencil2:
+
+## Arraay representation of Stack :page_with_curl:
+
+## Operation Stack :page_with_curl:
+
+### Push Stack :pencil2:
+
+### Pop Stack :pencil2:
+
+## Infix to Postfix :page_with_curl:
+
+# Queue [FIFO : First in First Out]:books:
+
+## Operation of Queue :page_with_curl:
+
+### Enqueue :pencil2:
+
+### Dequeue :pencil2:
+
+## Circular Queue :page_with_curl:
+
+### Enqueue :pencil2:
+
+### Dequeue :pencil2:
+
+### Priority Queue :pencil2:
 
 # Linear & Hashing :books:
+
+## Sequential Search :page_with_curl:
+
+### Complexity of Algorithims :pencil2:
+
+### Average Case :pencil2:
+
+### Rate of growth : Big O notation :pencil2:
+
+## Binary Search :page_with_curl:
+
+## Hashing Function :page_with_curl:
+
+### Mod :pencil2:
+
+### Mid-Square :pencil2:
+
+### Folding :pencil2:
+
+### Open Addressing :pencil2:
+
+### Double Hashing :pencil2:
+
+### Chaining :pencil2:
+
 
 # Graphs :books:
 

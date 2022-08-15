@@ -3,10 +3,10 @@
 ## 1. Introduction of Java :bookmark_tabs: ##
 ## 2. Conversions & Controls :closed_book: ##
 ## 3. Introduction of Object & Class :green_book: ##
-## 4.  :orange_book: ##
-## 5.  :notebook: ## 
-## 6.  :notebook_with_decorative_cover: ##
-## 7.  :ledger: ##
+## 4. Method & Constructor :orange_book: ##
+## 5. String :notebook: ## 
+## 6. Array :notebook_with_decorative_cover: ##
+## 7. Introduction to Inheritance :ledger: ##
 ## 8.  :blue_book: ##
 ## 9. Example of Function in Java :label: ##
 
