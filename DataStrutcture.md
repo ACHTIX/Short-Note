@@ -620,21 +620,88 @@ free(ptr);
 
 # Stack [LIFO : Last In First Out]:books:
 
+![1_r4Bfo3rrFprzFM2zbgzZXA](https://user-images.githubusercontent.com/86911299/184838076-619c38e5-196e-437d-8fc4-c06364136a51.jpeg)
+
+Stack [LIFO : Last In First Out] : เป็นลักษณะข้อมูลที่เก็บแบบวางซ้อนทับกัน
+แบบวางหลังแต่ได้ออกก่อน วางก่อนได้ออกทีหลัง ข้อมูลแรกอยู่ล่างสุด ข้อมูลสุดท้ายอยู่ด้านบน ใช้การจัดลำดับการทำงาน และการเรียกใช้ฟังก์ชัน
+ในภาษาซี จะใช้กลไกในการตรวจวง{} ใช้นิพจน์ `A + (B / (C - D)) * E`
+
 ## Implementation Stack :page_with_curl:
 
-### Array Implementation :pencil2:
+1. Array Implementation 
 
-### Linked List Implementation :pencil2:
+2. Linked List Implementation 
 
-## Arraay representation of Stack :page_with_curl:
+## Array representation of Stack :page_with_curl:
+
+จำนวนข้อมูลสูงสุดของStack คือ N (ขนาดของArray) ตัวแปรบนสุดแทนจำนวนของข้อมูลที่มีอยู่ในstack
+
+![298570946_639402354458042_6549412223160864892_n](https://user-images.githubusercontent.com/86911299/184840055-57c8d7ca-891d-4a04-b3d9-32673b4bfecb.jpg)
 
 ## Operation Stack :page_with_curl:
 
+![Push-and-Pop-operation-on-Stack](https://user-images.githubusercontent.com/86911299/184840905-16d650cd-d907-4133-ba88-3f4d618b6054.png)
+
 ### Push Stack :pencil2:
+
+- เป็นOperation สำหรับนำข้อมูลลงในStack
 
 ### Pop Stack :pencil2:
 
-## Infix to Postfix :page_with_curl:
+- เป็นOperation สำหรับนำข้อมูลออกจากStack
+
+### Example Stack = 4 :pencil2:
+
+![298862949_753881685886328_785999869958107209_n](https://user-images.githubusercontent.com/86911299/184841236-7e3976f4-ecfa-460c-9051-89f75791a00f.jpg)
+
+## นิพจน์คณิตศาสตร์ :page_with_curl:
+
+### Infix :pencil2:
+
+- นิพจน์ที่เครื่องหมายดำเนินการ(Operator)`อยู่ระหว่าง`ตัวดำเนินการ(Operands) เช่น A + B - C
+
+### Postfix :pencil2:
+
+- นิพจน์ที่เครื่องหมายดำเนินการ(Operator)`อยู่หน้า`ตัวดำเนินการ(Operands) เช่น - + A B C
+
+### Prefix :pencil2:
+
+- นิพจน์เครื่องหมายดำเนินการ(Operator)`อยู่หลัง`ตัวดำเนินการ(Operands) เช่น A B + C -
+
+### การแปลงนิพจน์infixให้เป็นPostfix :pencil2:
+
+ลำดับความสำคัญของOperator(Precedence)
+- เครื่องหมายยกกำลังมีความสำคัญมากกว่าเครื่องหมายคูณและหาร
+- เครื่องหมายคูณและหารมีความสำคัญมากกว่าเครื่องหมายบวกและลบ
+
+*ข้อเสีย : ทำให้คอมไพเลอร์ยุ่งยาก*
+
+```
+AB+ => A+B
+AB- => A-B
+AB* => A*B
+```
+
+### อัลกอริทึมการแปลงนิพจน์infixให้เป็นPostfix :pencil2:
+
+1. ถ้าข้อมูลเข้าจะเป็นตัวถูกดำเนินการ(Operand)ให้นำออกไปเป็นผลลัพธ์
+2. ถ้าข้อมูลเข้าเป็นตัวดำเนินการ(Operator)
+   - ถ้าstackว่าง : ให้push operatorลงในstack
+   - ถ้าstackไม่ว่าง : ให้เปรียบเทียบOperatorที่เข้ามากับOperatorที่อยู่ในตำแหน่งTop 
+      ถ้าOperatorที่เข้ามามีความสำสัญมากกว่าOperatorที่ตำแหน่งtopจะ`push`ลงในstack
+      ถ้าOperatorที่เข้ามามีความสำสัญน้อยกว่าหรือเท่ากับOperatorที่ตำแหน่งtopจะ`pop`ออกไปเป็นoutput
+3. ถ้าข้อมูลเข้าเป็นวงเล็บเปฺิดให้`push`
+4. ถ้าข้อมูลเข้าเป็นวงเล็บปิดให้`pop` ไปเป็นoutputจนกว่าจะเจอวงเล็บเปิด
+5. ถ้าข้อมูลเข้าหมดแล้ว ให้`pop`ข้อมูลออกจากstackไปเป็นoutputจนกว่าstackจะว่าง
+
+## ฺBalancing Symbol :page_with_curl:
+
+Balancing Symbol : การตรวจสอบอักขระสมดุล
+1. อ่านอักขระทีละตัว
+   - อักขระเปิด เช่น { [ ( `Push`
+   - อักขระปิด เช่น } ] ) `Pop` 
+   *ถ้าบนtopไม่เป็นคู่กันจะเป็นerror*
+2. ถ้าอ่ากอักขระหมดแล้วแต่ยังไม่เป็นStackว่างจะแสดงผลเป็นerror
 
 # Queue [FIFO : First in First Out]:books:
 
