@@ -503,9 +503,14 @@ switch (expression)
 
 ## Object :page_with_curl:
 
-Object : เป็นค่าคงที่ของคลาส
+Object : คือreference valueที่มีพอยเตอร์ชี้ไปยังวัตถุและnull เป็นการสร้างตัวแปรfield,methodได้จริงๆต่างจาก`class`เพราะคลาสจะเหมือนการร่างไว้ คล้ายๆการใช้prototype,blueprint
+
+- Field / Attribut(public field) : ตัวแปร
+- Method : ฟังก์ชัน เช่น getter setter main
 
 ### "new" :pencil2:
+
+คีย์เวิร์ดของภาษาจาวาเพื่อใช้ในการสร้างออปเจ็ค
 
 ### Referencing :pencil2:
 
@@ -513,17 +518,37 @@ Object : เป็นค่าคงที่ของคลาส
 
 ### Declarations :pencil2:
 
-### Member :pencil2:
+[Access Modifier] class Classname {
+    classmember
+}
 
-## Field :page_with_curl:
+- Access Modifier คือคีย์เวิร์ด ของภาษาจาวาที่ใช้ในการอธิบายระดับการเข้าถึง (Access modifier)
+- class คือคีย์เวิร์ด ของภาษาจาวา เพื่อระบุว่าเป็นการประกาศคลาส
+- Classname คือชื่อคลาส
+- Class member คือเมธอดหรือคุณลักษณะ
 
-### Declarations :pencil2:
+
+![300045950_902108251192791_122578616571612240_n](https://user-images.githubusercontent.com/86911299/185579559-ce6c7f7d-f762-4cdd-89e0-0536f75bb259.jpg)
+
+![299270468_379850187630177_1276772755316671469_n](https://user-images.githubusercontent.com/86911299/185579711-d8dab7cf-b9fa-4107-9589-c3bf89a0f1be.jpg)
 
 ### Default Values :pencil2:
 
+![299996476_551671973405565_8427246831546227539_n](https://user-images.githubusercontent.com/86911299/185580133-334fb27d-ee0c-481b-af89-7065a66ac521.jpg)
+
 ## Acces Modifiers :page_with_curl:
 
+ถ้าเป็น`public fields`จะเป็นค่าคงที่ที่เปลี่ยนแปลง ประกาศและกำหนดได้เพียงแค่ครั้งเดียวจะต้องมีการกำหนด`final , static , static final`
+และเราโดยส่วนใหญ่จะใช้access modifiersที่เป็น`private`โดยมีเหตุผลจำเป็นจริงๆที่จะต้องการเรียกใช้ 
+จะสามารถเรียกใช้ได้ผ่านConstructor / Method `this getter setter`
+
+![299798726_837800023874522_3495683563390837778_n](https://user-images.githubusercontent.com/86911299/185580559-6e6ad622-ce32-4bd6-b910-034e9052a777.jpg)
+
 ## Encasulation :page_with_curl:
+
+การครอบคลุมfield , methodไว้ในคลาส
+
+![290796698_1119474758926149_6174107147686198813_n](https://user-images.githubusercontent.com/86911299/185580585-ef8dc322-a191-426f-b3e7-e4b9f4f13f7e.jpg)
 
 # Method & Constructor :books:
 
