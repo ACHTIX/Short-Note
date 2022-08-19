@@ -73,17 +73,76 @@ Java  ถูกคิดค้นและสร้างโดย บริษ�
 
 ## Conversion Contexts :page_with_curl:
 
+![298284317_606298197673731_8900526157071660415_n](https://user-images.githubusercontent.com/86911299/185533821-b88eae3d-e199-4440-869d-d0b1d2c3147f.jpg)
+
 ### Assignment Contexts :pencil2:
+
+Assignment Contexts : เป็นการแทนค่าหรือกำหนดค่าให้ตัวแปลต่างๆ
+
+:desktop_computer: Example Code :
+
+```
+double num = 1;
+```
 
 ### Strict Invocation Contexts :pencil2:
 
+Strict Invocation Contexts : เป็นการแปลงอย่าง`เข้มงวด`โดยใช้รูปแบบของพารามิเตอร์จาก`constructor / method` 
+
+
+:desktop_computer: Example Code :
+
+```
+Math.sqrt(4);
+```
+
 ### Loose Invocation Contexts :pencil2:
+
+Loose Invocation Contexts : เป็นการแปลงที่คล้ายๆกับStrict Invocation Contextsแต่จะ`ไม่ได้เข้มงวดเท่า`
+และใช้ในรูปแบบเดียวกันคือใช้รูปแบบของพารามิเตอร์จาก`constructor / method`แต่ในการแปลงรูปแบบนี้จะไม่เหมาะสมในการประกาศ 
+
+**เนืองจากในการประกาศ`Declartion`ของ Invocation Contexts นั้นจะมีเฉพาะใน `Strict` Invocation Contexts เท่านั้น**
 
 ### String Contexts :pencil2:
 
+String Contexts : เป็นการแปลงข้อมูลชนิดต่างๆให้เป็นในชนิดของ`String`เพื่อที่จะแสดงค่าออกมาหรือprintออกมา 
+
+:desktop_computer: Example Code :
+
+```
+System.out.printIn("______");
+```
+
 ### Casting Contexts :pencil2:
 
+Casting Contexts : เป็นการแสดงค่าของการแปลงชนิดข้อมูลต่างๆโดย`cast operator`
+
+![java-type-cast-operator](https://user-images.githubusercontent.com/86911299/185536103-195e8790-4f5a-4faa-8d84-32fbc0e79db9.png)
+
 ### Numeric Contexts :pencil2:
+
+Numeric Contexts : เป็นการแปลงหรือชนิดของข้อมูลต่างๆด้วยกันคำนวณโดย`numeric operator`
+
+![operators](https://user-images.githubusercontent.com/86911299/185536181-ca364606-736c-472b-b199-2527051bec64.png)
+
+*อาจจะเป็น Widening (Sub Type -> Super Type)*
+
+
+:desktop_computer: Example Code :
+
+```
+//----อธิบาย----
+code
+//----อธิบาย----
+code
+```
+
+:printer: Output
+
+```
+code
+```
+
 
 ## Primitive to Primitive :page_with_curl:
 
@@ -292,8 +351,6 @@ Java  ถูกคิดค้นและสร้างโดย บริษ�
 
 :desktop_computer: Example Code :
 
-`#include <  >`
-
 ```
 //----อธิบาย----
 code
@@ -313,6 +370,6 @@ code
 code
 ```
 
-:bulb: Because
+:bulb: Error Because
 
 =>

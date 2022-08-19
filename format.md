@@ -37,6 +37,10 @@ code
 code
 ```
 
+:bulb: Error Because
+
+=>
+
 ###  :pencil2:
 
 :abacus: Compiler
