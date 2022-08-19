@@ -27,6 +27,10 @@ Java  ถูกคิดค้นและสร้างโดย บริษ�
 
 **`ผล` คือ ภาษาสำหรับเขียนโปรแกรม (Application Programming) ซึ่งเป็นลักษณะของโปรแกรมเชิงวัตถุ (Object Oriented Programming) ซึ่งสามารถใช้งานบนเว็บได้ด้วย**
 
+![299162436_1222830978553583_6472355237211507967_n](https://user-images.githubusercontent.com/86911299/185520479-d8598ac9-dbd7-45f8-8ce3-74dcd358ccdc.jpg)
+
+![299598916_768699617794704_4652662362583479882_n](https://user-images.githubusercontent.com/86911299/185520602-5a02e5f8-99bc-49c8-b8b9-094f64ed5491.jpg)
+
 ## Advantage of Java :page_with_curl:
 
 - ภาษา Java เป็นภาษาที่สนับสนุนการเขียนโปรแกรมเชิงวัตถุแบบสมบูรณ์ ซึ่งเหมาะสำหรับพัฒนาระบบที่มีความซับซ้อน การพัฒนาโปรแกรมแบบวัตถุจะช่วยให้เราสามารถใช้คำหรือชื่อ ต่าง ๆ ที่มีอยู่ในระบบงานนั้นมาใช้ในการออกแบบโปรแกรมได้ ทำให้เข้าใจได้ง่ายขึ้น
@@ -67,14 +71,248 @@ Java  ถูกคิดค้นและสร้างโดย บริษ�
 
 # Conversions & Controls :books:
 
+## Conversion Contexts :page_with_curl:
+
+### Assignment Contexts :pencil2:
+
+### Strict Invocation Contexts :pencil2:
+
+### Loose Invocation Contexts :pencil2:
+
+### String Contexts :pencil2:
+
+### Casting Contexts :pencil2:
+
+### Numeric Contexts :pencil2:
+
+## Primitive to Primitive :page_with_curl:
+
+### Widening primitive Conversion :pencil2:
+
+### Narrowing primitive Conversion :pencil2:
+
+## Reference to Reference :page_with_curl:
+
+### Widening Reference Conversion :pencil2:
+
+### Narrowing Reference Conversion :pencil2:
+
+## Primitive to Reference :page_with_curl:
+
+### Boxing Conversion :pencil2:
+
+### Unboxing Conversion :pencil2:
+
+### String Conversion :pencil2:
+
+## Java Control Statements :page_with_curl:
+
+### If-Else Statements :pencil2:
+
+### Switch Statements :pencil2:
+
+### While & Do-While Loop :pencil2:
+
+### For Loop :pencil2:
+
+#### Break / Continue
+
+### Labeled Statements :pencil2:
+
+### Mathematical Methods :pencil2:
+
+### Conditional Operator :pencil2:
+
+
 # Introduction of Object & Class :books:
+
+## Object :page_with_curl:
+
+### "new" :pencil2:
+
+### Referencing :pencil2:
+
+## Class :page_with_curl:
+
+### Declarations :pencil2:
+
+### Member :pencil2:
+
+## Field :page_with_curl:
+
+### Declarations :pencil2:
+
+### Default Values :pencil2:
+
+## Acces Modifiers :page_with_curl:
+
+## Encasulation :page_with_curl:
 
 # Method & Constructor :books:
 
+## Method :page_with_curl:
+
+### Method Declarations :pencil2:
+
+### Method Signature :pencil2:
+
+### Method Body :pencil2:
+
+### Method Formal Parameters :pencil2:
+
+### Method Pass by Value :pencil2:
+
+### Method Pass by Reference :pencil2:
+
+### Overloading Method :pencil2:
+
+### "static" :pencil2:
+
+### "final" :pencil2:
+
+## Constructor :page_with_curl:
+
+### Constructor Declarations :pencil2:
+
+### Constructor Invocations :pencil2:
+
+### Constructor Signature :pencil2:
+
+### Constructor Modifiers :pencil2:
+
+### Overloading Constructor :pencil2:
+
+### Default Constructor :pencil2:
+
+### Constructor Body :pencil2:
+
+### "this" :pencil2:
+
 # String :books:
+
+## Manipulation String :page_with_curl:
+
+## String Concatenation :page_with_curl:
+
+## Conversion [int - double] :page_with_curl:
+
+## String Function :page_with_curl:
+
+### replace() :pencil2:
+
+### replaceFirst() :pencil2:
+
+### replaceAll() :pencil2:
+
+### split() :pencil2:
+
 
 # Array :books:
 
+## Component / Element of Array :page_with_curl:
+
+## Array Types :page_with_curl:
+
+## Array Declaration :page_with_curl:
+
+### with object creation :pencil2:
+
+### Initialized Values :pencil2:
+
+### Accessing Values :pencil2:
+
+## Looping through Array :page_with_curl:
+
+## Convert Array to ArrayList :page_with_curl:
+
+## 2D Array :page_with_curl:
+
+## Copying Array of Primitives :page_with_curl:
+
+## Copying Array of Reference Types :page_with_curl:
+
+## Collection :page_with_curl:
+
+## Wrapper Classes :page_with_curl:
+
+## HashSet :page_with_curl:
+
+## HashMap :page_with_curl:
+
+## TreeMap :page_with_curl:
+
+## Array Fuction :page_with_curl:
+
+### toString() :pencil2:
+
+### Arrays.sort() :pencil2:
+
+### Arrays.binarySearch() :pencil2:
+
+### Arrays.equals() :pencil2:
+
+### intArrList.add() :pencil2:
+
+### intArrList.get() :pencil2:
+
+### intArrList.set() :pencil2:
+
+### intArrList.size() :pencil2:
+
+### intArrList.indexOf() :pencil2:
+
+### intArrList.contains() :pencil2:
+
+### intArrList.clear() :pencil2:
+
+### intArrList.remove() :pencil2:
+
+### intArrList.add() :pencil2:
+
+### intArrList.addAll() :pencil2:
+
 # Introduction to Inheritance :books:
 
+## Inherited Instance Varible :page_with_curl:
+
+## Inherited Instance Method :page_with_curl:
+
+## UML [Unified Modeling Language] Diagram :page_with_curl:
+
+## "super" :page_with_curl:
+
+## Inherited & Constructor Chaining :page_with_curl:
+
+## Constructor Chaining Back to The Class Object :page_with_curl:
+
+## Overriding Method :page_with_curl:
+
+
 # Error Code :books:
+
+:desktop_computer: Example Code :
+
+`#include <  >`
+
+```
+//----อธิบาย----
+code
+//----อธิบาย----
+code
+```
+
+:keyboard: Input
+
+```
+code
+```
+
+:printer: Output
+
+```
+code
+```
+
+:bulb: Because
+
+=>
