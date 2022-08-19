@@ -215,37 +215,289 @@ Super Type[] -> Sub Type[]
 
 `double > float`
 
+## Variables Reference Type :page_with_curl:
+
+- Class Types : Null / reference to class T or subclass T
+
+- Interface Type : Null / reference to implements of interface [อุปกรณ์ที่ใช้ในการเชือมต่อระหว่างคลาส]
+
+- Object Type : Null / reference to object , class(object) , array
+
+1. The Class "Object" : สำหรับภาษาจาวาแล้วเป็นภาษาที่ใช้การโปรแกรมเชิงวัตถุ และคลาส โดยคลาสที่เป็นคลาสใหญ่สุดหรือsuper classนั้นคือคลาสที่ชื่อว่า"object" 
+สำหรับคลาสและอาร์เรย์ทั้งหมดจะได้รับการรับทอดmethodsจากคลาสobjectมา 
+
+```
+clone() 
+equals() 
+finalize()
+getClass()
+hashCode()
+toString()
+```
+
+2. The Class "String" : คลาสสตริงเป็นคลาสของตัวอักษรที่เป็น`reference` ในการสร้างสตริงตัวใหม่สามารถใช้คำสั่ง`new` และการ"___"+"___"
+บวกแต่ละครั้งคือการสร้างobjectใหม่เลยไม่ใช่การต่อกับตัวเดิม จะสร้างaddressใหม่อีกตัวเพิ่มตามเครื่องหมายบวก
+
+### Kinds of Variables :pencil2:
+
+- Class : การประกาศตัวแปรจะสามารถใช้`static` , `final` , `public` ในตอนประกาศตัวแปรตอนประกาศคลาสได้เลย
+- Instance : จะต่างจากคลาสตรงที่ไม่มีstatic
+- Array Components : เป็นตัวแปรที่ยังไม่ต้องมีชื่อหรือกำหนดค่าเริ่มต้นก็ได้
+- Methods Parameters :
+- Constructor Parameters :
+- Lambda Parameters :
+- Exception Parameters
+- Local Variables :
+
 ## Reference to Reference :page_with_curl:
 
 ### Widening Reference Conversion :pencil2:
 
+Sub Type[] -> Super Type[]
+
 ### Narrowing Reference Conversion :pencil2:
+
+Super Type[] -> Sub Type[]
 
 ## Primitive to Reference :page_with_curl:
 
+Primitive : ค่าจริงๆของวัตถุนั้นๆ
+Reference : ค่าของที่อยู่/address
+
 ### Boxing Conversion :pencil2:
+
+![299598918_749114892991538_1373334838019852936_n](https://user-images.githubusercontent.com/86911299/185545920-ab3932c5-682c-4c71-bed4-9fade5515374.jpg)
+
+:desktop_computer: Example Code :
+
+```
+public static void main(String[] args) { 
+    int x = 1;
+    Integer objx = x; //boxing conversion 
+    System.out.println("x = " + x); 
+    System.out.println("objx = " + objx);
+}
+```
 
 ### Unboxing Conversion :pencil2:
 
+![299298895_631057405234161_3427333686059000332_n](https://user-images.githubusercontent.com/86911299/185546245-86edf7a8-066a-4bda-b7c9-ab64067513c4.jpg)
+
+:desktop_computer: Example Code :
+
+```
+public static void main(String[] args) { 
+    int x = 1;
+    Integer objx = x; //boxing conversion 
+    System.out.println("x = " + x); 
+    System.out.println("objx = " + objx);
+    int y = objx; //unboxing conversion
+    System.out.println("y = " + y); 
+}
+```
+
 ### String Conversion :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+@Override
+    public String toString() {
+        return name + " [" + stamp + " point]";
+    }
+```
 
 ## Java Control Statements :page_with_curl:
 
+### If Statements :pencil2:
+
+![If-statement-GeeksforGeeks1](https://user-images.githubusercontent.com/86911299/185546653-ee9d98d5-ef17-482e-8c64-32dde931a44c.jpg)
+
+Declarations : 
+
+```
+if(condition) 
+{
+   // Statements to execute if
+   // condition is true
+}
+```
+
+:desktop_computer: Example Code :
+
+```
+class IfDemo {
+    public static void main(String args[])
+    {
+        int i = 10;
+ 
+        if (i < 15)
+            System.out.println("10 is less than 15");
+ 
+        // This statement will be executed
+        // as if considers one statement by default
+        System.out.println("Outside if-block");
+    }
+}
+```
+
+
+:printer: Output
+
+```
+10 is less than 15
+Outside if-block
+```
+
 ### If-Else Statements :pencil2:
+
+![If-else-statement-GeeksforGeeks1](https://user-images.githubusercontent.com/86911299/185546724-6090ed95-eccd-4fc4-889f-1648ca0d14b7.jpg)
+
+Declarations : 
+
+```
+if (condition)
+    {
+    // Executes this block if
+    // condition is true
+    }
+    else
+    {
+    // Executes this block if
+    // condition is false
+}
+```
+
+:desktop_computer: Example Code :
+
+```
+class IfElseDemo {
+    public static void main(String args[])
+    {
+        int i = 20;
+ 
+        if (i < 15)
+            System.out.println("i is smaller than 15");
+        else
+            System.out.println("i is greater than 15");
+ 
+        System.out.println("Outside if-else block");
+    }
+}
+```
+
+
+:printer: Output
+
+```
+i is greater than 15
+Outside if-else block
+```
+
+### if-else-if Statements :pencil2:
+
+![If-else-if-ladder-GeeksforGeeks-1](https://user-images.githubusercontent.com/86911299/185547338-be60797e-5a24-4249-87f5-0981952d81fd.jpg)
+
+Declarations : 
+
+```
+if (condition)
+    statement 1;
+else if (condition)
+    statement 2;
+.
+.
+else
+    statement;
+```
+
+:desktop_computer: Example Code :
+
+```
+// Java program to illustrate if-else-if ladder
+
+import java.io.*;
+
+class GFG {
+	public static void main(String[] args)
+	{
+		// initializing expression
+		int i = 20;
+
+		// condition 1
+		if (i == 10)
+			System.out.println("i is 10\n");
+
+		// condition 2
+		else if (i == 15)
+			System.out.println("i is 15\n");
+
+		// condition 3
+		else if (i == 20)
+			System.out.println("i is 20\n");
+
+		else
+			System.out.println("i is not present\n");
+
+		System.out.println("Outside if-else-if");
+	}
+}
+```
+
+
+:printer: Output
+
+```
+i is 20
+Outside if-else-if
+```
 
 ### Switch Statements :pencil2:
 
+![java-switch-case-flow-diagram](https://user-images.githubusercontent.com/86911299/185547904-c10d7759-e31e-4457-a802-ed54517edac3.jpg)
+
+```
+switch (expression)
+{
+  case value1:
+    statement1;
+    break;
+  case value2:
+    statement2;
+    break;
+  .
+  .
+  case valueN:
+    statementN;
+    break;
+  default:
+    statementDefault;
+}
+```
+
 ### While & Do-While Loop :pencil2:
+
+![While-Loop-GeeksforGeeks](https://user-images.githubusercontent.com/86911299/185548187-9e3a5537-5170-47dd-b53f-11a70a982244.jpg)
+
+![do-while-Loop-GeeksforGeeks2](https://user-images.githubusercontent.com/86911299/185548219-77e3cf93-f6bd-4f1b-ad90-2e081cc75fce.jpg)
 
 ### For Loop :pencil2:
 
+![For-Loop](https://user-images.githubusercontent.com/86911299/185548296-384b7d04-7398-4741-9f5b-3f8e0e4dddce.jpg)
+
 #### Break / Continue
 
-### Labeled Statements :pencil2:
+![break](https://user-images.githubusercontent.com/86911299/185548406-345055b2-31e5-4a5e-a87f-1f7a4e06e256.png)
+
+![j1-660x615](https://user-images.githubusercontent.com/86911299/185548414-22bf5b0a-f546-4ccb-b4ee-768b94dbc4f9.png)
 
 ### Mathematical Methods :pencil2:
 
+![300250298_628513015242603_3034174869324541614_n](https://user-images.githubusercontent.com/86911299/185548880-098e0fcd-77b5-4df9-8480-3335e99cd7ed.jpg)
+
 ### Conditional Operator :pencil2:
+
+![Conditional-or-Ternary-Operator-__-in-Java](https://user-images.githubusercontent.com/86911299/185549008-5ea40fe0-a7bb-4a16-ab47-17063a3086da.jpg)
 
 # Introduction of Object & Class :books:
 
