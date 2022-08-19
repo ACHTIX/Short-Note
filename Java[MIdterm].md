@@ -131,24 +131,89 @@ Numeric Contexts : เป็นการแปลงหรือชนิดข�
 :desktop_computer: Example Code :
 
 ```
-//----อธิบาย----
-code
-//----อธิบาย----
-code
+public class Test {
+    public static void main(String[] args) {
+        int i = (int)12.5f; 
+        // Narrowing {Super Type[float] -> Sub Type[int]} & casting conversion (int)
+        
+        System.out.println("(int)12.5f==" + i);
+        // String conversion (5.4) of i's int value [แปลงจากค่าintมาเป็นstringและแสดงผลลัพท์]
+        
+        float f = i;
+        // Widening {Sub Type[int] -> Super Type[float]} & assignment conversion (f = i)
+        
+        System.out.println("after float widening: " + f);
+        // String conversion of f's float value [fที่มีค่าเป็นiที่มีชนิดตอนแรกเป็นintแต่เมื่อแปลงแล้วค่าiนั้นจะกลายเป็นstringและค่าfก็เช่นกัน]
+        
+        System.out.print(f); 
+        // String conversion of f's float value [แปลงจากค่าintมาเป็นstringและแสดงผลลัพท์]
+        
+        f = f * i;
+        // Widening {Sub Type[int] -> Super Type[float]} & numeric conversion
+        // Numeric promotion of i's value -->float [* เครื่องหมายคูณ]
+        // After promotion, the operation is float*float
+        
+        System.out.println("*" + i + "==" + f); 
+        // Two string conversions of i and f:
+        
+        double d = Math.sin(f);
+        // Widening & invocation conversion
+        // Conversion of f's value -->double, needed because the method Math.sin accepts only a double argument 
+        
+        System.out.println("Math.sin(" + f + ")==" + d);
+        // Two string conversions of f and d:
+    } 
+}
 ```
 
 :printer: Output
 
 ```
-code
+(int)12.5f==12
+after float widening: 12.0
+12.0*12==144.0 Math.sin(144.0)==-0.49102159389846934
 ```
-
 
 ## Primitive to Primitive :page_with_curl:
 
+![299086930_373419591633980_4144069758796985945_n](https://user-images.githubusercontent.com/86911299/185538366-f05d1d8a-003f-48ec-b26c-fc97726722af.jpg)
+
+**Combines Widening + Narrowing `byte --> char`**
+
+:desktop_computer: Example Code :
+
+```
+public static void main(String[] args) {
+    byte b = 65;
+    char c = (char)b; 
+    System.out.println(c); 
+}
+```
+
 ### Widening primitive Conversion :pencil2:
 
+Sub Type[] -> Super Type[]
+
+- byte --> short, int, long, float, or double
+- char --> int, long, float, or double
+- int --> long, float, or double
+- long --> float or double
+- float --> double
+
+`int > float , long > float , long > double`
+
 ### Narrowing primitive Conversion :pencil2:
+
+Super Type[] -> Sub Type[]
+
+- short --> byte or char
+- char --> byte or short
+- int --> byte, short, or char
+- long --> byte, short, char, or int
+- float --> byte, short, char, int, or long
+- double --> byte, short, char, int, long, or float
+
+`double > float`
 
 ## Reference to Reference :page_with_curl:
 
@@ -182,10 +247,11 @@ code
 
 ### Conditional Operator :pencil2:
 
-
 # Introduction of Object & Class :books:
 
 ## Object :page_with_curl:
+
+Object : เป็นค่าคงที่ของคลาส
 
 ### "new" :pencil2:
 
