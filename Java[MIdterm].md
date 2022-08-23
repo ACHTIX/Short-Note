@@ -592,28 +592,176 @@ Object : คือreference valueที่มีพอยเตอร์ชี�
 
 # String :books:
 
-## Manipulation String :page_with_curl:
+string : จะไม่มีsub class`extend string`สตริงเป็นข้อมูลตัวอักษรของคลาสสตริง และเป็นค่าคงที่ของคลาสจะไม่มีการเปลี่ยนแปลง 
+จะเป็นการสร้าง`new object string`ใหม่ทันที ในการต่อสตริงแต่ละครั้งจะใช้เครื่องหมายบวก การบวกแต่ละครั้งคือการสร้างใหม่ทุกครั้งที่บวก
+
+```
+private final byte[] value;//จะเก็บstring
+```
 
 ## String Concatenation :page_with_curl:
+
+```
+String str = "This " + " is" + " String";
+System.out.println(str); System.out.println(1 + 2 + " = 3");
+//3 = 3
+System.out.println("3 = " + 1 + 2); 
+//3 = 12
+//เนืองจากเริ่มจากสตริงเลยทำให้เครื่องหมายบวกเป็นการต่อสตริงแทนการคำนวนค่า
+```
 
 ## Conversion [int - double] :page_with_curl:
 
 ## String Function :page_with_curl:
 
+### System.out.println( == ) :pencil2:
+
+การตรวจสอบค่าจริงเท็จของคำสั่งนี้จะเช็ดค่าผ่านreferenceโดยตรง ถ้าหากประกาศnewแล้วเทียบก็จะเป็นเท็จ
+
+```
+String x = "ABC";
+String y = "ABC";
+System.out.println(x==y); // True
+
+y = new String("ABC");
+System.out.println(x==y); // False
+```
+
+### x.equals() :pencil2:
+
+การตรวจสอบค่าจริงเท็จของคำสั่งนี้จะเช็ดทั้งอักษรตัวเล็กใหญ่ แต่ไม่สนใจrefernce
+
+ABC == ABC
+
+### x.equals() :pencil2:
+
+การตรวจสอบค่าจริงเท็จของคำสั่งนี้จะไม่สนใจทั้งอักษรตัวเล็กใหญ่และrefernce สนใจแค่ว่าอักษรเหมือนกันมั้ย
+
+abc == ABC
+
+### name.length() :pencil2:
+
+ความยาวของสตริง
+
+### name.substring(i,j) :pencil2:
+
+แบ่งสตริง i = ตำแหน่งเริ่ม , j = ตำแหน่งสุดท้าย-1 
+
+### name.charAt(i) :pencil2:
+
+แสดงค่าอักษรตำแหน่งที่i
+
+### name.indexOf("__") :pencil2:
+
+แสดงตำแหน่งของสตริงที่อยู่ในวงเล็บ
+
+### concat() :pencil2:
+
+methodใช้ในการต่อสตริงแทนเครื่องหมายบวก
+
+
+:desktop_computer: Example Code :
+
+```
+String str1 = "Java";
+String str2 = " is fun"; System.out.println(str1.concat(str2));
+System.out.println("Is ".concat(str1).concat(" fun?"));
+```
+
+:printer: Output
+
+```
+Java is fun
+Is Java fun ?
+```
+
 ### replace() :pencil2:
 
-### replaceFirst() :pencil2:
+คำสั่งที่ใช้ในการแทนที่สตริง
 
-### replaceAll() :pencil2:
+:desktop_computer: Example Code :
+
+```
+String str1 = "I love cones";
+String str1Repl = str1.replace('c', 'b'); //Replace char
+System.out.println(str1Repl);
+
+String str2 = "The fire fades and the lords go without thrones"; 
+String str2Repl = str2.replace("fire","light"); //Replace String 
+System.out.println(str2Repl);
+```
+
+:printer: Output
+
+```
+I love bones
+
+The light fades and the lords go without thrones
+```
+
+### replaceFirst() & replaceAll() :pencil2:
+
+
+
+:desktop_computer: Example Code :
+
+```
+String str3 = "soon the flames will fade and only dark will remain. " +
+    "Even now there are only embers, and man sees not light, but only endless nights. " +
+    "And amongst the living are seen, carriers of the accursed darksign."; 
+String str3Repl = str3.replaceFirst("dark", "donut");
+System.out.println(str3Repl);
+
+String str3Repl2 = str3.replaceAll("dark", "donut");
+System.out.println(str3Repl2);
+
+String str3 = "soon the flames will fade and only dark will remain. "
+String str3Repl3 = str3.replaceAll("\\s", "_");
+System.out.println(str3Repl3);
+```
+
+:printer: Output
+
+```
+=> soon the flames will fade and only donut will remain.Even now there are only embers, and man sees not light, but only endless nights.
+And amongst the living are seen, carriers of the accursed darksign.
+
+=> soon the flames will fade and only donut will remain.Even now there are only embers, and man sees not light, but only endless nights.
+And amongst the living are seen, carriers of the accursed donutsign.
+
+=> soon_the_flames_will_fade_and_only_dark_will_remain.
+```
 
 ### split() :pencil2:
 
 
+:desktop_computer: Example Code :
+
+```
+String str = "The quick brown fox jumps over the lazy dog"; 
+
+String [] strSplit = str.split("\\s"); 
+System.out.println(Arrays.toString(strSplit)); 
+System.out.println(strSplit[0]);
+
+strSplit = str.split("\\s",2);
+System.out.println(Arrays.toString(strSplit));
+
+strSplit = str.split("\\s",3);
+System.out.println(Arrays.toString(strSplit));
+```
+
+:printer: Output
+
+```
+["The""quick""brown""fox""jumps""over""the""lazy""dog"]
+["The"]
+["The" "quick brown fox jumps over the lazy dog"]
+["The" "quick" "brown fox jumps over the lazy dog"]
+```
+
 # Array :books:
 
-## Component / Element of Array :page_with_curl:
-
-## Array Types :page_with_curl:
 
 ## Array Declaration :page_with_curl:
 
@@ -716,3 +864,77 @@ code
 :bulb: Error Because
 
 =>
+
+
+:desktop_computer: Example Code :
+
+```
+int x = 0; 
+int x = 0.0; //ERROR
+double x = 0; 
+double x = 0.0;
+```
+:bulb: Error Because
+
+=> intจะไม่สามารถเก็บทศนิยมได้จะต้องใช้เป็น`Float / Double`
+
+:desktop_computer: Example Code :
+
+```
+float f = 2.5;//ERROR
+float f = 2.5f;
+```
+:bulb: Error Because
+
+=> 2.5มีขนาดเกินจากfloatแต่ถ้าใส่fแบบบรรทัดที่สองก็จะสามารถใช้ได้
+
+:desktop_computer: Example Code :
+
+```
+double d = 2.5;
+float y = d/2;//ERROR
+```
+:bulb: Error Because
+
+=> ในการเก็บข้อมูลนี้ต้องใช้doubleเนืองจากfloatไม่สามารถเก็บค่าของทศนิยมได้มากเท่า `1.25 = 2.5/2`
+
+
+:desktop_computer: Example Code :
+
+```
+int x = 2147483648;//ERROR
+
+int x = 2147483647+1;
+System.out.println(x); //what value will be printed 
+
+long x = 2147483647+1;
+System.out.println(x); //and this ? 
+
+long x = 2147483647L+1;
+System.out.println(x); //and this ? 
+```
+
+:keyboard: Input
+
+```
+-2147483648
+-2147483648
+2147483648
+```
+
+:bulb: Error Because
+
+=> ขนาดเกินการเก็บขนาดข้อมูลของintมา1
+
+:desktop_computer: Example Code :
+
+```
+long x = 100;
+long x = 7890000000000;//ERROR
+long x = 7890000000000L;
+```
+
+:bulb: Error Because
+
+=> ขนาดเกินการเก็บขนาดข้อมูลของint ต้องใช้`L`เมื่อต้องการจะระบุว่าข้อมูลนั้นเก็บแบบlong
+
