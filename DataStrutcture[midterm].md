@@ -928,6 +928,3 @@ Ex . H(22) = 22 mod 11 = 0
 
 ![299111989_613337950141615_5351613604892726675_n](https://user-images.githubusercontent.com/86911299/184871145-192c441d-1697-4c90-be6f-e49293bc0224.jpg)
 
-# Graphs :books:
-
-# Trees :books:
