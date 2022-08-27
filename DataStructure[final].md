@@ -243,6 +243,470 @@ int main(){
 00000
 ```
 
+![300458377_773615790516572_5383199367535091922_n](https://user-images.githubusercontent.com/86911299/187029447-40e502d3-767f-425e-8f1f-b5cb737398ec.jpg)
+
+## Basic Operations on Graphs Using Adjacency-Matrix :page_with_curl:
+
+### createGraph(n) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Create the graph using adjacency-matrix representation
+int** createGraph(const int n) {
+    // Return 2D array of size n*n
+    int** adjMatrix = malloc(sizeof(int*)*n);
+    
+    for (int i=0; i<n; i++) {
+        adjMatrix[i] = malloc(sizeof(int)*n);
+
+        for (int j=0; j<n; j++)
+            adjMatrix[i][j] = 0;
+    }
+    return adjMatrix;
+}
+```
+
+:bulb:
+
+=>
+
+### addEdge(G , u , v) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// adjacency-matrix representation
+void addEdge(int** adjMatrix, int u, int v) {
+    adjMatrix[u][v] = 1;
+}
+```
+
+:bulb:
+
+=>
+
+### printGraph(G) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Print the adjacency-matrix representation of the graph
+void printGraph(int** adjMatrix, int n)
+{
+    for (int i=0; i<n; i++) {
+        for (int j=0; j<n; j++)
+            printf("%d ", adjMatrix[i][j]);
+        printf("\n");
+    }
+}
+```
+
+:bulb:
+
+=>
+
+### deleteGraph(G) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Delete the adjacency-matrix representation of the graph
+void deleteGraph(int** adjMatrix, int n){
+    for (int i=0; i<n; i++) {
+        free(adjMatrix[i]);
+    }
+    free(adjMatrix);
+}
+```
+
+:bulb:
+
+=>
+
+### removeEdge(G , u , v) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Remove the existing edge from the graph using adjacency-matrix representation
+void removeEdge(int** adjMatrix, int u, int v) {
+    adjMatrix[u][v] = 0;
+}
+```
+
+:bulb:
+
+=>
+
+### addVertex(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Add the new vertex to the graph using adjacency-matrix representation
+int** addVertex(int** adjMatrix, int *n, int u) {
+int** adjMatrix_new =createGraph(u+1);
+    
+    for (int i=0; i<*n; i++) {
+        for (int j=0; j<*n; j++)
+            if(adjMatrix[i][j] == 1)
+                adjMatrix_new[i][j] = 1;
+    }
+    
+    deleteGraph(adjMatrix, *n);
+    *n = u+1;
+    return adjMatrix_new;
+}
+```
+
+:bulb:
+
+=>
+
+### removeVertex(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Remove the existing vertex from the graph using adjacency-matrix representation
+int** removeVertex(int** adjMatrix, int* n, int u)
+{
+    for (int i=0; i<*n; i++)
+        for (int j=u; j<*n-1; j++)
+            adjMatrix[i][j] = adjMatrix[i][j+1];
+
+    for (int i=0; i<*n; i++)
+        for (int j=u; j<*n-1; j++)
+            adjMatrix[j][i] = adjMatrix[j+1][i];
+    
+    int** adjMatrix_new = createGraph(*n-1);
+    for (int i=0; i<*n-1; i++)
+        for (int j=0; j<*n-1; j++)
+            adjMatrix_new[i][j] = adjMatrix[i][j];
+    deleteGraph(adjMatrix, *n);
+    (*n)--;
+    return adjMatrix_new;
+}
+```
+
+:bulb:
+
+=>
+
+### isAdjacent(G , u , v) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Check whether the two vertices are adjacent using adjacency-matrix representation
+int isAdjacent(int** adjMatrix, int u, int v) {
+    if(adjMatrix[u][v] == 1)
+        return 1;
+    else
+        return 0;
+}
+```
+
+:bulb:
+
+=>
+
+### inDegree(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Report the in-degree of the vertex using adjacency-matrix representation
+int inDegree(int** adjMatrix, const int n, int u) {
+    int in_deg = 0;
+    for(int i=0; i<n; i++) {
+        if(adjMatrix[i][u])
+    }
+    
+    in_deg++;
+    return in_deg;
+}
+```
+
+:bulb:
+
+=>
+
+### outDegree(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Report the out-degree of the vertex using adjacency-matrix representation
+int outDegree(int** adjMatrix, const int n, int u) {
+    int out_deg = 0;
+    for(int i=0; i<n; i++) {
+        if(adjMatrix[u][i])
+    }
+    out_deg++;
+    return out_deg;
+}
+```
+
+:bulb:
+
+=>
+
+
+## Basic Operations on Graphs Using Adjacency-List :page_with_curl:
+
+### createGraph(n) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Create the graph using adjacency-list representation
+struct Node** createGraph(int n){
+    // Return array of n lists (vectors)
+    struct Node** adjList = malloc(sizeof(struct Node*)*n);
+    for(int i=0; i<n; i++)
+        adjList[i] = NULL;
+    return adjList;
+}
+```
+
+```
+// Implementation of singly linked list
+struct Node
+{
+    int adj_vertex;
+    struct Node* next;
+};
+```
+
+:bulb:
+
+=>
+
+### addEdge(G , u , v) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Add the edge to the graph using adjacency-list representation
+void addEdge(struct Node** adjList, int u, int v)
+{
+    struct Node* node = adjList[u];
+    if(node == NULL) {
+        node = malloc(sizeof(struct Node));
+        node->adj_vertex = v;
+        node->next = NULL;
+        adjList[u] = node;
+    } 
+    else {
+        while(node->next != NULL)
+            node =  node->next;
+        struct Node* new_node = malloc(sizeof(struct Node));
+        new_node->adj_vertex = v;
+        new_node->next = NULL;
+        node->next = new_node;
+    }
+}
+```
+
+:bulb:
+
+=>
+
+### printGraph(G) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Print the adjacency list representation of the graph
+void printGraph(struct Node** adjList, int n)
+{
+    for (int u = 0; u < n; u++) {
+        printf("[%d] head: ", u);
+        struct Node* node = adjList[u];
+        while(node) {
+            printf("-> %d ", node->adj_vertex);
+            node = node->next;
+        }
+        printf("-> NULL \n");
+    }
+}
+```
+
+:bulb:
+
+=>
+
+### deleteGraph(G) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Delete the adjacency list representation of the graph
+void deleteGraph(struct Node** adjList, int n) {
+    for (int u=0; u<n; u++) {
+        struct Node* node = adjList[u];
+        while(node != NULL) {
+            struct Node* next_node = node->next;
+            free(node);
+            node = next_node;
+        }
+    }
+    free(adjList);
+}
+```
+
+:bulb:
+
+=>
+
+### removeEdge(G , u , v) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Remove the existing edge from the graph usingadjacency-list representation
+void removeEdge(struct Node** adjList, int u, int v) {
+struct Node* node = adjList[u];
+    if(node->adj_vertex == v) {
+        adjList[u] = node->next;
+        free(node);
+    } 
+    else {
+        struct Node* prev_node = node;
+        node = node->next;
+        while(node->adj_vertex != v) {
+            prev_node = node;
+            node = node->next;
+        }
+        prev_node->next = node->next;
+        free(node);
+    }
+}
+```
+
+:bulb:
+
+=>
+
+### addVertex(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Add the new vertex to the graph graph using adjacency-list representation
+struct Node** addVertex(struct Node** adjList, int *n, int u) {
+struct Node** new_adjList = createGraph(u+1);
+    for (int i=0; i<*n; i++) {
+        new_adjList[i] = adjList[i];
+        adjList[i] = NULL;
+    }
+    deleteGraph(adjList, *n);
+    *n = u+1;
+    return new_adjList;
+}
+```
+
+:bulb:
+
+=>
+
+### removeVertex(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Remove the existing vertex from the graph using adjacency-list representation
+void removeVertex(struct Node** adjList, int *n, int u) {
+    for(int v=0; v<*n; v++) {
+        if(isAdjacent(adjList, v, u) == 1)
+            removeEdge(adjList, u, v);
+    }
+    struct Node* node = adjList[u];
+    while(node != NULL) {
+        struct Node* next_node = node->next;
+        free(node);
+        node = next_node;
+    }
+    adjList[u] = NULL;
+    if(u < *n-1)
+        return;
+    (*n)--;
+}
+```
+
+:bulb:
+
+=>
+
+### isAdjacent(G , u , v) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Check whether the two vertices are adjacent using adjacency-list representation
+int isAdjacent(struct Node** adjList, int u, int v) {
+    struct Node* node = adjList[u];
+    int ret = 0;
+    while(node != NULL) {
+        if(node->adj_vertex == v)
+            ret = 1;
+        node = node->next;
+    }
+    return ret;
+}
+```
+
+:bulb:
+
+=>
+
+### inDegree(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Report the in-degree of the vertex using adjacency-list representation
+int inDegree(struct Node** adjList, int n, int u) {
+int in_deg = 0;
+    for(int i=0; i<n; i++) {
+        struct Node* node = adjList[i];
+        while(node) {
+            if(node->adj_vertex == u)
+                in_deg++;
+            node = node->next;
+        }
+    }
+    return in_deg;
+}
+```
+
+:bulb:
+
+=>
+
+### outDegree(G , u) :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// Report the out-degree of the vertex using adjacency-list representation
+int outDegree(struct Node** adjList, int n, int u) {
+    struct Node* node = adjList[u];
+    int out_deg = 0;
+    while(node != NULL) {
+        out_deg++;
+        node = node->next;
+    }
+    return out_deg;
+}
+```
+
+:bulb:
+
+=>
+
 # Graphs Traversals :books:
 
 # Trees :books:
