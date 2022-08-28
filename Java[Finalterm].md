@@ -308,17 +308,321 @@ Reader/Writer : อ่านเขียนเป็น`Unicode Characters [2 by
 
 ### PrintWriter [เขียนทับ] :pencil2:
 
+:desktop_computer: Example Code :
+
+```
+FileWriter fileWriter = null;
+try {
+    // read from user
+    InputStreamReader inReader = new InputStreamReader(System.in);
+    BufferedReader buffer = new BufferedReader(inReader);
+    
+    // write to file
+    fileWriter = new FileWriter("from-user.txt"); //สร้างไฟล์ใหม่หรือเขียนทับไฟล์เดิมขึ้นอยู่กับแต่ในกรณี 
+    PrintWriter out = new PrintWriter(fileWriter); //ในการใช้`FileWriter`จะยุ่งยากเลยต้องนำ`PrintWriter`มาครอบไว้เพื่อให้สะดวกในการใช้มากขึ้น
+    
+    System.out.println("Input text to file:");
+    String line = buffer.readLine(); //ใช้อ่านไฟล์
+    
+    while (!line.equals("bye")) {
+       out.println("-----> " + line); //ปริ้นผลลัพท์โดยตรงจาก`PrintWriter`เลยไม่จำเป็นต้องใช้`System.out`ก็ได้
+       line = buffer.readLine();
+    }
+    out.flush(); //คำสั่งในการเขียนข้อมูลลงดิส/ไฟล์ ถ้าไม่ใช้คำสั่งนี่ข้อมูลจะอยู่แค่ในหน่วยความจำ
+}
+catch (IOException e){
+    System.err.println("Error reading from user");
+}
+finally {
+    .... close file ....
+}
+```
+
+:keyboard: Input text to file
+
+```
+cat
+dog
+bat
+bye
+```
+
+:printer: Output
+
+```
+-----> cat
+-----> dog
+-----> bat
+```
+
+:bulb:
+
+=> PrintWriter [เขียนทับ] : ใช้คลาสPrintWriterสะดวกเหมือนการใช้System.out.println()
+
+=> ถ้าเราเขียนใส่ไฟล์ในรอบแรกจะเป็นการ`สร้างไฟล์ใหม่` 
+แต่ถ้ามีไฟล์อยู่แล้วจะเป็นการ`เขียนไฟล์ทับ` ส่วนไฟล์ที่เขียนในตอนแรกก็จะหายไป มีไฟล์ใหม่ขึ้นมาแทน 
+
+=> PrintWriter : สามารถปริ้นข้อมูลชนิดไหนก็ได้ แม้กะทั้ง objectก็ปริ้นได้
+
+:desktop_computer: Example Code :
+
+```
+// write to file
+FileWriter fileWriter = new FileWriter("any-type.txt");
+PrintWriter out = new PrintWriter(new BufferedWriter(fileWriter));
+out.println("hello");
+out.println(5.67);
+out.println(new Restaurant("After You", "Dessert", "Phahonyothin"));
+out.close();
+```
+
 ### BufferedWriter [เขียนทับ] :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+FileWriter fileWriter = null;
+try {
+    // read from user
+    InputStreamReader inReader = new InputStreamReader(System.in);
+    BufferedReader buffer = new BufferedReader(inReader);
+    
+    // write to file
+    fileWriter = new FileWriter("from-user.txt");
+    BufferedWriter out = new BufferedWriter(fileWriter);
+    
+    System.out.println("Input text to file:");
+    String line = buffer.readLine();
+    
+    while (!line.equals("bye")) {
+        out.write("-----> " + line);
+        out.newLine();
+        line = buffer.readLine();
+    }
+    out.flush();
+}
+catch (IOException e){
+    System.err.println("Error reading from user");
+}
+finally {
+    .... close file ....
+}
+```
+
+:bulb:
+
+=> BufferedWriter [เขียนทับ] : เมื่อใช้คลาสนี้BufferedWriterจะทำให้การทำงานมีความรวดเร็วยิ่งขึ้น 
+
+=> newline() : ควรใช้คำสั่งnewline()ในการขึ้นบรรทัดใหม่
+
+=> BufferedWriter : ไม่มีการใช้คำสั่งprintlnเหมือนกับPrintWrite แต่จะใช้คำสั่ง.write() มาปริ้นผลลัพท์แทน
 
 ### PrintWriter + BufferWriter [เขียนทับ] :pencil2:
 
+:desktop_computer: Example Code :
+
+```
+FileWriter fileWriter = null;
+try {
+    // read from user
+    InputStreamReader inReader = new InputStreamReader(System.in);
+    BufferedReader buffer = new BufferedReader(inReader);
+    
+    // write to file
+    fileWriter = new FileWriter("from-user.txt");
+    PrintWriter out = new PrintWriter(new BufferedWriter(fileWriter));
+    
+    System.out.println("Input text to file:");
+    String line = buffer.readLine();
+    
+    while (!line.equals("bye")) {
+        out.println("-----> " + line);
+        line = buffer.readLine();
+    }
+    out.flush();
+}
+catch (IOException e){
+    System.err.println("Error reading from user");
+}
+finally {
+    .... close file ....
+}
+```
+
+:bulb:
+
+=> ใช้คลาสPrintWriter + BufferedWriter : ถ้าใช้สองคำสั่งนี้พร้อมการจะสะดวกและรวดเร็วกว่า
+
+
 ### [เขียนต่อท้ายไฟล์] :pencil2:
+
+
+:desktop_computer: Example Code :
+
+```
+FileWriter fileWriter = null;
+try {
+    // read from user
+    InputStreamReader inReader = new InputStreamReader(System.in);
+    BufferedReader buffer = new BufferedReader(inReader);
+    
+    // write to file
+    fileWriter = new FileWriter("from-user.txt" , true);
+    PrintWriter out = new PrintWriter(new BufferedWriter(fileWriter));
+    
+    System.out.println("Input text to file:");
+    String line = buffer.readLine();
+    
+    while (!line.equals("bye")) {
+        out.println("-----> " + line);
+        line = buffer.readLine();
+    }
+    out.flush();
+}
+catch (IOException e){
+    System.err.println("Error reading from user");
+}
+finally {
+    .... close file ....
+}
+```
+
+:bulb:
+
+=> fileWriter = new FileWriter("from-user.txt" , true);
+
+=> ในการเขียนไฟล์ต่อจากไฟล์เดิมสามารถเพิ่มparameterในFileWriter constructor
+
+
+
+## .close() :page_with_curl:
+
+:desktop_computer: Example Code :
+
+```
+finally {
+    try {
+       if (buffer != null) // อาจจะต้องใช้nullตรวจสอบก่อน
+           buffer.close();
+    } catch (IOException e) {
+        System.err.println("Error closing files");
+    } 
+}
+```
+
+:bulb:
+
+=> จะต้องใส่คำสั่งปิดไฟล์ทุกกครั้งถ้าไม่ทำไฟล์บางส่วนอาจจะหายไปได้
 
 ## Scanner :page_with_curl:
 
+Scanner : ใช้อ่านข้อมูล สามารถแยกข้อมูลจากการด้วย `Whitespace` เป็นคลาสที่มีความสะดวกแต่ช้า และยังมีข้อยกเว้นหลายอย่างทำให้ผิดพลาดง่าย
+
+:desktop_computer: Example Code :
+
+```
+Scanner scanner = new Scanner(System.in);
+String symbol = scanner.next();
+String line = scanner.nextLine();
+int symbol = scanner.nextInt();
+double amount = scanner.nextDouble();
+```
+
+:bulb:
+
+=> .next() : จะรับชนิดข้อมูลเป็นคำหรืออื่นๆ
+
+=> .nextLine() : จะรับชนิดข้อมูลเป็นบรรทัด
+
+=> .nextInt() : จะรับชนิดข้อมูลเป็นint
+
+=> .nextDouble() : จะรับชนิดข้อมูลเป็นdouble
+
 ## Reading / Writing odjects with serialzation :page_with_curl:
 
+Serial Object : 
+
+Chaining stream : 
+
+Serial Version ID : 
+
+### ObjectInputStream :pencil2:
+
+1. FileInputStream : 
+
+2. ObjectInputStream : 
+
+3. readObject : 
+
+4. cast object : 
+
+5. close : 
+
+### ObjectOutputStream :pencil2:
+
+1. FileOutputStream : 
+
+2. ObjectOutputStream : 
+
+3. writeObject : 
+
+4. close : 
+
 ## Comment :page_with_curl:
+
+### inline comment :pencil2:
+
+```
+// comment
+```
+
+=> ใช้หลังโค้ดหรือเหนือโค้ดก็ได้
+
+### block comment :pencil2:
+
+```
+/* comment */
+```
+
+=> จะต้องใช้คู่กัน ถ้าไม่จับคู่กับจะerror
+
+### documentation comment :pencil2:
+
+![javadoc-1024x533](https://user-images.githubusercontent.com/86911299/187074355-25ddefb1-e2a4-41d1-bdbc-df115f909526.png)
+
+- class : @author = ผู้เขียน , @since = version
+
+```
+/**
+* MyClass description
+* @author Usa Sammapun
+* @since 1.1
+*/
+public class MyClass {
+```
+
+- method , consturctor : @param , @return , @exception 
+
+```
+/**
+* อธิบายเมธอท myMeth 
+*
+* @param param1 อธิบาย parameter แรกสั้นๆ
+* @param param2 อธิบาย parameter ที่ 2 ส้ันๆ
+* @return อธิบายค่าที่ return ส้ันๆ
+* @throws ExceptionClassName อธิบายสาเหตุที่ทําให้เกิดการโยน exception 
+*/
+public int myMeth(int param1, int param2) throws ExceptionClassName {
+```
+
+- variable : อยู่เหนือตัวแปร
+
+```
+**
+* อธิบายตัวแปร myVar 
+*/
+protected int myVar;
+```
 
 # Exception Handling :books:
 
