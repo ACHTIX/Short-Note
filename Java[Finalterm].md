@@ -540,33 +540,104 @@ double amount = scanner.nextDouble();
 
 ## Reading / Writing odjects with serialzation :page_with_curl:
 
-Serial Object : 
+![301471336_583161989957097_3606114597016279115_n](https://user-images.githubusercontent.com/86911299/187132525-5ee491a2-fd7d-44f5-b87d-efa0351d0a8f.jpg)
 
-Chaining stream : 
+Serial Object : การแปลงobjectที่อยู่ในheap อยู่ในรูปแบบ`serialized object` เป็นinstance varlables เหมือนการเอาลมออกจากวัตถุต่างๆ
 
-Serial Version ID : 
+![301700316_834807664569283_2420264551288135383_n](https://user-images.githubusercontent.com/86911299/187132477-4ca90dcd-f896-40c8-8aa8-183f283d365f.jpg)
+
+Chaining stream :
+
+![301404282_371294915204580_1753864049247489344_n](https://user-images.githubusercontent.com/86911299/187132240-48c5bef4-ce75-4e02-81bb-4c99eccd8bcd.jpg)
+
+Serial Version ID : ถ้าโค้ดในคลาสของobjectเปลี่ยน หรือมีการเพิ่มเติมแก้ไข จะเกิด`Error : Invalid Class`
+มาจากเวอชั่นคลาสไม่ตรงกันถ้าต้องการจะแก้ไข่ จะต้องแน่ใจแล้วว่าการแก้ไขนั้นไม่มีผลกระทบต่อโค้ดเดิม  
+
+Sol. ระบุ Serial Version ID ไปในโค้ดอยู่ในไฟล์ระบุเป็นhardcode [Serial Version ID จาวาจะเก็บคลาสไว้ในobjectที่ถูกserialized]
+วิธีตรวจสอบว่าตรงกันมั้ย ก็ต่อเมื่อdeserialized 
+
+
+:desktop_computer: Example Code :
+
+```
+static final long serialVersionUID = -6849794470754667710L;
+```
 
 ### ObjectInputStream :pencil2:
 
 1. FileInputStream : 
 
+:desktop_computer: Example Code :
+
+```
+FileInputStream fileStream = new FileInputStream("MyGame.ser");
+```
+
 2. ObjectInputStream : 
+
+:desktop_computer: Example Code :
+
+```
+ObjectInputStream name = new ObjectInputStream(fileStream);
+```
 
 3. readObject : 
 
+:desktop_computer: Example Code :
+
+```
+Object one = name.readObject();
+```
+
 4. cast object : 
 
+:desktop_computer: Example Code :
+
+```
+GameCharacter name = (GameCharacter) one;
+```
+
 5. close : 
+
+:desktop_computer: Example Code :
+
+```
+name.close();
+```
 
 ### ObjectOutputStream :pencil2:
 
 1. FileOutputStream : 
 
+:desktop_computer: Example Code :
+
+```
+FileOutputStream fileStream = new FileOutputStream("MyGame.ser");
+```
+
 2. ObjectOutputStream : 
+
+:desktop_computer: Example Code :
+
+```
+ObjectOutpurStream name = new ObjectOutputStream(fileStream);
+```
 
 3. writeObject : 
 
+:desktop_computer: Example Code :
+
+```
+name.writeObject(characterOne);
+```
+
 4. close : 
+
+:desktop_computer: Example Code :
+
+```
+name.close();
+```
 
 ## Comment :page_with_curl:
 

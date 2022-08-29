@@ -247,29 +247,31 @@ int main(){
 
 ## Basic Operations on Graphs Using Adjacency-Matrix :page_with_curl:
 
+![image](https://user-images.githubusercontent.com/86911299/187135342-209f61f8-b67b-49b8-bdf1-85dd64f89e96.png)
+
 ### createGraph(n) :pencil2:
 
 :desktop_computer: Example Code :
 
 ```
 // Create the graph using adjacency-matrix representation
-int** createGraph(const int n) {
+int** createGraph(const int n) { //จำนวนพื้นที่ของnode
     // Return 2D array of size n*n
-    int** adjMatrix = malloc(sizeof(int*)*n);
+    int** adjMatrix = malloc(sizeof(int*)*n);//จองพื้นที่ตามขนาดของ2D Array โดยใช้double pointer
     
     for (int i=0; i<n; i++) {
         adjMatrix[i] = malloc(sizeof(int)*n);
 
         for (int j=0; j<n; j++)
-            adjMatrix[i][j] = 0;
+            adjMatrix[i][j] = 0;//กำหนดค่าdefaultให้เป็น0
     }
     return adjMatrix;
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=> 
+![300836374_1109609323283736_4046407995333340541_n](https://user-images.githubusercontent.com/86911299/187141847-b2b6e01b-de41-4af4-bf14-c23562928d5d.jpg)
 
 ### addEdge(G , u , v) :pencil2:
 
@@ -282,9 +284,9 @@ void addEdge(int** adjMatrix, int u, int v) {
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![300720510_1276204856528364_8237072635620139358_n](https://user-images.githubusercontent.com/86911299/187141737-3a2b6317-c615-45e7-ad66-3918352f2afb.jpg)
 
 ### printGraph(G) :pencil2:
 
@@ -304,7 +306,7 @@ void printGraph(int** adjMatrix, int n)
 
 :bulb:
 
-=>
+=> แสดงผลคล้ายกับ2D - Array
 
 ### deleteGraph(G) :pencil2:
 
@@ -320,10 +322,6 @@ void deleteGraph(int** adjMatrix, int n){
 }
 ```
 
-:bulb:
-
-=>
-
 ### removeEdge(G , u , v) :pencil2:
 
 :desktop_computer: Example Code :
@@ -335,9 +333,9 @@ void removeEdge(int** adjMatrix, int u, int v) {
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![301549816_663379831296190_4752734775629991891_n](https://user-images.githubusercontent.com/86911299/187142358-6996e43b-5672-442d-b965-e3f859b3fafa.jpg)
 
 ### addVertex(G , u) :pencil2:
 
@@ -360,9 +358,9 @@ int** adjMatrix_new =createGraph(u+1);
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![294917300_2315748295230545_409730532456031221_n](https://user-images.githubusercontent.com/86911299/187144711-b6ae569f-63a7-47df-8c33-400735100a9e.jpg)
 
 ### removeVertex(G , u) :pencil2:
 
@@ -390,9 +388,9 @@ int** removeVertex(int** adjMatrix, int* n, int u)
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![301368622_768510967697405_4969233872286942043_n](https://user-images.githubusercontent.com/86911299/187145211-10088122-de3a-4c75-9798-1b189e0067ec.jpg)
 
 ### isAdjacent(G , u , v) :pencil2:
 
@@ -410,7 +408,7 @@ int isAdjacent(int** adjMatrix, int u, int v) {
 
 :bulb:
 
-=>
+=> ตรวจสอบว่าในกราฟNode U มีEdge ที่เชื่อมไปยังNode Vมั้ย
 
 ### inDegree(G , u) :pencil2:
 
@@ -431,7 +429,7 @@ int inDegree(int** adjMatrix, const int n, int u) {
 
 :bulb:
 
-=>
+=> นับinDegreeในเมทริกซ์
 
 ### outDegree(G , u) :pencil2:
 
@@ -451,10 +449,12 @@ int outDegree(int** adjMatrix, const int n, int u) {
 
 :bulb:
 
-=>
+=> นับoutDegreeในเมทริกซ์
 
 
 ## Basic Operations on Graphs Using Adjacency-List :page_with_curl:
+
+![7 undirected-graph-and-its-adjacency-list](https://user-images.githubusercontent.com/86911299/187135617-b17b5607-5441-468b-82a4-795464377974.png)
 
 ### createGraph(n) :pencil2:
 
@@ -480,9 +480,9 @@ struct Node
 };
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![301200206_489249379682056_7696652362514550766_n](https://user-images.githubusercontent.com/86911299/187148708-a62fe917-bd2c-412a-860b-0d92165eab6b.jpg)
 
 ### addEdge(G , u , v) :pencil2:
 
@@ -510,9 +510,9 @@ void addEdge(struct Node** adjList, int u, int v)
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![301274456_1186954785196390_2905611500274096353_n](https://user-images.githubusercontent.com/86911299/187148977-dcf74354-097d-40bd-9193-103859f311a1.jpg)
 
 ### printGraph(G) :pencil2:
 
@@ -536,7 +536,7 @@ void printGraph(struct Node** adjList, int n)
 
 :bulb:
 
-=>
+=> แสดงผลเป็นarray list
 
 ### deleteGraph(G) :pencil2:
 
@@ -557,9 +557,9 @@ void deleteGraph(struct Node** adjList, int n) {
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![300829472_2313725308802164_5524816136474978476_n](https://user-images.githubusercontent.com/86911299/187149509-d5c9dc0a-ecdd-47c8-9d81-551af2f03c01.jpg)
 
 ### removeEdge(G , u , v) :pencil2:
 
@@ -586,9 +586,9 @@ struct Node* node = adjList[u];
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![301607906_442516194495765_7860557699702989996_n](https://user-images.githubusercontent.com/86911299/187151270-1794b949-5375-49ba-b8b6-af9d68a094a8.jpg)
 
 ### addVertex(G , u) :pencil2:
 
@@ -608,9 +608,9 @@ struct Node** new_adjList = createGraph(u+1);
 }
 ```
 
-:bulb:
+:framed_picture: diagram
 
-=>
+![301680506_1117037112219415_454473982634628465_n](https://user-images.githubusercontent.com/86911299/187152869-fd9a7e82-73da-4721-bd90-1f84d62f00aa.jpg)
 
 ### removeVertex(G , u) :pencil2:
 
@@ -636,9 +636,7 @@ void removeVertex(struct Node** adjList, int *n, int u) {
 }
 ```
 
-:bulb:
-
-=>
+:framed_picture: diagram
 
 ### isAdjacent(G , u , v) :pencil2:
 
@@ -660,7 +658,7 @@ int isAdjacent(struct Node** adjList, int u, int v) {
 
 :bulb:
 
-=>
+=> ตรวจสอบว่าในกราฟNode U มีEdge ที่เชื่อมไปยังNode Vมั้ย
 
 ### inDegree(G , u) :pencil2:
 
@@ -684,7 +682,7 @@ int in_deg = 0;
 
 :bulb:
 
-=>
+=> นับinDegreeในลิส
 
 ### outDegree(G , u) :pencil2:
 
@@ -705,7 +703,7 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 :bulb:
 
-=>
+=> นับoutDegreeในลิส
 
 # Graphs Traversals :books:
 
