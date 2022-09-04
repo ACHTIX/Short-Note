@@ -776,6 +776,11 @@ public Student(String name, String birthday) {
 - Declare :  
 - Handle : 
 
+### ส่งต่อExceptionต่อด้วยการDelacre :pencil2:
+
+### ดักจับException :pencil2:
+
+### declare + ดักจับ :pencil2:
 
 ## Unchecked Exception :page_with_curl:
 
@@ -785,6 +790,38 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 - IndexOutOfBoundsException : ไม่ได้เช็คขอบเขต/index
 - IllegalArgumentException : ใช้argumentผิดประเภท
 - ArithmeticException : ไม่ได้เช็คค่าศูนย์ก่อน เช่น มีค่าศูนย์มาหาร
+
+### Catch with Unchecked Exception :pencil2:
+
+## Try / Catch :page_with_curl:
+
+### Try with multiple catch :pencil2:
+
+### ลำดับของCatch :pencil2:
+
+### Try with multiple catch :pencil2:
+
+### RethrowingException :pencil2:
+
+## Throwable :page_with_curl:
+
+### String getMessage() :pencil2:
+
+### void printStrackTrace() :pencil2:
+
+### String toString() :pencil2:
+
+## Create Exception :page_with_curl:
+
+## Finally clause :page_with_curl:
+
+### Finally with catch :pencil2:
+
+### System.exit() :pencil2:
+
+### Example Finally Code :pencil2:
+
+## Extra :page_with_curl:
 
 # Interface , Abstract Classes , Polymorphism :books:
 
