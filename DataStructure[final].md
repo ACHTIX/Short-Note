@@ -8,7 +8,7 @@
 ## 6. Binary Search Trees :notebook_with_decorative_cover: ##
 ## 7. Balanced Binary Search Trees :ledger: ##
 ## 8. Disjoint-set Data Structure :blue_book: ##
-## 9.  :label: ##
+## 9. Terminology about Graphs :label: ##
 
 
 # Graphs :books:
@@ -243,7 +243,7 @@ int main(){
 00000
 ```
 
-![300458377_773615790516572_5383199367535091922_n](https://user-images.githubusercontent.com/86911299/187029447-40e502d3-767f-425e-8f1f-b5cb737398ec.jpg)
+![305177351_803390500677349_8518480040172322500_n](https://user-images.githubusercontent.com/86911299/188323414-f65f48c3-ecce-44e7-841f-4d43f8f2dd4b.jpg)
 
 ## Basic Operations on Graphs Using Adjacency-Matrix :page_with_curl:
 
@@ -705,11 +705,80 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 => นับoutDegreeในลิส
 
+## Adjacency-Matrix & Adjacency-List in CPP :page_with_curl:
+
+![302328131_1120577528815248_9019764535738993268_n](https://user-images.githubusercontent.com/86911299/188323588-da47bdb8-3f6a-4e8a-b6c1-50bcd6133fee.jpg)
+
+![301455089_1345123036314085_932035562219758730_n](https://user-images.githubusercontent.com/86911299/188323589-4047dfb3-e65d-46b4-8b37-e5c2947d49d2.jpg)
+
+:desktop_computer: Example Code :
+
+![302560553_1150196838865764_4975264800420144007_n](https://user-images.githubusercontent.com/86911299/188323832-2c6ed0f1-5944-401b-8584-aae7a4abb3de.jpg)
+
+![303255338_827748288391768_9127950023376358735_n](https://user-images.githubusercontent.com/86911299/188323836-322b8a63-4d8b-49d1-9130-957a8fa13fa5.jpg)
+
+![304059857_1459198041174552_4688866610571582193_n](https://user-images.githubusercontent.com/86911299/188323842-8ec5534c-130b-4945-b09f-2e99598de945.jpg)
+
+![302636711_5429665437109682_5275908758022646124_n](https://user-images.githubusercontent.com/86911299/188323848-6bcee792-218f-45a0-8569-64f9ee3dd16f.jpg)
+
+![302375727_487716366121246_2271269586617616449_n](https://user-images.githubusercontent.com/86911299/188323850-f8064bd4-aca8-45a9-acb9-a78890932771.jpg)
+
+![304823820_3877283555728938_4066792446327116423_n](https://user-images.githubusercontent.com/86911299/188323853-6d63b3ff-fd96-49ba-b0eb-a61a5219a941.jpg)
+
+![302387436_498103735654993_8847219171281872507_n](https://user-images.githubusercontent.com/86911299/188323855-7b706d10-653e-4a85-b101-7f58624d6497.jpg)
+
+![301921379_527286325827029_5199123822761162371_n](https://user-images.githubusercontent.com/86911299/188323862-f92fb219-12b3-4e01-8d7d-41c02ceec897.jpg)
+
+![302451466_2337451356409482_4544541740599774547_n](https://user-images.githubusercontent.com/86911299/188323865-4bdfcf82-b59c-4541-9b99-95145546c90c.jpg)
+
+
 # Graphs Traversals :books:
 
-## checked excption :page_with_curl:
+## Terminology About Graphs :page_with_curl:
 
-## unchecked excption :page_with_curl:
+- Path : 
+
+- Cycle : 
+
+- Path's length : 
+
+- Connected graph :
+
+- Connected components : 
+
+### Graphs Traversals :pencil2:
+
+- Traverse : 
+
+- Graph traversal : 
+
+### Maze Exploration :pencil2:
+
+- Maze Exploration Motivation : 
+
+- Maze Exploration Problem : 
+
+### Tremaux's Algorithm :pencil2:
+
+## Depth-First Search/Traversal [DFS] :page_with_curl:
+
+### Undirected graph :pencil2:
+
+### DFS's Complexity :pencil2:
+
+### DFS Implementation In CPP :pencil2:
+
+## Breath-First Search/Traversal [BFS] :page_with_curl:
+
+### Undirected graph :pencil2:
+
+### BFS's Complexity :pencil2:
+
+### BFS Implementation In CPP :pencil2:
+
+### BFS's Properties :pencil2:
+
+### BFS Application :pencil2:
 
 # Trees :books:
 
@@ -722,3 +791,98 @@ int outDegree(struct Node** adjList, int n, int u) {
 # Balanced Binary Search Trees :books:
 
 # Disjoint-set Data Structure :books:
+
+# Terminology about Graphs :books:
+
+## Basic Graph Terminology [01] :page_with_curl:
+
+ศัพท์เฉพาะทางขั้นพื้นฐานที่จะใช้ในเรื่องของกราฟ จะแบ่งออกเป็นสองกลุ่ม 
+1. Undirected + Directed : ใช้ได้กับทั้งกราฟที่กำหนดทิศทางและไม่กำหนด 
+2. Directed ONLY : ใช้ได้แค่กับกราฟที่กำหนดทิศทาง 
+
+### Undirected + Directed :pencil2:
+
+:framed_picture: For Example : 
+
+![300185822_597711345226108_4250708952962243063_n](https://user-images.githubusercontent.com/86911299/186439014-081b432c-607f-4af1-bc8e-712e374a5689.jpg)
+
+- End-Vertices / Endpoints : หมายถึงปลายของเส้นเชื่อม จะประกอบไปด้วยจุดตัดสองจุด 
+
+:desktop_computer: Example :
+
+```
+{b , d} = Endpoints of E1
+{d , f} = Endpoints of E2
+```
+
+- Adjacent : หมายถึงเส้นเชื่อมที่มีEndpointsเดียวกัน/เชื่อมถึงกัน/ใกล้กัน
+
+:desktop_computer: Example :
+
+```
+'a' adjacent {b} , {c} 
+'f' adjacent {b} , {d}
+```
+
+- Incident : หมายถึงจุดตัดที่แยกย่อยออกมา กลายเป็นเชื่อมสองเส้นที่มีจุดตัดเดียวกัน1จุด
+
+:desktop_computer: Example :
+
+```
+'a' adjacent {{a , b} | {a , c}} 
+'f' adjacent {{f , b} | {f , d}}
+```
+
+- Degree : หมายถึงจำนวนเส้นเชื่อมที่ออกหรือเข้า[ขึ้นอยู่กับประเภทกราฟ] จากหนึ่งจุดตัด 
+
+:desktop_computer: Example :
+
+```
+deg(c) = 2
+deg(b) = 3
+```
+
+### Directed ONLY :pencil2:
+
+:framed_picture: For Example : 
+
+![299681051_480916236820305_1962670974590185217_n](https://user-images.githubusercontent.com/86911299/186442076-2986dd70-9223-4daa-996c-9032027650e3.jpg)
+
+- Origin / Source [destination of the edge]
+
+1. Outgoing Edges : หมายถึงเส้นเชื่อมที่มีหัวลูกศรชี้ออกจากจุดตัด
+
+:desktop_computer: Example :
+
+```
+E1 , E2 <--Outgoing Edges-- d
+```
+
+2. Ingoing Edges : หมายถึงเส้นเชื่อมที่มีหัวลูกศรชี้เข้าไปทางจุดตัด
+
+:desktop_computer: Example :
+
+```
+E1 --Ingoing Edges--> b
+E2 --Ingoing Edges--> f
+```
+
+- Degree : หมายถึงจำนวนเส้นเชื่อมที่ออกหรือเข้า[ขึ้นอยู่กับประเภทกราฟ] จากหนึ่งจุดตัด *กราฟที่ระบุทิศทางDirected*
+
+1. In-degree : จำนวนของเส้นเชื่อมที่ชี้เข้าไปในจุดตัด
+
+:desktop_computer: Example :
+
+```
+indeg(b) = 3
+indeg(a) = 0
+```
+
+2. Out-degree : จำนวนเส้นเชื่อมที่ชี้ออกมาจากจุดตัด
+
+:desktop_computer: Example :
+
+```
+outdeg(d) = 2
+outdeg(b) = 0
+```
