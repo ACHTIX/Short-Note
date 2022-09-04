@@ -697,6 +697,95 @@ protected int myVar;
 
 # Exception Handling :books:
 
+Exception : เป็นกลไกของจาวาในการแจ้งเตือน`ERROR`แบบเฉพาะเจาะจงมายิ่งขึ้น เข้าใจง่าย ช่วยให้โปรแกรมเมอร์สามารถจัดการกับ`ERROR`ให้ตามต้องการ 
+และเป็นคลาสหนึ่งใน`Java Libiary`ที่เราสามารถสร้างobjectของคลาสExceptionได้ และเป็นObjectชนิดนึงที่พิเศษมากเพราะสามารถ
+`throw`[แจ้งError,ส่งต่อError] `try / catch` [จัดการกับError] ซึ่งสามารถpass control ไปให้callerที่รู้ว่าต้องจัดการยังไง
+ในคลาสExceptionนี้จะมีsubclass เช่น IOException RuntimeException ClassCastException IllegalArrgumentException 
+
+ ![302429801_437202058375924_2112388091397634434_n](https://user-images.githubusercontent.com/86911299/188262937-0b51b6f2-39de-4f6e-9358-8198e882cf62.jpg)
+
+Reporting : รายงานข้อมูลError ที่เฉพาะเจาะจง จะบอกได้เลยว่าเกิดจากอะไร เกิดขึ้นที่บรรทัดไหน คลาสไหน  
+
+Recovery : ช่วยบอกให้รู้วิธีการแก้ไขกับErrorนั้นๆ ว่าต้องจัดการยังไง จะแสดงผลลัพท์ให้รูปแบบที่เข้าใจง่าย คนทั่วไปหรือผู้ใช้เข้าใจได้เลย ไม่ใช่แบบ`Stack Trace` ซึ่งแบบนี้จะเยอะ เข้าใจยาก และนอกจากจะแสดงผลลัพท์ที่เข้าใจง่ายแล้วยังสามารถบอกวิธีแก้ไขให้ตรงจุดอีกด้วย
+
+Error Type :
+
+- Syntax Error : ส่วนใหญ่แล้วIDE / IntelliJ จะช่วยตรวจสอบละบอกวิธีแก้ไขในขณะที่กำลังสร้างโค้ดเลย 
+- Runtime Error : ใช้Try / Catchในการแก้ปัญหา
+- Logic Error : ใช้unit testing
+
+System Error : เป็นErrorที่**ร้ายแรง ไม่ค่อยเกิดขึ้น ไม่สามารถควบคุมได้** ไม่ควรจัดการเองควร`throwโดยJVM`แต่ต้องแจ้งผู้ใช้ ไม่ต้องdeclare/handle เช่น OutOfMemoryError
+
+Exception class : มีหลายคลาสมีให้เลือกหลายแบบควรเลือกให้เหมาะสมกับการใช้งาน แต่ถ้าหากไม่มีสามารถสร้างขึ้นมาเองได้จากการ`extends จาก exception class / subclass`
+
+## Checked Exception :page_with_curl:
+
+Checked Excption : เป็นsubclassของException[แต่ไม่ใช่RuntimeException] เป็นข้อพิดพลาดที่เกิดจาดเหตุสุดวิสัยที่เกิดขึ้นได้เสมอ ไม่สามารถควบคุมได้
+เช่น ไม่สามารถอ่านไฟล์ได้ ฐานข้อมูลมีปัญหา หน่วยความจำเต็ม เน็ตหลุด ไฟดับ เกิดได้จากทั้งภายในและภายนอก เช่น FileNotFoundException , IOException 
+SQLException , ParseException `ต้องส่งต่อ(declare) throwsไปให้caller` `ดักจับ(try - catch)exception` 
+
+### แจ้งerror :pencil2:
+
+:desktop_computer: Example Code:
+
+```
+if(balance < amount)
+    throw new InsufficientFundException("Error Message");
+```
+
+:bulb:
+
+=> ใช้`throw`เมื่อต้องการแจ้งข้อผิดพลาด สามารถใช้ได้ทั้ง method , constructor
+
+=> ในการใช้throwจะต้องสร้างobjectใหม่ด้วยจึงต้องใช้คู่กับ `throw new`
+
+
+:desktop_computer: Example Code checked Exception:
+
+```
+public void withdraw(double amount) throws InsufficientFundException{
+    if(balance < amount)
+        throw new InsufficientFundException("Error Message");
+    balance = balance - amount;
+}
+```
+
+:bulb:
+
+=> ใช้`throws` ถ้าหากเป็นchecked exception และต้องdeclareตรงmethod signatureด้วยไม่งั้นจะเกิดerror
+
+=> ถ้าในบรรทัด [throw new InsufficientFundException("Error Message");] เกิดการthrow exception บรรทัดต่อๆไปในmethodนี้จะไม่ทำงาน
+
+:desktop_computer: Example Code Unchecked Exception:
+
+```
+public Student(String name, String birthday) {
+    if (!isDateFormatCorrect(birthday))
+        throw new IllegalArgumentException("Birthday is incorrect");
+    this.name = name;
+    this.birthday = birthday;
+}
+```
+
+:bulb:
+
+=> เนืองจากIllegalArgumentExceptionนี้เป็น`Uncheck Exception`เราไม่ต้องdeclare
+
+### ส่งต่อ / ดักจับ :pencil2:
+
+- Declare :  
+- Handle : 
+
+
+## Unchecked Exception :page_with_curl:
+
+Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้อผิดพลาดที่เกิดจากการเขียนโปรแกรมของตัวโปรแกรมเมอร์เอง 
+[`ไม่ต้อง`ส่งต่อ(declare) `ไม่ต้อง`ดักจับ(try - catch)] เช่น 
+- NullPointerException : ไม่ได้เช็คNUll 
+- IndexOutOfBoundsException : ไม่ได้เช็คขอบเขต/index
+- IllegalArgumentException : ใช้argumentผิดประเภท
+- ArithmeticException : ไม่ได้เช็คค่าศูนย์ก่อน เช่น มีค่าศูนย์มาหาร
+
 # Interface , Abstract Classes , Polymorphism :books:
 
 # Collections :books:

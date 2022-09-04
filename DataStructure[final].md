@@ -707,6 +707,10 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 # Graphs Traversals :books:
 
+## checked excption :page_with_curl:
+
+## unchecked excption :page_with_curl:
+
 # Trees :books:
 
 # Tree Traversals :books:
