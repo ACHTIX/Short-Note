@@ -827,6 +827,8 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 
 Collection : เป็นกลุ่มของข้อมูลคล้ายกัน เช่น Array , List , Set เรียกสิ่งที่อยู่ในCollection `elements`
 
+https://docs.oracle.com/javase/tutorial/collections/intro/?fbclid=IwAR3tnStR9vQMM4YzmSf0kyqMAtTHN9iGg4KwMEs390vX5V9DL40O2qZpoCM
+
 Java Collection : เป็นInterfaceที่มีหลาย `method Specification`
 
 - เพิ่ม สิ่งของเข้าไปในCollection 
@@ -918,21 +920,286 @@ int i = a.get(2);
 
 ### Array-List :pencil2:
 
+Array-List : คล้ายกับArrayต่างกันตรงที่Array-Listจะขยายขนาดให้โดยอัตโนมัติเมื่อเต็ม แต่Arrayสามารถเพิ่มขีดจำกัดของArrayได้
+
+=> เข้าถึงข้อมูลแบบ`Random Access` เร็วมาก เพราะว่าArray-Listจะเป็นการ`implement`ที่ระบุว่าจะเข้าถึงข้อมูลแบบRandom Access(Generally constant)
+
+=> `insert` ช้ามาก เพราะถ้าต้องการเพิ่มข้อมูลไปในระหว่างArray จะต้องเลื่อนข้อมูลในindexไปที่indexถัดไปเรื่อยๆ 
+
+### การใช้ArrayList<E> :pencil2:
+
+#### การสร้างList + เพิ่มElement
+
+:desktop_computer: Example Code :
+
+```
+ArrayList<Student> stdList = new ArrayList<Student>();
+//สร้างList
+
+Student s1 = new Student("First");
+Student s2 = new Student("Second");
+Student s3 = new Student("Third");
+//สร้างelement
+
+stdList.add(s1);
+stdList.add(s2);
+stdList.add(s3);
+//เพิ่มelementเข้าไปในlist
+```
+
+#### contains()
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Check for elements using contains()");
+System.out.println(stdList.contains(s1));
+System.out.println(stdList.contains(new Student("First")));
+```
+
+:printer: Output
+
+```
+true
+false
+```
+
+:bulb:
+
+=> .contain() เรียกใช้Method .equal() ; จะตรวจสอบจากObjectเลย การ`new`เป็นการสร้างobjectใหม่จึงทำให้แสดงผลเป็นfalse
+
+=> ใช้`@Override`เปลี่ยนให้ตรวจสอบค่าแทน .equal() [สามารถgenerateได้เลย] 
+
+#### get(index)
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Access a list using get(index)");
+for (int i = 0; i < stdList.size(); i++) {
+Student student = stdList.get(i);
+String name = student.getName();
+System.out.println("Name: "+name);
+```
+
+:bulb:
+
+=> get(i) i = index ในList<E> มีmethodในการเข้าถึงข้อมูล
+
+#### for-each loop
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Access a list using for-each loop");
+for (Student student : stdSet) {
+   String name = student.getName();
+   System.out.println("Name: "+name);
+}
+```
+
 ### Linked-List :pencil2:
+
+Linked-List : เป็นโครงสร้างข้อมูลที่ไม่จำกัดขนาด
+
+=> เข้าถึงข้อมูลแบบ`Random Access` ช้ามาก เพราะในการเก็บข้อมูลจะใช้`Pointer , Node` ; เข้าถึงตั้งแต่ Head_Node . . . End_Node
+    จะช้ามาเพราะถ้าจะเข้าถึง index[38] = 0 , 1 , ... , 36 , 37
+    - Linked-List ไม่มีimplement random access 
+    - [Double Linked-List] มีการimplement random access ; จะสามารถเข้าถึง Head , Endได้เร้วกว่า
+
+=> `insert` เร็วมาก เพราะว่าใช้pointerในการinsert
+
+**ความเร็วในการเข้าถึง LinkedList < Doubly Linked-List < ArrayList**
 
 ## [Set<E>] :page_with_curl:
 
+Set<E> ; class HashSet : elementห้ามซ้ำกัน และจะไม่เรียงกันตามindex
+
+subtype => HashSet : เป็นคลาสที่ใช้`hash codes` [ใช้ในการเก็บหรือตรวจสอบว่าเป็นคลาสเดียวกันมั้ย] ในการเข้าถึงelement *รวดเร็ว + ไม่เรียงกัน*
+        => TreeSet : คล้ายๆกัน แต่สามารถเรียงข้อมูล`sort` 
+            `TreeSet(Comprator <? super E> comprator)` / `Comparable`
+
+        :desktop_computer: Example Code :
+        
+        ```
+        Set<String> s = new HashSet<String>();
+        s.add(“Hello”);
+        boolean b = s.contains(“Hello”);
+        ```
+
+**Set ไม่มี Get(index)**
+
 ### HashSet :pencil2:
+
+#### การสร้างSet + เพิ่มElement
+
+:desktop_computer: Example Code :
+
+```
+HashSet<Student> stdSet = new HashSet<Student>();
+//สร้างList
+
+Student s1 = new Student("First");
+Student s2 = new Student("Second");
+Student s3 = new Student("Third");
+//สร้างelement
+
+stdSet.add(s1);
+stdSet.add(s2);
+stdSet.add(s3);
+//เพิ่มelementเข้าไปในset
+```
+
+#### contains()
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Check for elements using contains()");
+System.out.println(stdSet.contains(s1));
+System.out.println(stdSet.contains(new Student("First")));
+```
+
+:printer: Output
+
+```
+true
+false
+```
+
+:bulb:
+
+=> .contain() เรียกใช้Method .equal() ; จะตรวจสอบจากObjectเลย การ`new`เป็นการสร้างobjectใหม่จึงทำให้แสดงผลเป็นfalse
+
+=> ใช้`@Override`เปลี่ยนให้ตรวจสอบค่าแทน .equal() [สามารถgenerateได้เลย] 
+
+#### for-each loop
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Access a list using for-each loop");
+for (Student student : stdSet) {
+   String name = student.getName();
+   System.out.println("Name: "+name);
+}
+```
+
+:bulb:
+
+=> ข้อมูลที่แสดงผลหลังจากรันแล้วจะ`ไม่เรียง`
 
 ## [Map<K,V>]:page_with_curl:
 
+Map<K,V> ; K = key , V = value เป็นโครงสร้างที่มีelementเป็นคู่ key-value จะทำให้มีประสิทธิภาพในการเข้าถึงข้อมูลมากถ้า `รู้ค่าkey`
+คล้ายกับIndex's Array-Listต่างกันตรงที่Map จะเป็นข้อมูลชนิดใดก็ได้
+
+Map เป็นinterfaceสำหรับgeneric type key , value
+- V get(Object key) : คืนค่าvalue + key แต่ถ้าไม่มีจะ return null;
+- V put(K key , V value) : เก็บค่าvalueไว้ในkey ถ้ามีkeyอยู่แล้วจะใช้keyเดิม เปลี่ยนแค่ค่าvalue ถ้าไม่มีจะ return null; 
+
+ถ้าเราต้องการที่จะประมวลผลทั้งMap เราสามารถออกจากMap ได้ 2 ทาง
+1. `Set<K> keySet()` : return set's key ทุกอันใน Map
+2. `Collection<V> values` : return group's value ทุกอันใน Map
+
 ### HashMap :pencil2:
 
-### Hashtable :pencil2:
+#### การสร้าง Map ด้วย key/value และเพิ่ม element เข้า map
+
+:desktop_computer: Example Code :
+
+```
+HashMap<String, Student> stdMap = new HashMap<String, Student>();
+//สร้างMap ด้วยkey/value
+
+Student s1 = new Student("First", 1);
+Student s2 = new Student("Second", 2);
+Student s3 = new Student("Third", 3);
+//สร้างelement
+
+stdMap.put("First", s1);
+stdMap.put("Second", s2);
+stdMap.put("Third", s3);
+//เพิ่มelementเข้าไปในMap .put()เหมือน.add()
+```
+
+#### การใช้เมธอด containsKey(), containsValue()
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Check using containsKey/Value()");
+System.out.println(stdMap.containsKey("First"));
+System.out.println(stdMap.containsValue(s1));
+System.out.println(stdMap.containsValue(new Student("First", 1)));
+```
+
+:printer: Output
+
+```
+true
+true
+false
+```
+
+:bulb: 
+
+=> .contain() เรียกใช้Method .equal() ; จะตรวจสอบจากObjectเลย การ`new`เป็นการสร้างobjectใหม่จึงทำให้แสดงผลเป็นfalse
+
+=> ใช้`@Override`เปลี่ยนให้ตรวจสอบค่าแทน .equal() [สามารถgenerateได้เลย] 
+
+#### การค้นหา/เข้าถึงข้อมูลเมื่อรู้ key : ใช้ get(key)
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Access a map with known key");
+Student myStd = stdMap.get("Second");
+System.out.println("Name: "+myStd.getName()+" Year: "+myStd.getYear());
+```
+
+#### การวนลูปของ map ผ่าน key : ใช้ keySet()
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Looping a map using keys with keySet() method");
+Set<String> keys = stdMap.keySet();
+for (String name : keys) { //เข้าถึงข้อมูลทุกชิ้นในMap
+   Student student = stdMap.get(name);
+   System.out.println("Name: "+student.getName()+" Year: "+student.getYear());
+}
+```
+
+:bulb: 
+
+=> ต้องการkeySet + Value
+
+#### การวนลูปของ map : ใช้ values()
+
+:desktop_computer: Example Code :
+
+```
+System.out.println("------ Looping a map using values with values() method");
+Collection<Student> values = stdMap.values();
+    for (Student student : values) {
+          System.out.println("Name: " + student.getName() + " Year: " + student.getYear());
+}
+```
+
+:bulb: 
+
+=> ต้องการkeySet + Value
+
+=> values = return collection
 
 ## Implementation :page_with_curl:
 
+![306040747_606162140906002_8407473119290121113_n](https://user-images.githubusercontent.com/86911299/189171436-a945eeb2-eade-44e3-9411-56862e17390c.jpg)
+
 ## Hashtable VS. Vector :page_with_curl:
+
+![304858711_3148235365420996_9212496275751526900_n](https://user-images.githubusercontent.com/86911299/189171459-82d9fe74-dba3-44e7-b1ea-d34969dee9d9.jpg)
 
 # Interface , Abstract Classes , Polymorphism :books:
 
