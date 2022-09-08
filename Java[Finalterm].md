@@ -823,9 +823,118 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 
 ## Extra :page_with_curl:
 
-# Interface , Abstract Classes , Polymorphism :books:
-
 # Collections :books:
+
+Collection : เป็นกลุ่มของข้อมูลคล้ายกัน เช่น Array , List , Set เรียกสิ่งที่อยู่ในCollection `elements`
+
+Java Collection : เป็นInterfaceที่มีหลาย `method Specification`
+
+- เพิ่ม สิ่งของเข้าไปในCollection 
+    `boolean add(E o)`
+
+- หา สิ่งของว่าอยู่ที่ไหนในCollection
+    `boolean contains(Object o)` ใช้ผ่านMethod [.equal()] 
+
+- ลบ สิ่งของที่อยู๋ในCollection
+    `boolean remove(Object o)`
+
+- ลูป ประมวลผล / ดำเนิดการ ___ กับสิ่งของ `ทุกชิ้น` ในCollection
+    `int size()`
+
+```
+for(type element : Collection) 
+    ประมวลผลelement;
+```
+
+การประมวลผลของCollection : สามารถใช้loopได้ทั้งหมดสองแบบ
+
+    1. for loop : ใช้เมื่อต้องการเข้าถึง `Index` ในการทำงานและใช้กับCollectionที่มี `.get()`
+
+    :desktop_computer: Example Code :
+
+    ```
+    for (int i = 0; i < studentList.size(); i++)
+       System.out.println(studentList.get(i).getName());
+    ```
+
+    2. for-each loop : ใช้เมื่อCollectionที่มี `.set() , .get()`
+
+    :desktop_computer: Example Code :
+
+    ```
+    for (Student student : studentList)
+       System.out.println(student.getName());
+    ```
+
+ลักษณะของCollection
+1. Element 
+    => `ซ้ำได้` ถ้ามีข้อมูลหรือสิ่งของซ้ำกันจะเก็บทุกข้อมูลจะไม่มีข้อมูลไหนหายไปจนกว่าจะ `Remove`
+        List , MultiSet
+
+    => `ซ้ำไม่ได้` ถ้ามีข้อมูลหรือสิ่งของซ้ำกันจะเก็บให้เหลือเพียงแค่ชิ้นเดียว 
+        Set , SortedSet
+
+2. Index
+    => `ผ่านได้` เข้าถึงelementผ่านindexได้ จะเก็บแบบใส่ข้อมูลก่อนจะอยู่ก่อน 
+        List , SortedSet
+            
+    Note : จะเข้าถึงข้อมูลในรูปแบบ *Random Access* แต่เวลาเก็บข้อมูลจะแตกต่างกันออกไปตามประเภท 
+        เช่น Array-List จะเก็บแบบArray , Linked-List จะเก็บแบบDoubly Linked-List
+
+    => `ผ่านไม่ได้` เข้าถึงelementผ่านindexไม่ได้ จะเก็บแบบปนกัน เหมือนเวลาเก็บของเล่นใส่กล่อง จะไม่เรียงกัน
+        MUltiSet , Set
+
+![305395403_608000120700945_7802270997801150979_n](https://user-images.githubusercontent.com/86911299/189147738-08772dc3-abc2-4e85-9347-49a6d4c29718.jpg)
+
+## Generic types :page_with_curl:
+
+`Collection<E> , List<E> , Set<E> , Map<K , V>` : E เป็นชนิดของobject ในCollectionนึงควรจะมีแค่ 1 elementเท่านั้น
+เพื่อที่เราจะได้ประกาศว่าCollectionนั้นๆ เก็บObjectชนิดไหนอยู่เวลาจะคืนค่าสามารถreturnได้เลย ไม่ต้องcast 
+
+![305356782_1123386631590607_2095269272473667358_n](https://user-images.githubusercontent.com/86911299/189151318-58b4ace7-1d4c-4677-b72b-37c8e30d22e3.jpg)
+
+Collection with Primitive type จะต้องใช้ `wrapper class`ทำได้สองแบบ
+
+1. ใช้`Wrapper`ตลอด
+
+```
+List<Integer> a = new ArrayList<Integer>(); a.add(new Integer(30));
+a.add(new Integer(11));
+a.add(new Integer(20));
+Integer iObj = a.get(2);
+int i = iObj.intValue();
+```
+
+2. ประกาศชนิดเป็นwrapper ใช้เป็น`Prmitive`
+
+```
+List<Integer> a = new ArrayList<Integer>(); a.add(30);
+a.add(11);
+a.add(20);
+int i = a.get(2);
+```
+
+## [List<E>] :page_with_curl:
+
+### Array-List :pencil2:
+
+### Linked-List :pencil2:
+
+## [Set<E>] :page_with_curl:
+
+### HashSet :pencil2:
+
+## [Map<K,V>]:page_with_curl:
+
+### HashMap :pencil2:
+
+### Hashtable :pencil2:
+
+## Implementation :page_with_curl:
+
+## Hashtable VS. Vector :page_with_curl:
+
+# Interface , Abstract Classes , Polymorphism :books:
 
 # Unit Testing and jUnit :books:
 

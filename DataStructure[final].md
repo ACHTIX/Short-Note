@@ -8,7 +8,7 @@
 ## 6. Binary Search Trees :notebook_with_decorative_cover: ##
 ## 7. Balanced Binary Search Trees :ledger: ##
 ## 8. Disjoint-set Data Structure :blue_book: ##
-## 9. Terminology about Graphs :label: ##
+## 9. Terminology :label: ##
 
 
 # Graphs :books:
@@ -736,15 +736,15 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 ## Terminology About Graphs :page_with_curl:
 
-- Path : 
+- Path : [เส้นทาง] สามารถมีหลายเส้นทาง
 
-- Cycle : 
+- Cycle : [วงจร]
 
-- Path's length : 
+- Path's length : [ระยะ/ความยาวของเส้นทาง] 
 
-- Connected graph :
+- Connected graph : [กราฟที่มีการเชื่อมต่อกันทุกๆจุดตัด]
 
-- Connected components : 
+- Connected components : [ส่วนประกอดของกราฟที่มีการเชื่อมต่อ] 
 
 ### Graphs Traversals :pencil2:
 
@@ -786,8 +786,25 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 ![304191992_489229662601005_1928407008652570236_n](https://user-images.githubusercontent.com/86911299/188324647-a1415ed6-3c9e-4f00-9a28-80940828a7ee.jpg)
 
-
 # Trees :books:
+
+## Informal Introduction :page_with_curl:
+
+## Terminology :page_with_curl:
+
+### Rooted Tree Terminolgy :pencil2:
+
+## Free Trees :page_with_curl:
+
+## Rooted Trees :page_with_curl:
+
+### Linked StructureRooted Tree :pencil2:
+
+## Ordered Trees :page_with_curl:
+
+## Basic Operations on Tree :page_with_curl:
+
+### Create a Rooted Tree :pencil2:
 
 # Tree Traversals :books:
 
