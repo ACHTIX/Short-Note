@@ -734,51 +734,364 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 # Graphs Traversals :books:
 
+https://www.tamemo.com/post/26/project-solution-tree-searching-dfs-bfs-step-by-step/
+
 ## Terminology About Graphs :page_with_curl:
 
-- Path : [เส้นทาง] สามารถมีหลายเส้นทาง
+- Path : [เส้นทาง] การเชื่อมต่อ ต่อเนื่องการระหว่าง Node กับ Edge สลับกัน โดยที่ จะมีจุดเริ่มต้นเป็นEdge จบที่Node และ Edgeระหว่างNodeไม่สามารถสลับกันได้ ต้องเป็น—Edge—>Node—Edge—>Node
 
-- Cycle : [วงจร]
+- Cycle : [วงจร] จะมีEdgeในเส้นทางอย่างน้อย1Edge และจะเริ่มต้นที่Node(A) โดยที่ต้องกลับมาจบที่Node(A)
 
-- Path's length : [ระยะ/ความยาวของเส้นทาง] 
+- Path's length : [ระยะ/ความยาวของเส้นทาง] จำนวนของจุดในเส้นทาง-1 / จำนวนเส้นเชื่อม
 
-- Connected graph : [กราฟที่มีการเชื่อมต่อกันทุกๆจุดตัด]
+- Connected graph : [กราฟที่มีการเชื่อมต่อกันทุกๆจุดตัด] กราฟที่ทุกจุดมีเส้นทางเดินที่สามารถเดินทางไปถึงกันได้
 
 - Connected components : [ส่วนประกอดของกราฟที่มีการเชื่อมต่อ] 
 
 ### Graphs Traversals :pencil2:
 
-- Traverse : 
+- Traverse : ไปท่องเที่ยวแบบไม่ซ้ำที่กัน 
 
-- Graph traversal : 
+- Graph traversal : การท่องไปในกราฟที่ประจุดเยี่ยมชมคือNode และเส้นทางคือEdges
 
 ### Maze Exploration :pencil2:
 
-- Maze Exploration Motivation : 
+:framed_picture: Maze Exploration Motivation 
 
-- Maze Exploration Problem : 
+![305371341_896990881268283_4656080646892464186_n](https://user-images.githubusercontent.com/86911299/189430553-cd858901-da9d-4e53-adcc-ba3a8b5b02e9.jpg)
+
+:framed_picture: Maze Exploration Problem 
+
+![305182374_798147724548720_2596956639497721890_n](https://user-images.githubusercontent.com/86911299/189430742-3329d40d-c9d1-47ce-a46e-a0cf87ce46d8.jpg)
 
 ### Tremaux's Algorithm :pencil2:
 
+Tremaux Algorithm : การเอาเชือกมาผูกกับตัวเอง และหลักที่จุดเริ่มต้นละเดินไปเรื่อยๆ จนกว่าจะครบทุกทาง โดยการทำสัญลักษณ์ไว้ 
+ละเชือกสามารถพาเรากลับมาที่จุดเริ่มต้นละเดินไปอีกเส้นทางที่ไม่ซ้ำกันได้อีกครั้ง 
+1. เลือกเส้นทางละเดินไป ทำสัญลักษณ์ไว้  ที่ intersection , passage
+2. ถ้าไปต่อได้ให้ไปต่อเรื่อนๆละทำสัญลักษณ์ไว้ 
+3. ถ้าไม่ไป หรือdead end ให้ย้อนกลับมาหาเส้นทางใหม่ จนกว่าจะครบทุกpath
+
+:framed_picture: Tremaux's Algorithm
+
+![305885105_3213938818849460_3053376877236656895_n](https://user-images.githubusercontent.com/86911299/189430788-865abb6a-0c29-4193-b807-083c5a226b01.jpg)
+
 ## Depth-First Search/Traversal [DFS] :page_with_curl:
 
+Depth first search [DFS] : การค้นหาแบบลึกก่อน เป็นการค้นหาที่กําหนดทิศทางจากรูปของโครงสร้างข้อมูล ที่เริ่มต้นจากโหนดที่อยู่บนสุด 
+แล้วเดินลงมาให้ลึกที่สุด เมื่อถึงโหนดล่างสุด(Terminal node) ให้ย้อนขึ้นมาที่จุดสูงสุด หาโหนดที่ยังไม่ได้ไป แล้วเริ่มเดินลงจนถึงโหนดลึกสุดอีก 
+ทําสลับไปเรื่อยจนพบโหนดที่ต้องการหาหรือสํารวจครบทุกโหนดแล้ว การค้นหาแบบลึกก่อนจะมีลําดับการเดิน ตามโหนดดังตัวเลขที่กํากับไว้ในแต่ละโหนด.
+
 ### Undirected graph :pencil2:
+
+:framed_picture: Example
+
+![1_eyqACQAziXkSuMNmMeTa6A](https://user-images.githubusercontent.com/86911299/189434623-a498d6ee-829e-4d08-8c74-e2562ec29d12.png)
+
+```
+DFS-init(s, adjList):
+    visited = {}
+    DFS-visit(s, adjList, visited)
+```
+
+```
+DFS-visit(s, adjList, visited):
+    visited = visited U {s}
+    for v in adjList[s]:
+        if v not in visited:
+            DFS-visit(v, adjList, visited)
+```
+
+```
+DFS-explore(V, adjList):
+    visited = {}
+    for s in V:
+        if s not in visited:
+            DFS-visit(s, adjList, visited)
+```
 
 ### DFS's Complexity :pencil2:
 
+![305166529_637552407929442_3353291991800212249_n](https://user-images.githubusercontent.com/86911299/189430928-cc5373cc-f043-4801-86e8-75ea9b7abee5.jpg)
+
 ### DFS Implementation In CPP :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// C++ program to print DFS traversal from a given vertex in a given graph
+#include<iostream>
+#include<list>
+using namespace std;
+
+// Graph class represents a undirected graph using adjacency list representation
+class Graph{
+    int V; 
+    // No. of vertices
+
+    list<int> *adj; 
+    // Pointer to an array containing adjacency lists
+
+    void DFSVisit(int s, bool visited[]); 
+    // A recursive function used by DFS
+
+public:
+    Graph(int V); 
+    // Constructor
+    
+    void addEdge(int v, int w); 
+    // Function to add an edge to graph
+    
+    void DFSInit(int s); 
+    // DFS traversal of the vertices reachable from s
+};
+
+Graph::Graph(int V){
+    this->V = V;
+    adj = new list<int>[V];
+}
+
+void Graph::addEdge(int v, int w){
+    adj[v].push_back(w); 
+    // Add w to v’s list
+
+    adj[w].push_back(v); 
+    // Add v to w’s list
+}
+
+void Graph::DFSVisit(int s, bool visited[])
+{
+    // Mark the current node as visited and print it
+    visited[s] = true;
+    cout << s << " ";
+
+    // Recurse for all the vertices adjacent to this vertex
+    list<int>::iterator i;
+    for (i = adj[s].begin(); i != adj[s].end(); ++i)
+        if (!visited[*i])
+            DFSVisit(*i, visited);
+}
+
+// DFS traversal of the vertices reachable from v
+void Graph::DFSInit(int s){
+    
+    // Mark all the vertices as not visited
+    bool *visited = new bool[V];
+    for (int i = 0; i < V; i++)
+        visited[i] = false;
+    
+    // Call the recursive helper function to print DFS traversal
+    DFSVisit(s, visited);
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+    cout << "Following is Depth First Traversal (starting from vertex 2) \n";
+    g.DFSInit(2);
+    return 0;
+}
+```
+
+:printer: Output
+
+```
+Following is Depth First Traversal (startingfrom vertex 2)
+2 0 1 3
+```
+
+:bulb: 
+
+=>
 
 ## Breath-First Search/Traversal [BFS] :page_with_curl:
 
+Breadth-first search [BFS] : เป็นขั้นตอนการหาข้อมูลทั้งหมด ที่โหนดบนสุดของกราฟและทำการสำรวจโหนดของเพื่อนบ้าน 
+เป็นการกําหนดทิศทางการค้นหาแบบทีละระดับของโครงสร้างข้อมูล 
+
+- โดยเริ่มจาก(ระดับที่ 0) แล้วลงมาระดับที่ 1 จากซ้ายไปขวา เมื่อเสร็จระดับที่ 1 ไประดับที่ 2จากซ้ายไปขวาเช่นกัน 
+ทําไปเรื่อยๆจนพบโหนดที่ต้องการตาม ลําดับการเดินทางของโหนดเป็นไปตามหมายเลขที่กํากับไว้บนโหนด
+
 ### Undirected graph :pencil2:
+
+:framed_picture: Example
+
+![305767698_1539323129854123_8453918063843371850_n](https://user-images.githubusercontent.com/86911299/189431524-24456110-7f26-4631-a983-483e5e309ebd.jpg)
+
+```
+BFS-visit(s, adjList, visited = {}):
+    visited = visited U {s}
+    L0 = {s}
+    i = 0
+
+    while Li is not empty:
+        Li+1 = {}
+        for each u in Li:
+            for each v in adjList[u]:
+                if v is not in visited:
+                    visited = visited U {v}
+                Li+1 = Li+1 U {v}
+        i = i+1
+```
+
+```
+BFS-explore(V, adjList):
+    visited = {}
+    for each s in V:
+        if s not in visited:
+            BFS-visit(s, adjList, visited)
+```
+
+:framed_picture: Example
+
+![305351946_638023474538690_3859810982605578959_n](https://user-images.githubusercontent.com/86911299/189431245-e672a8a4-726b-4b31-8375-5d222ea6fb57.jpg)
 
 ### BFS's Complexity :pencil2:
 
+![305079078_392675029611438_7130839251589605808_n](https://user-images.githubusercontent.com/86911299/189430938-432042e2-1d16-4b61-8767-b42e7bd90466.jpg)
+
 ### BFS Implementation In CPP :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+// C++ program to print BFS traversal from a given vertex in a given graph
+#include<iostream>
+#include<list>
+using namespace std;
+
+// Graph class represents a undirected graph using adjacency list representation
+class Graph{
+    int V; 
+    // No. of vertices
+    
+    list<int> *adj; 
+    // Pointer to an array containing adjacency lists
+
+public:
+    Graph(int V); 
+    // Constructor
+    
+    void addEdge(int v, int w); 
+    // Function to add an edge to graph
+
+    void BFSVisit(int s); 
+    // BFS traversal of the vertices reachable from s
+};
+
+Graph::Graph(int V){
+    this->V = V;
+    adj = new list<int>[V];
+}
+
+void Graph::addEdge(int v, int w){
+    adj[v].push_back(w); 
+    // Add w to v’s list
+    
+    adj[w].push_back(v); 
+    // Add v to w’s list
+}
+
+
+// BFS traversal of the vertices reachable from s
+void Graph::BFSVisit(int s){
+    // Mark all the vertices as not visited
+    bool *visited = new bool[V];
+    for (int i = 0; i < V; i++)
+        visited[i] = false;
+    
+    // Create a queue for BFS
+    list<int> queue;
+
+    // Mark the current node as visited and enqueue it
+    visited[s] = true;
+    queue.push_back(s);
+
+    // 'i' will be used to get all adjacent vertices of a vertex u
+    list<int>::iterator i;
+    int u;
+
+    while(!queue.empty()){
+        // Dequeue a vertex from queue and print it
+        u = queue.front();
+        cout << u << endl;
+        queue.pop_front();
+
+        // Get all adjacent vertices of the dequeued vertex u. If a adjacent has not been visited, then mark it visited and enqueue it
+        for (i = adj[u].begin(); i != adj[u].end(); ++i) {
+            if (!visited[*i]) {
+                visited[*i] = true;
+                queue.push_back(*i);
+            }
+        }
+    }
+}
+```
+
+
+:keyboard: Main
+
+```
+int main(){
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
+    g.addEdge(1, 2);
+    g.addEdge(2, 0);
+    g.addEdge(2, 3);
+
+    cout << "Following is Breath-First Traversal (starting from vertex 0) \n";
+    g.BFSVisit(0);
+    return 0;
+}
+```
+
+:printer: Output
+
+```
+Following is Breath-First Traversal (starting from vertex 0)
+0
+1
+2
+3
+```
+
+:bulb:
+
+=>
+
 
 ### BFS's Properties :pencil2:
 
-### BFS Application :pencil2:
+![304843285_557983376110206_8745328850935854464_n](https://user-images.githubusercontent.com/86911299/189431366-4bc45a55-72ff-4409-abca-d695ef7a97d8.jpg)
+
+## Application :page_with_curl:
+
+- Test whether there is a path from one vertex to another
+
+:bulb: Because
+
+=>
+
+- Test whether a graph is connected
+
+:bulb: Because
+
+=>
+
+- Test whether a graph has a cycle
+
+:bulb: Because
+
+=>
 
 ![302177417_572313191245872_5283596151075159324_n](https://user-images.githubusercontent.com/86911299/188324640-b7082699-f50b-48a6-89b7-bf629070509c.jpg)
 
@@ -788,25 +1101,133 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 # Trees :books:
 
-## Informal Introduction :page_with_curl:
+Trees : ต้นไม้ที่ไม่มีวงจร / ไม่มีnodeเดิมที่เคยเชื่อมกันแล้ววนกลับมาเชื่อมกันอีก `non-linear`
+Tree เป็นโครงสร้างข้อมูลที่สามารถสร้าง`algorithms`ที่รันได้เร็วกว่าโครงสร้างข้อมูลแบบ`linear` ; ไม่สามารถที่จะใช้การลำดับชั้นของข้อมูลได้
+    เช่น GUI , database , websites , etc
 
-## Terminology :page_with_curl:
+*Terminology of Tree*
 
-### Rooted Tree Terminolgy :pencil2:
+- hierarchical : เป็บการเรียงลำดับชั้นว่าnodeไหนมาก่อนหรือมาหลัก `จะมีก็ต่อเมื่อต้นไม้มีroot`
+
+- above : บน สูงกว่า
+
+- below : ล่าง ต่ำกว่า
+
+- Parent : พ่อ แม่ ผู้ปกครอง
+
+- Child / Children : ลูก
+
+- Ancestor : ปู่ ย่า ตา ย่า บรรพบุรุษ
+
+- Descendant : ทายาท
+
+- Siblings : พี่ น้อง [same Parent]
 
 ## Free Trees :page_with_curl:
 
+:framed_picture: Tree
+
+![640px-Tree_graph svg](https://user-images.githubusercontent.com/86911299/189417431-088c1c7c-64c2-47ed-a218-d4f7867548d5.png)
+
+Free Trees / Tree : `Connected Undirected graph ; no cycle` ไม่มีลำดับชั้น [Hierarchical] เพราะไม่มี root
+สามารถใช้โครงสร้างสำหรับกราฟได้ เช่น adjency-matrix , adjency-list
+
+### Linked Structure :pencil2:
+
+:framed_picture: Linked Structure for General Trees
+
+![303024281_596815575495329_3331920471558427297_n](https://user-images.githubusercontent.com/86911299/189418278-34644150-a226-45a9-acef-2003531ff52e.jpg)
+
 ## Rooted Trees :page_with_curl:
 
-### Linked StructureRooted Tree :pencil2:
+Rooted Trees : ต้นไม้ที่กำหนด`root`มาด้วยซึ่งrootเนี่ยก็จะเป็นnodeแต่มีความพิเศษมากกว่าnodeอื่นๆ [Distinguished] ; จะnodeที่ไม่มี parent
+
+- Root : จะอยู่บนสุด หรือถ้าnodeนั้นๆเป็นrootแต่ไม่อยู่บนสุดของกราฟก็สามารถปรับให้อยู่บนสุดได้ 
+ดังนั้น เมื่อรู้ว่าต้นไม้ของเรามีรากอยู่ที่ไหนก็จะเกิดลำดับชั้นขึ้น 
+
+### Rooted Tree Terminology :pencil2:
+
+:framed_picture: Rooted Tree
+
+![304980343_476216744150921_4536461395199997503_n](https://user-images.githubusercontent.com/86911299/189420818-1e441e2e-8f6a-4308-bb9e-01756e5a9221.jpg)
+
+- Ancestor : เส้นทางที่จะเดินทางจาก `root => x_Node` 
+    => x_Node = 9 ; Ancestor's X = 7 , 3 , 8 , 5 , 9 [r to x]
+
+- Descendant : ถ้า y_Node Ancestor's X ; จะทำให้x_Nodeเป็นDescendantของy_Node
+    => y_Node = 8 ; Descendant's Y = 8 , 6 , 5 , 9
+
+*ทุกNodeจะเป็น Ancestor & Descendant ของตัวมันเอง*
+
+- Subtree rooted at x : ถ้ากำหนดNodeใดๆในต้นไม้เป็นroot จะเกิดเป็นต้นไม้ย่อยอยู่ในต้นไม้ทั้งหมด
+    => Subtree rooted at 4 ; ในต้นไม้ย่อยของรากที่4 มีNode = 11 , 2
+
+- Parent : Node / Rootที่มีNodeต่อมาจากNodeของตัวเอง
+- Child / Children : Node ที่มีRoot หรือ Nodeก่อนหน้า
+- Siblings : same Parent
+    => 3 Parent's 12 , 8
+    => 12 Child's 3
+    => 8 Child's 3
+    => 12 , 8 are Sibling
+
+- Leaf / External Node : Node ที่ไม่มี child
+    => Leaf / External Node = 1 ,6 , 9 , 10 , 11 , 2
+
+- Internal Node : Node ที่มี child
+    => Internal Node = 7 , 3 , 4 , 12 , 8 , 5
+
+- degree : จำนวนchildrenของnodeนั้นๆ 
+    => 3_Node = 2 degree ; 8 , 12
+
+- depth : ระยะห่างของNodeนั้นๆ ไปสู่Root 
+    => 9_Node = depth 4
+    => 4_Node = depth 1
+
+- level : ทุกNodeที่อยู่ในdepthเดียวกัน
+    => level 2 = 8 , 12 , 11 , 2 
+
+- height : ความสูงของต้นไม้จะนับจากNodeไปจนถึงLeafที่อยู่ต่ำสุด ; ระยะความสูงของต้นไม้จะเท่ากับdepthที่ห่างจากrootที่สุด
+    => height = 4
+
+### Linked Structure :pencil2:
+
+### Basic Operation [Create] :pencil2:
 
 ## Ordered Trees :page_with_curl:
 
-## Basic Operations on Tree :page_with_curl:
+:framed_picture: Ordered Trees
 
-### Create a Rooted Tree :pencil2:
+![305460783_606495461180205_4159149470554621444_n](https://user-images.githubusercontent.com/86911299/189425163-cad0dff2-6dcc-4ca4-96e4-3b768403ea61.jpg)
+
+Ordered Trees : ต้นไม้ที่มีลำดับชั้นในแนวราบ จะต้องมีลำดับของลูก เช่น ถ้าเป็นFamily Tree จะต้องเรียงลำดับของลูกคนโต คนกลาง คนเล็ก ...
+
+### Basic Operation [createRoot(r,T)] :pencil2:
+
+### Basic Operation [createNode(u,p,T)] :pencil2:
+
+### Basic Operation [getParent(u,T)] :pencil2:
+
+### Basic Operation [getChild(u,k,T)] :pencil2:
+
+### Basic Operation [isRoot(u,T)] :pencil2:
+
+### Basic Operation [isExternal(u,T)] :pencil2:
+
+### Basic Operation [depth(u,T)] :pencil2:
+
+### Basic Operation [height(T)] :pencil2:
+
+### Complexity of Operations :pencil2:
 
 # Tree Traversals :books:
+
+## Preorder Traversal :page_with_curl:
+
+### Pseudicode (Root , Left , Right) :pencil2:
+
+## Postorder Traversal :page_with_curl:
+
+### Pseudicode (Root , Left , Right) :pencil2:
 
 # Binary Tree :books:
 

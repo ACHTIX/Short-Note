@@ -2,8 +2,8 @@
 
 ## 1. Input/Output [IO] :bookmark_tabs: ##
 ## 2. Exception Handling :closed_book: ##
-## 3. Interface , Abstract Classes , Polymorphism :green_book: ##
-## 4. Collections :orange_book: ##
+## 3. Collections :green_book: ##
+## 4. Interface , Abstract Classes , Polymorphism :orange_book: ##
 ## 5. Unit Testing and jUnit :notebook: ## 
 ## 6. Object-Oriented Design Principles :notebook_with_decorative_cover: ##
 ## 7. Composition :ledger: ##
@@ -820,6 +820,17 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 ### System.exit() :pencil2:
 
 ### Example Finally Code :pencil2:
+
+![304858711_1976167729240807_4481986684218950513_n](https://user-images.githubusercontent.com/86911299/189172490-a45d7a91-99ff-41bd-8bdb-df16afd2d0a8.jpg)
+
+![304966077_450801740148506_5817140870700656319_n](https://user-images.githubusercontent.com/86911299/189172566-82323f4e-bb16-429e-9286-1100ec752ac4.jpg)
+
+![305077378_493153709481369_7467008084996137125_n](https://user-images.githubusercontent.com/86911299/189172585-1e6b14ec-d7a5-479e-98f4-292c1301a147.jpg)
+
+![305504775_643442480481430_3152528743736517567_n](https://user-images.githubusercontent.com/86911299/189172595-f0a5bcd9-f51c-4306-aba8-57ebe40d03a4.jpg)
+
+![306053887_410373494572220_8648354436325946613_n](https://user-images.githubusercontent.com/86911299/189172608-722c11fb-198b-4878-954b-697234e79dfa.jpg)
+
 
 ## Extra :page_with_curl:
 
