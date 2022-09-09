@@ -1193,6 +1193,85 @@ Rooted Trees : ต้นไม้ที่กำหนด`root`มาด้ว�
 
 ### Basic Operation [Create] :pencil2:
 
+:desktop_computer: Example Code :
+
+```
+#include<stdlib.h>
+
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+
+struct node* createNode(int key, struct node* parent) {
+    // Allocate memory for new node
+    struct node* node = (struct node*)malloc(sizeof(struct node));
+
+    // Assign key to this node
+    node->key = key;
+
+    // Initialize parent
+    node->parent = parent;
+
+    // Initialize left child, and right sibling as NULL
+    node->leftChild = NULL;
+    node->rightSibling = NULL;
+
+    // Set this node as a child to its parent
+    if(node->parent != NULL) {
+        if(node->parent->leftChild != NULL) {
+            struct node* child = node->parent->leftChild;
+            while(child->rightSibling != NULL) {
+                child = child->rightSibling;
+            }
+            child->rightSibling = node;
+        }
+        else {
+            node->parent->leftChild = node;
+        }
+    }
+    return node;
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node *root = createNode(1, NULL);
+    /* following is the tree after the above statement
+        1
+    */
+
+    createNode(2, root);
+    createNode(3, root);
+    /* 2 and 3 become children of 1
+             1
+            / \
+            2 3
+    */
+
+    createNode(4, root->leftChild);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    ...
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
+
+
 ## Ordered Trees :page_with_curl:
 
 :framed_picture: Ordered Trees
@@ -1203,17 +1282,324 @@ Ordered Trees : ต้นไม้ที่มีลำดับชั้นใ�
 
 ### Basic Operation [createRoot(r,T)] :pencil2:
 
+:desktop_computer: Example Code :
+
+```
+//----อธิบาย----
+code
+//----อธิบาย----
+code
+```
+
+:keyboard: Main
+
+```
+code
+```
+
+:bulb: 
+
+=>
+
+
 ### Basic Operation [createNode(u,p,T)] :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+
+struct node* createNode(int key, struct node* parent){
+    // Allocate memory for new node
+    struct node* node = (struct node*)malloc(sizeof(struct node));
+
+    // Assign key to this node
+    node->key = key;
+
+    // Initialize parent
+    node->parent = parent;
+
+    // Initialize left child, and right sibling as NULL
+    node->leftChild = NULL;
+    node->rightSibling = NULL;
+
+    // Set this node as a child to its parent
+    if(node->parent != NULL) {
+        if(node->parent->leftChild != NULL) {
+            struct node* child = node->parent->leftChild;
+            while(child->rightSibling != NULL) {
+                child = child->rightSibling;
+            }
+            child->rightSibling = node;
+        }
+        else {
+            node->parent->leftChild = node;
+        }
+    }
+    return node;
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node* node1 = createRoot(1);
+    struct node* node2 =createNode(2, node1);
+    struct node* node3 =createNode(3, node1);
+    struct node* node4 =createNode(4, node2);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
 
 ### Basic Operation [getParent(u,T)] :pencil2:
 
+:desktop_computer: Example Code :
+
+```
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+
+struct node* getParent(structnode* node){
+    return node->parent;
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node* node1 = createRoot(1);
+    struct node* node2 =createNode(2, node1);
+    struct node* node3 =createNode(3, node1);
+    struct node* node4 =createNode(4, node2);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    printf("%d\n", getParent(node2)->key); //output "1"
+    ...
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
+
 ### Basic Operation [getChild(u,k,T)] :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+struct node* getChild(struct node* node,int k){
+    struct node* child = node->leftChild;
+    for(int i=1; i<k; i++) {
+        child = child->rightSibling;
+    }
+    return child;
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node* node1 = createRoot(1);
+    struct node* node2 =createNode(2, node1);
+    struct node* node3 =createNode(3, node1);
+    struct node* node4 =createNode(4, node2);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    printf("%d\n", getChild(node1,2)->key); // output “3”
+    ...
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
 
 ### Basic Operation [isRoot(u,T)] :pencil2:
 
+:desktop_computer: Example Code :
+
+```
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+
+void isRoot(struct node*node){
+    if(node->parent == NULL)
+        printf("Yes\n");
+    else
+        printf("No\n");
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node* node1 = createRoot(1);
+    struct node* node2 =createNode(2, node1);
+    struct node* node3 =createNode(3, node1);
+    struct node* node4 =createNode(4, node2);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    isRoot(node1); // output "Yes"
+    isRoot(node2); // output “No”
+    ...
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
+
 ### Basic Operation [isExternal(u,T)] :pencil2:
 
+
+:desktop_computer: Example Code :
+
+```
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+
+void isExternal(struct node*node){
+    if(node->leftChild == NULL)
+        printf("Yes\n");
+    else
+        printf("No\n");
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node* node1 = createRoot(1);
+    struct node* node2 =createNode(2, node1);
+    struct node* node3 =createNode(3, node1);
+    struct node* node4 =createNode(4, node2);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    isExternal(node2); // output "No"
+    isExternal(node3); // output “Yes"
+    ...
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
+
 ### Basic Operation [depth(u,T)] :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+struct node{
+    int key;
+    struct node* parent;
+    struct node* leftChild;
+    struct node* rightSibling;
+};
+
+int depth(struct node* node){
+    int depth = 0;
+    while(node->parent != NULL) {
+        node = node->parent;
+        depth++;
+    }
+    return depth;
+}
+```
+
+:keyboard: Main
+
+```
+int main(){
+    /*create root*/
+    struct node* node1 = createRoot(1);
+    struct node* node2 =createNode(2, node1);
+    struct node* node3 =createNode(3, node1);
+    struct node* node4 =createNode(4, node2);
+    /* 4 becomes left child of 2
+             1
+            / \
+            2 3
+           /
+          4
+    */
+    printf("%d\n", depth(node4)); // output "2"
+    ...
+    return 0;
+}
+```
+
+:bulb: 
+
+=>
 
 ### Basic Operation [height(T)] :pencil2:
 
