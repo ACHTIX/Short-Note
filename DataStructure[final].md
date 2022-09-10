@@ -734,7 +734,7 @@ int outDegree(struct Node** adjList, int n, int u) {
 
 # Graphs Traversals :books:
 
-https://www.tamemo.com/post/26/project-solution-tree-searching-dfs-bfs-step-by-step/
+:pushpin: https://www.tamemo.com/post/26/project-solution-tree-searching-dfs-bfs-step-by-step/
 
 ## Terminology About Graphs :page_with_curl:
 
@@ -1101,6 +1101,8 @@ Following is Breath-First Traversal (starting from vertex 0)
 
 # Trees :books:
 
+:pushpin: https://sbme-tutorials.github.io/2020/data-structure-FALL/notes/week08.html
+
 Trees : ต้นไม้ที่ไม่มีวงจร / ไม่มีnodeเดิมที่เคยเชื่อมกันแล้ววนกลับมาเชื่อมกันอีก `non-linear`
 Tree เป็นโครงสร้างข้อมูลที่สามารถสร้าง`algorithms`ที่รันได้เร็วกว่าโครงสร้างข้อมูลแบบ`linear` ; ไม่สามารถที่จะใช้การลำดับชั้นของข้อมูลได้
     เช่น GUI , database , websites , etc
@@ -1191,6 +1193,18 @@ Rooted Trees : ต้นไม้ที่กำหนด`root`มาด้ว�
 
 ### Linked Structure :pencil2:
 
+:framed_picture: Once Linked Structure
+
+![Tree05](https://user-images.githubusercontent.com/86911299/189478169-a1a8e7a3-9fac-48d0-853f-69fc45995ef0.png)
+
+![305822642_641214653984852_656983524873439438_n](https://user-images.githubusercontent.com/86911299/189477558-51409b53-dcb6-4902-9bdd-93cbc02bce51.jpg)
+
+- Linked to parent : Pointerที่ชี้ไปยังNodeของparent
+
+- First Child / Left most child : Pointerที่ชี้ไปยังลูกคนแรก
+
+- Next sibling / Right child : Pointerที่ชี้ไปยังลูกของถัดไปที่มีparentเดียวกัน
+
 ### Basic Operation [Create] :pencil2:
 
 :desktop_computer: Example Code :
@@ -1270,7 +1284,6 @@ int main(){
 :bulb: 
 
 =>
-
 
 ## Ordered Trees :page_with_curl:
 
@@ -1607,11 +1620,22 @@ int main(){
 
 # Tree Traversals :books:
 
+![306212882_799136431288818_7807408926644447820_n](https://user-images.githubusercontent.com/86911299/189478301-3afe2d8d-42f0-4411-96c2-95f33c957d93.jpg)
+
 ## Preorder Traversal :page_with_curl:
+
+:framed_picture: For Example : 
+
+![305186291_600753564927771_9145776248451234260_n](https://user-images.githubusercontent.com/86911299/189478304-f94846cb-1e42-464b-b429-eb18a14ae7f9.jpg)
 
 ### Pseudicode (Root , Left , Right) :pencil2:
 
 ## Postorder Traversal :page_with_curl:
+
+:framed_picture: For Example : 
+
+![305848361_760976998463862_6062456630850504041_n](https://user-images.githubusercontent.com/86911299/189478311-3524b760-ca36-429b-84be-d2587be869ba.jpg)
+
 
 ### Pseudicode (Root , Left , Right) :pencil2:
 

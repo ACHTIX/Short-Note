@@ -718,6 +718,10 @@ System Error : เป็นErrorที่**ร้ายแรง ไม่ค่
 
 Exception class : มีหลายคลาสมีให้เลือกหลายแบบควรเลือกให้เหมาะสมกับการใช้งาน แต่ถ้าหากไม่มีสามารถสร้างขึ้นมาเองได้จากการ`extends จาก exception class / subclass`
 
+*สิ่งที่ต้องระวัง ควรทำ/ไม่ควรทำ*
+- ไม่ควรcatch เพื่อแค่จะทำให้การcompileผ่านเฉยๆ `catch(Exception e) {}` ถ้าไม่รู้ว่าต้องทำยังไงกับexceptionนั้นๆ
+- ควรที่จะ `throw` ไปให้ที่callerแทน เพราะผู้ใช้ไม่สามารถแก้ไขหรือเข้าใจเองได้ และเราควรที่จะแจ้งกับผู้ใช้ว่าเกิดอะไรขึ้ด้วย
+
 ## Checked Exception :page_with_curl:
 
 Checked Excption : เป็นsubclassของException[แต่ไม่ใช่RuntimeException] เป็นข้อพิดพลาดที่เกิดจาดเหตุสุดวิสัยที่เกิดขึ้นได้เสมอ ไม่สามารถควบคุมได้
@@ -791,8 +795,6 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 - IllegalArgumentException : ใช้argumentผิดประเภท
 - ArithmeticException : ไม่ได้เช็คค่าศูนย์ก่อน เช่น มีค่าศูนย์มาหาร
 
-### Catch with Unchecked Exception :pencil2:
-
 ## Try / Catch :page_with_curl:
 
 ### Try with multiple catch :pencil2:
@@ -803,17 +805,83 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 
 ### RethrowingException :pencil2:
 
+### Catch with Unchecked Exception :pencil2:
+
 ## Throwable :page_with_curl:
 
-### String getMessage() :pencil2:
+String getMessage() : แสดงข้อความเพื่อแจ้งผู้ใช้ว่าเกิดอะไรขึ้น 
 
-### void printStrackTrace() :pencil2:
+void printStrackTrace() : แสดง`error`ที่เป็นstrack trace แบบทั่วไปเวลาเกิดerror ไม่ควรใช้จะใช้ได้แค่ตอนที่ต้องการจะdebug code
 
-### String toString() :pencil2:
+String toString() : คล้ายๆกับgetMessage() แต่ว่าจะแสดงเป็นชื่อคลาสมาด้วย ใช้ได้แค่ตอนที่ต้องการจะdebug code
 
 ## Create Exception :page_with_curl:
 
+Create Exception : การสร้างException classเองเนืองจากjava APIอาจไม่มีที่เหมาะสมกับการใช้งานของเรา สามารถสร้างเหมือนการสร้างSubclassทั่วๆไป
+สามารถระบุด้วยว่าExceptionนั้นๆจะเป็น `Uncheck exception / check exception`จะการที่ระบุว่าexceptionนัั้นสืบทอดหรือเป็นsubclassของ `RuntimeExcetion / Exception`  
+
+### Check exception :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+public class InsufficientFundException extends Exception { //subclass's Exception
+   public InsufficientFundException() {}
+   public InsufficientFundException(String message) {
+       super(message); //รับพารามิเตอร์ [Error Message] จากSuper class
+   } 
+}
+```
+
+```
+public void withdraw(double amount) throws InsufficientFundException {
+   if (amount < 0)
+       throw new IllegalArgumentException("amount " + amount + " < 0");
+   if (balance < amount)
+       throw new InsufficientFundException();
+   balance = balance - amount;
+}
+```
+
+:bulb:
+
+=> ไม่ควรมี if หรือ logic อยู่ในคลาสนี้
+
+### Uncheck exception :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+public class DataFormatException extends RuntimeException { //subclass's Exception
+   public DataFormatException() { }
+   public DataFormatException(String message) {
+       super(message); //รับพารามิเตอร์ [Error Message] จากSuper class
+   }
+}
+```
+
+```
+public void processData(String line) {
+   if (!checkFormat())
+       throw new DataFormatException();
+   // .... process data .....
+}
+```
+
+:bulb:
+
+=> ไม่ควรมี if หรือ logic อยู่ในคลาสนี้
+
 ## Finally clause :page_with_curl:
+
+```
+try{
+     
+}
+finally{
+
+}
+```
 
 ### Finally with catch :pencil2:
 
@@ -831,8 +899,6 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 
 ![306053887_410373494572220_8648354436325946613_n](https://user-images.githubusercontent.com/86911299/189172608-722c11fb-198b-4878-954b-697234e79dfa.jpg)
 
-
-## Extra :page_with_curl:
 
 # Collections :books:
 
