@@ -775,17 +775,6 @@ public Student(String name, String birthday) {
 
 => เนืองจากIllegalArgumentExceptionนี้เป็น`Uncheck Exception`เราไม่ต้องdeclare
 
-### ส่งต่อ / ดักจับ :pencil2:
-
-- Declare :  
-- Handle : 
-
-### ส่งต่อExceptionต่อด้วยการDelacre :pencil2:
-
-### ดักจับException :pencil2:
-
-### declare + ดักจับ :pencil2:
-
 ## Unchecked Exception :page_with_curl:
 
 Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้อผิดพลาดที่เกิดจากการเขียนโปรแกรมของตัวโปรแกรมเมอร์เอง 
@@ -795,17 +784,220 @@ Unchecked Exception : เป็นsubclass[RuntimeException] เป็นข้�
 - IllegalArgumentException : ใช้argumentผิดประเภท
 - ArithmeticException : ไม่ได้เช็คค่าศูนย์ก่อน เช่น มีค่าศูนย์มาหาร
 
+## ส่งต่อ / ดักจับ :page_with_curl:
+
+- Declare : ประกาศEXceptionไว้ที่methode signature เพื่อที่จะส่งต่อ[pass control] Errorนั้นๆไปที่callerที่รู้ว่าต้องทำยังไงกับErrorนั้นๆ
+
+```
+//ประการไว้ที่method signature ใช้ [throws : เพื่อนแสดงถึงว่าเป็นประโยคคำสั่งที่สั่งให้ส่งต่อไปที่อื่นที่สามารถจัดการได้]
+public void withdraw(double amount) throws FileNotFoundException , IOException {
+    FileReader reader = new FileReader(filename);
+    //FileNotFoundException [Check Exception] 
+    //เป็นsubclass's IOException ดังนั้นสามารถthrowsแค่IOExceptionแต่เพื่อความเข้าใจง่ายก็ควรที่จะthrowsไปทั้งsuperclass + subclass ของCheck Exceptionเลย
+
+    BufferedReader in = new BufferedReader(reader);
+    
+    String input = in.readLine();
+    //IOException [Check Exception]
+    
+    int value = Integer.parseInt(input);
+    //NumberFormatException [Uncheck Exception] ; ไม่จำเป็นต้องdeclare
+}
+```
+
+- Handle : เป็นการจัดการกับExceptionโดยการที่ถ้าเราไม่รู้ว่าต้องแก้ไขยังไง เราไม่ควรที่จะtry / catchเองเลย เราสามารถที่จะโยนต่อไปให้caller 
+*การที่จะส่งต่อExceptionสามารถส่งต่อไปได้เรื่อยๆ แต่ไม่ควรให้ถึงmainหรือส่งต่อให้ผู้ใช้*
+
+![304966762_586859299800008_1305162798097711157_n](https://user-images.githubusercontent.com/86911299/189635258-867bed98-14c0-4925-9bd0-9ba1fa299084.jpg)
+
+### ทำทั้งdeclare + ดักจับ :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+public void read(String filename) throws IOException {
+    try {
+        FileReader reader = new FileReader(filename);
+        BufferedReader in = new BufferedReader(reader);
+        String input = in.readLine();
+        int value = Integer.parseInt(input);
+    }
+    catch (FileNotFoundException e) {
+        System.err.println("File " + filename + " cannot be found! ");
+    }
+    catch (NumberFormatException e) {
+        System.err.println("Input was not a number");
+    }
+}
+```
+
+:bulb: 
+
+=> หากต้องการ catch แค่บาง Exception เราสามารถ throw Exception อื่นที่อาจเกิดได้
+
+### Rethrowing exception :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+public void read(String filename) throws IOException {
+    try {
+        FileReader reader = new FileReader(filename);
+        BufferedReader in = new BufferedReader(reader);
+        String input = in.readLine();
+        int value = Integer.parseInt(input);
+    }
+    catch (FileNotFoundException e) {
+        System.err.println("File " + filename + " cannot be found! ");
+    }
+    catch (IOException e) {
+        ...... handle as desired ......
+    throw e;
+    //ไม่ต้อง`new`เพราะมีobject exceptionแล้ว โยนต่อได้เลย
+    }
+    catch (NumberFormatException e) {
+        System.err.println("Input was not a number");
+    }
+}
+```
+
+:bulb: 
+
+=> catch และจัดการแล้ว แต่ต้องการให้ caller จัดการด้วย สามารถโยนต่อด้วยได้
+
+
+### ไม่จําเป็นต้อง catch unchecked exception :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+public void read(String filename) {
+    try {
+        FileReader reader = new FileReader(filename);
+        BufferedReader in = new BufferedReader(reader);
+        String input = in.readLine();       
+        int value = Integer.parseInt(input);
+    }
+    catch (FileNotFoundException e) {
+        System.err.println("File " + filename + " cannot be found! ");
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+```
+
+:bulb: 
+
+=> เนื่องจาก NumberFormatException เป็น unchecked exception ดังนั้น ไม่จําเป็นต้อง catch NumberFormatException
+
 ## Try / Catch :page_with_curl:
 
+Try / Catch : การดักจับExceptioสามารถใช้Try / Catch `Exception handler`
+
+```
+try {
+    โค้ดที่อาจทําให้เกิด exception
+}
+catch (parameter เป็น type หรือ subtype ของ class Exception) {
+    โค้ดที่จะจัดการกับ exception
+}
+```
+
+:bulb:
+
+=> ถ้าไม่เกิดException จะทำงานในtry แต่ไม่ทำงานในcatch
+
+=> ถ้าเกิดexception จะทำงานในtryถึงแค่บรรทัดที่เกิด เเล้วไปทำงานต่อที่catchแทน
+
+=> ต่อให้เกิดหรือไม่เกิดExceptionเมื่อทำงานในtry / catchเสร็จแล้วจะมาทำงานนอกtry / catchต่อ
+
+:framed_picture: Example Code
+
+![305173285_812756106421287_9037398917680694143_n](https://user-images.githubusercontent.com/86911299/189638209-bce91fe5-0ff2-4f2d-9d7f-ff04d7e191cf.jpg)
+
 ### Try with multiple catch :pencil2:
+
+:desktop_computer: Example Code :
+
+```
+public void read(String filename) {
+    try {
+        FileReader reader = new FileReader(filename);
+        //FileNotFoundException
+        BufferedReader in = new BufferedReader(reader);
+        
+        String input = in.readLine();
+        //IOException
+
+        int value = Integer.parseInt(input);
+        //NumberFormatException
+    }
+    catch (FileNotFoundException e) {
+        System.err.println("File " + filename + " cannot be found! ");
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+    catch (NumberFormatException e) {
+        System.err.println("Input was not a number");
+    }
+}
+```
+
+:bulb: 
+
+=> 1 tryสามารถมีได้หลายcatch แต่บางexceptionไม่ควรใส่เนืองจากควรตรวจสอบให้ดีจากการเขียนโค้ดแทนการใช้exception  
+Uncheck Exceptionที่เกิดจากความผิดพลาดของการเขียนโปรแกรม 
+เช่น NullPointerException , IndexOutOfBoundsException , IllegalArgumentException , ArithmeticException
 
 ### ลำดับของCatch :pencil2:
 
-### Try with multiple catch :pencil2:
+ลำดับของCatch : เนืองจาก1 try สามารถมีได้หลายcatch นั้นดังจะต้องมีการลำดับในcatch
+การexecute catch clause จะเรียงจากบนลงล่าง เพื่อหาException class ที่มีชนิดตรงกับexception ที่โยนได้ถูกต้อง
 
-### RethrowingException :pencil2:
+ในการเรียงลำดับ `Subclass อยู่บน` + `Superclass อยู่ล่าง`
+- เพราะจะทำให้superclassรับexceptionของsubclassได้ด้วย
+- ทำให้การจัดการอาจไม่ตรงตามที่ต้องการ
 
-### Catch with Unchecked Exception :pencil2:
+*ถ้าไม่มีความสัมพันธ์แบบ subclass-superclass จะจัดให้อยู่ลําดับใดก็ได้*
+
+:desktop_computer: Example Code :
+
+```
+public void read(String filename) {
+    try {
+        FileReader reader = new FileReader(filename);
+        BufferedReader in = new BufferedReader(reader);
+        String input = in.readLine();
+        int value = Integer.parseInt(input);
+    }
+
+    /*  catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (FileNotFoundException e) { 
+            System.err.println("File " + filename + " cannot be found! ");
+        }
+    */
+
+    catch (FileNotFoundException e) { 
+        System.err.println("File " + filename + " cannot be found! ");
+    }
+    catch (IOException e) {
+        e.printStackTrace();
+    }
+    
+    catch (NumberFormatException e) {
+        System.err.println("Input was not a number");
+    }
+    //ไม่เป็นSubclassของIOExceptionสามารถอยู่ตรงไหนก็ได้
+}
+```
+
+:bulb: Error Because
+
+=> FileNotFoundException เป็น subclass ของ IOException
 
 ## Throwable :page_with_curl:
 

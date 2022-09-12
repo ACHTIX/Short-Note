@@ -16,8 +16,6 @@
 
 :desktop_computer: Example Code :
 
-`#include <  >`
-
 ```
 //----อธิบาย----
 code
